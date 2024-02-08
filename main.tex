@@ -1,0 +1,83 @@
+\documentclass[12pt,a4paper]{book}
+
+%Uporabljeni paketi
+\usepackage[utf8]{inputenc}
+\usepackage{cmap}
+\usepackage{type1ec}
+\usepackage[T1]{fontenc}
+\usepackage{fancyhdr}
+\usepackage{graphicx,epsfig}
+\usepackage[slovene]{babel}
+\usepackage{cite}
+
+\usepackage[pdftex,colorlinks,citecolor=black,filecolor=black,linkcolor=black,urlcolor=black,pagebackref]{hyperref}
+\usepackage{tikz}
+
+%Velikost strani - dvostransko
+\oddsidemargin 1.4cm
+\evensidemargin 0.35cm
+\textwidth 14cm
+\topmargin 0.26cm
+\headheight 0.6cm
+\headsep 1.5cm
+\textheight 20cm
+
+%Nastavitev glave in repa strani
+\pagestyle{fancy}
+\fancyhead{}
+\renewcommand{\chaptermark}[1]{\markboth{\textsf{Poglavje \thechapter:\ #1}}{}}
+\renewcommand{\sectionmark}[1]{\markright{\textsf{\thesection\  #1}}{}}
+\fancyhead[RE]{\leftmark}
+\fancyhead[LO]{\rightmark}
+\fancyhead[LE,RO]{\thepage}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0.0pt}
+\renewcommand{\footrulewidth}{0.0pt}
+
+\newcommand{\gnuplot}{\textbf{gnuplot}}
+\newcommand{\pgfname}{\textsc{pgf}}
+\newcommand{\tikzname}{Ti\emph{k}Z}
+
+\begin{document}
+
+
+\begin{center}
+{\large 
+UNIVERZA V LJUBLJANI\\
+FAKULTETA ZA RAČUNALNIŠTVO IN INFORMATIKO\\
+}
+
+\vspace{3cm}
+{\LARGE Svit Spindler}\\
+
+\vspace{2cm}
+\textsc{\textbf{\LARGE 
+Hiter inženiring pri razvoju programske opreme\\ 
+}}
+
+\vspace{2cm}
+{ DIPLOMSKO DELO}\\
+{ NA UNIVERZITETNEM ŠTUDIJU\\
+}
+
+\vspace{2cm} 
+{\Large Mentor: izr. prof. dr. Dejan Lavbič}
+
+\vfill
+{\Large Ljubljana, 2024}
+\end{center}
+
+\newpage
+
+%********************************************
+
+% stran 3 med uvodnimi listi
+\thispagestyle{empty}
+
+Namesto te strani {\bf vstavite} original izdane teme diplomskega dela s podpisom mentorja in dekana ter \v zigom fakultete, ki ga diplomant
+dvigne v študent\-skem referatu,  preden odda izdelek v vezavo!
+
+\newpage
+
+
+\end{document}

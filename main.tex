@@ -102,7 +102,7 @@ Podrobnosti licence so dostopne na spletni strani \url{http://creativecommons.si
 intelektualno lastnino, Streliška 1, 1000 Ljubljana.
 
 \begin{center}% 0.66 / 0.89 = 0.741573033707865
-  \CcImageCc{0.741573033707865}\hspace*{1ex}\CcGroupBySa{1}{1ex}
+
 \end{center}
 }
 
@@ -113,7 +113,7 @@ različica 3 ali (po želji) novejšo različico. To pomeni, da se lahko prosto 
 Podrobnosti licence so dostopne na spletni strani \url{http://www.gnu.org/licenses/}.
 }
 
-\begin{center} 
+\begin{center}
 \ \\ \vfill
 {\em
 Besedilo je oblikovano z urejevalnikom besedil \LaTeX. \\ Slike so izdelane s pomočjo jezika \pgfname/\tikzname. \\ Grafi so narisani
@@ -138,7 +138,7 @@ dvigne v študent\-skem referatu,  preden odda izdelek v vezavo!
 
 %********************************************
 
-% stran 4 med uvodnimi listi je prazna 
+% stran 4 med uvodnimi listi je prazna
 \ \thispagestyle{empty}
 
 \newpage
@@ -150,11 +150,11 @@ dvigne v študent\-skem referatu,  preden odda izdelek v vezavo!
 \thispagestyle{empty}
 
 \vspace{1cm}
-\begin{center} 
+\begin{center}
 {\Large \textbf{IZJAVA O AVTORSTVU}}
 \end{center}
 
-\begin{center} 
+\begin{center}
 {\Large diplomskega dela}
 \end{center}
 
@@ -166,21 +166,21 @@ z vpisno številko \hspace{0.5cm} xxxxxxx,
 
 \vspace{1cm}
 sem avtor/-ica diplomskega dela z naslovom:
-   
+
 \vspace{0.5cm}
 Naslov diplomskega dela
 
 \vspace{1.5cm}
 S svojim podpisom zagotavljam, da:
 \begin{itemize}
-	\item sem diplomsko delo izdelal/-a samostojno pod mentorstvom 
-	
+	\item sem diplomsko delo izdelal/-a samostojno pod mentorstvom
+
 	prof. [doc.] dr. Ime Priimek
-	
-	in somentorstvom 
-	
+
+	in somentorstvom
+
 	prof. [doc.] dr. Ime Priimek
-	
+
 	\item	so elektronska oblika diplomskega dela, naslov (slov., angl.), povzetek (slov., angl.) ter ključne besede (slov., 			angl.) identični s tiskano obliko diplomskega dela
 	\item soglašam z javno objavo elektronske oblike diplomskega dela v zbirki ''Dela FRI''.
 \end{itemize}
@@ -188,7 +188,7 @@ S svojim podpisom zagotavljam, da:
 \vspace{1cm}
 V Ljubljani, dne xx.xx.20xx \hspace{1cm} Podpis avtorja/-ice:
 
-\newpage 
+\newpage
 
 %********************************************
 
@@ -221,8 +221,8 @@ Na tem mestu se diplomant zahvali vsem, ki so kakorkoli pripomogli k uspešni iz
 
 %********************************************
 
-\renewcommand\thepage{} 
-\tableofcontents 
+\renewcommand\thepage{}
+\tableofcontents
 \renewcommand\thepage{\arabic{page}}
 
 \thispagestyle{empty}
@@ -251,7 +251,7 @@ Seznam uporabljenih kratic in simbolov, ki morajo biti enotni v celotnem delu, n
 \addcontentsline{toc}{chapter}{Povzetek}
 
 Povzetek naj posreduje bralcu kratko vsebino dela. Zajema naj namen dela, področje, na katerega se delo nanaša,
-uporabljene metode, poglavitne rezultate dela, zaključke in priporočila. 
+uporabljene metode, poglavitne rezultate dela, zaključke in priporočila.
 Povzetek naj ne obsega več kot eno stran, obi\v cajno ima le 200 do 300 besed. Napiše se povsem na koncu,
 ko je že jasna vsebina vseh ostalih poglavij.
 
@@ -291,15 +291,19 @@ Ključne besede v angleškem jeziku.
 %********************************************
 
 \chapter{Uvod}
-Asistenti na področju umetne inteligence so postali zelo pogosto uporabljeno orodje na področju programskega inženirstva, ki pomagajo tako začetnikom napisati preprosto kodo, kot tudi izkušenejšim programerjem pri zahtevnejših nalogah. Po anketi, ki jo je sestavila spletna stran StackOverflow *leto podatka*, kar 44\% programerjev redno uporablja orodja umetne inteligence v razvojnem procesu, dodatnih 25\% pa to načrtuje v bližnji prihodosti (n= 89 184) *citat*. Cilj diplomskega dela je preučiti različne asistente na področju programiranja z umetno inteligenco. Uporabo asistentov na področju umetne inteligence pri učenju programiranja bom tudi preučil na več skupinah otrok, ki se učijo programiranja v programskih jezikih python ter javascript.
 
-\section{Asistenti na področju umetne inteligence} 
- 
+Umetna inteligenca je postala nepogrešljivo orodje pri programiranju. Orodja za generiranje kode s pomočjo umetne inteligence so vse bolj razširjena v inženirstvu programske opreme in ponujajo možnost generiranja kode na podlagi pozivov v naravnem jeziku ali delnih vnosov kode. Pomembni primeri teh orodij so GitHub Copilot, Amazon CodeWhisperer in ChatGPT podjetja OpenAI. Omenjena orodja uporabljajo tako začetni, kot tudi izkušenejši programerji in pripomorejo k hitrejšemu in učinkovitejšemu reševanju problemov, s katerimi se programerji soočajo.
+Namen diplomskega dela je raziskati prednosti in slabosti hitrega inženiringa (angleško prompt engineering) v programskem inženirstvu ter preizkusiti uporabnost orodja ChatGPT podjetja OpenAI pri učenju programiranja.
+
+
+
+\chapter{Pregled področja}
+Veliki jezikovni modeli (angleško LLM) so vrsta umetne inteligence, zasnovana za razumevanje in ustvarjanje besedila, ki je blizu ljedem. Treniranje temelji na vnaprej naučenih vzorcih z obsežnim usposabljanjem na veliki količini podatkov, kot so spletne strani, knjige, članki. S pomočjo podatkov lahko model prepozna statistične vzorce in strukture človeškega jezika, kar omogoča, da se nauči slovnice, sintakse in semantične odnose v jeziku. Po končanem učenju se model navadno usmeri in prilagodi za določeno domeno ali nalogo, kot je na primer prevajanje, generiranje besedila, prepoznavanje slik, ipd.
+\section{Asistenti na področju umetne inteligence}
+
 
 \section{Hitro programiranje}
 
-\chapter{Pregled področja}
-Splošno o pregledu področja
 \section{Programiranje s ChatGPT}
 Preučevanje prednosti in slabosti, ocena pravilnosti in razlage rešitve, primerjava z ostalimi  AI asistenti.
 
@@ -323,6 +327,27 @@ Preučevanje prednosti in slabosti, ocena pravilnosti in razlage rešitve, prime
 
 \chapter{Viri}
 Za kakovostno diplomsko delo je pomembna uporaba vseh razpoložljivih doma\-čih in tujih strokovnih ter znanstvenih virov.
+
+Yetiştiren, B., Özsoy, I., Ayerdem, M., \& Tüzün, E. (2023, April 21). Evaluating the Code Quality of AI-Assisted Code Generation Tools: An Empirical Study on GitHub Copilot, Amazon CodeWhisperer, and ChatGPT. Pridobljeno 28. 02. 2024 iz: https://arxiv.org/abs/2304.10778
+
+Thorsten Brants, Ashok C. Popat, Peng Xu, Franz J. Och, and Jeffrey Dean. 2007. Large Language Models in Machine Translation. In Proceedings of the 2007 Joint Conference on Empirical Methods in Natural Language Processing and Computational Natural Language Learning (EMNLP-CoNLL), pages 858–867, Prague, Czech Republic. Association for Computational Linguistics.
+
+\begin{thebibliography}{9}
+\bibitem{yetistiren2023evaluating}
+B.~Yetiştiren, I.~Özsoy, M.~Ayerdem, \& E.~Tüzün.
+\newblock Evaluating the Code Quality of AI-Assisted Code Generation Tools: An Empirical Study on GitHub Copilot, Amazon CodeWhisperer, and ChatGPT.
+\newblock Retrieved February 28, 2024, from \url{https://arxiv.org/abs/2304.10778} (April 21, 2023).
+
+\bibitem{brants2007large}
+Thorsten Brants, Ashok C. Popat, Peng Xu, Franz J. Och, \& Jeffrey Dean.
+\newblock Large Language Models in Machine Translation.
+\newblock In \textit{Proceedings of the 2007 Joint Conference on Empirical Methods in Natural Language Processing and Computational Natural Language Learning (EMNLP-CoNLL)}, pages 858--867, Prague, Czech Republic, 2007. Association for Computational Linguistics.
+
+\bibitem{yong2023authors}
+Yong Zheng.
+\newblock Authors Info \& Claims.
+\newblock In \textit{SIGITE '23: Proceedings of the 24th Annual Conference on Information Technology Education}, October 2023, pages 66--72, 2023. DOI: \url{10.1145/3585059.3611431}.
+\end{thebibliography}
 
 
 

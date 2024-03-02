@@ -8,19 +8,21 @@
 </head>
 
 <body>
-<h1>Hiter inženiring: Učenje s pomočjo chatGPT</h1>
+<h1 id="naslov">Hiter inženiring: Učenje s pomočjo chatGPT</h1>
 <div class="container">
-    <div id="python">
+    <div id="python" class="row-item">
         <form>
-            <label for="yourcode"></label><textarea id="yourcode" cols="40" rows="20">
-            print("Hello World")
-            </textarea><br />
+            <label for="yourcode"></label>
+            <textarea id="yourcode" cols="40" rows="20">print("Hello World")</textarea><br />
             <button type="button" onclick="runit()">Run</button>
         </form>
-        <pre id="output" ></pre>
     </div>
-    <div id="chatGPT">
-        <iframe src="https://chat.openai.com" title="ChatGPT"></iframe>
+        <div class="output-div">
+            <p>Output:</p>
+            <pre id="output" ></pre>
+        </div>
+    <div id="chatGPT" class="row-item">
+        <iframe src="https://chat.openai.com" title="ChatGPT" id="chatGPT-iframe"></iframe>
     </div>
 </div>
 

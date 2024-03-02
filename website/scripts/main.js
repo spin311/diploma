@@ -1,9 +1,27 @@
+var editor = CodeMirror.fromTextArea(document.getElementById("yourcode"), {
+    mode: "python",
+    lineNumbers: true,
+});
+
 // output functions are configurable.  This one just appends some text
 // to a pre element.
 function outf(text) {
-    var mypre = document.getElementById("output");
+    const mypre = document.getElementById("output");
     mypre.innerHTML = mypre.innerHTML + text;
 }
+function displayError(linenumber, lineText, errorText) {
+    const mypre = document.getElementById("output");
+    mypre.innerHTML = errorText + "\n" + "line " + (linenumber + 1) + ": " + lineText;
+    mypre.style.backgroundColor = "#ffcccc";
+
+}
+
+function success() {
+    const mypre = document.getElementById("output");
+    mypre.style.backgroundColor = "white";
+
+}
+
 function builtinRead(x) {
     if (Sk.builtinFiles === undefined || Sk.builtinFiles["files"][x] === undefined)
         throw "File not found: '" + x + "'";
@@ -16,7 +34,7 @@ function builtinRead(x) {
 // configure the output function
 // call Sk.importMainWithBody()
 function runit() {
-    const prog = document.getElementById("yourcode").value;
+    const prog = editor.getDoc().getValue();
     const mypre = document.getElementById("output");
     mypre.innerHTML = '';
     Sk.pre = "output";
@@ -26,9 +44,39 @@ function runit() {
         return Sk.importMainWithBody("<stdin>", false, prog, true);
     });
     myPromise.then(function(mod) {
+            success();
             console.log('success');
         },
         function(err) {
+            let lineNumber = extractLineNumber(err.toString());
+            while (isLineEmpty(lineNumber)) {
+                lineNumber--;
+            }
+            highlightLine(lineNumber);
+            displayError(lineNumber, editor.getLine(lineNumber), err.toString());
             console.log(err.toString());
         });
+}
+
+function extractLineNumber(errorString) {
+    // Extract line number from error message
+    const match = errorString.match(/line (\d+)/);
+    return match ? parseInt(match[1], 10) - 1 : null;
+}
+
+function highlightLine(lineNumber) {
+    if (lineNumber !== null && lineNumber >= 0) {
+        editor.markText({line: lineNumber, ch: 0}, {line: lineNumber + 1, ch: 0}, {className: "highlighted-error"});
+    }
+}
+
+editor.on('change', function() {
+    editor.getAllMarks().forEach(function(mark) {
+        mark.clear();
+    });
+});
+
+function isLineEmpty(lineNumber) {
+    const lineContent = editor.getLine(lineNumber);
+    return !lineContent || !lineContent.trim();
 }

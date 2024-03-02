@@ -1,6 +1,22 @@
-var editor = CodeMirror.fromTextArea(document.getElementById("yourcode"), {
+let stopExecution = false;
+
+
+function stop() {
+    stopExecution = true;
+}
+
+const editor = CodeMirror.fromTextArea(document.getElementById("yourcode"), {
     mode: "python",
     lineNumbers: true,
+    indentUnit: 4,
+    indentWithTabs: true,
+    extraKeys: {
+        "Ctrl-Space": "autocomplete",
+        "Ctrl-/": "toggleComment",
+        "Cmd-/": "toggleComment",
+        "Tab": "indentMore",
+        "Shift-Tab": "indentLess"
+    }
 });
 
 // output functions are configurable.  This one just appends some text
@@ -11,15 +27,17 @@ function outf(text) {
 }
 function displayError(linenumber, lineText, errorText) {
     const mypre = document.getElementById("output");
-    mypre.innerHTML = errorText + "\n" + "line " + (linenumber + 1) + ": " + lineText;
-    mypre.style.backgroundColor = "#ffcccc";
+    let displayText = errorText + "\n" + "line " + (linenumber + 1) + ": " + lineText;
+    changeOutputText(displayText, mypre);
+    changeOutputColor("#ffcccc");
 
 }
+function changeOutputText(text, htmlElement= document.getElementById("output")) {
+    htmlElement.innerHTML = text;
+}
 
-function success() {
-    const mypre = document.getElementById("output");
-    mypre.style.backgroundColor = "white";
-
+function changeOutputColor(color, htmlElement= document.getElementById("output")) {
+    htmlElement.style.backgroundColor = color;
 }
 
 function builtinRead(x) {
@@ -34,20 +52,41 @@ function builtinRead(x) {
 // configure the output function
 // call Sk.importMainWithBody()
 function runit() {
+    stopExecution = false;
+    changeOutputColor("white");
     const prog = editor.getDoc().getValue();
     const mypre = document.getElementById("output");
     mypre.innerHTML = '';
     Sk.pre = "output";
-    Sk.configure({output:outf, read:builtinRead});
+    Sk.configure({
+        output:outf,
+        read:builtinRead,
+        execLimit: 10000,
+        inputTakesPrompt: true,
+        timeoutMsg: () => { throw new Error("Your program timed out"); },
+        killableWhile: true,
+        killableFor: true,
+        __future__: Sk.python3
+    });
     (Sk.TurtleGraphics || (Sk.TurtleGraphics = {})).target = 'mycanvas';
-    const myPromise = Sk.misceval.asyncToPromise(function () {
-        return Sk.importMainWithBody("<stdin>", false, prog, true);
+    const myPromise = Sk.misceval.asyncToPromise(() =>
+        Sk.importMainWithBody("<stdin>", false, prog, true), {
+        "*": () => {
+            if (stopExecution){
+                console.log("execution interrupted");
+                throw "Execution interrupted"
+            }
+        }
     });
     myPromise.then(function(mod) {
-            success();
             console.log('success');
         },
         function(err) {
+        let interrupt = "Execution interrupted";
+        if(err === interrupt) {
+            changeOutputText(interrupt);
+        }
+        else {
             let lineNumber = extractLineNumber(err.toString());
             while (isLineEmpty(lineNumber)) {
                 lineNumber--;
@@ -55,6 +94,7 @@ function runit() {
             highlightLine(lineNumber);
             displayError(lineNumber, editor.getLine(lineNumber), err.toString());
             console.log(err.toString());
+        }
         });
 }
 

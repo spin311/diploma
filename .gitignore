@@ -6,3 +6,5 @@ primer_diplome.pdf
 .idea/modules.xml
 .idea/vcs.xml
 .idea/jsLibraryMappings.xml
+node_modules/
+.angular

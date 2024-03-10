@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
+  declare var Sk: any;
 export class AppComponent {
   stopExecution: boolean = false;
+
 
   stop(): void {
     this.stopExecution = true;

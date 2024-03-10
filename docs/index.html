@@ -16,15 +16,14 @@
             <textarea id="yourcode" cols="40" rows="20">print("Hello World")</textarea><br />
             <button type="button" onclick="runit()">Run</button>
             <button type="button" onclick="stop()">Stop</button>
+            <button type="button" onclick="submitCode()">Submit</button>
+
         </form>
     </div>
-        <div class="output-div">
+        <div class="output-div row-item">
             <p>Output:</p>
             <pre id="output" ></pre>
         </div>
-    <div id="chatGPT" class="row-item">
-        <iframe src="https://chat.openai.com" title="ChatGPT" id="chatGPT-iframe"></iframe>
-    </div>
 </div>
 
 <!-- If you want turtle graphics include a canvas -->

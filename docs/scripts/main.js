@@ -110,6 +110,12 @@ function highlightLine(lineNumber) {
     }
 }
 
+function submitCode() {
+    let code = editor.getValue();
+    console.log(code);
+
+}
+
 editor.on('change', function() {
     editor.getAllMarks().forEach(function(mark) {
         mark.clear();

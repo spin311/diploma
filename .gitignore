@@ -8,3 +8,15 @@ primer_diplome.pdf
 .idea/jsLibraryMappings.xml
 node_modules/
 .angular
+**/.idea/*
+*.idea*
+docs/backend/backend/.idea/google-java-format.xml
+docs/backend/backend/.idea/jarRepositories.xml
+docs/backend/backend/.idea/compiler.xml
+docs/backend/backend/.idea/misc.xml
+docs/backend/backend/.idea/vcs.xml
+docs/backend/backend/.idea/google-java-format.xml
+docs/backend/backend/.idea/jarRepositories.xml
+docs/backend/backend/.idea/compiler.xml
+docs/backend/backend/.idea/misc.xml
+docs/backend/backend/.idea/vcs.xml

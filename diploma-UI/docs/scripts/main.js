@@ -1,5 +1,25 @@
-let stopExecution = false;
+let PythonLogRequestDTO = {
+    id: null,
+    pythonCode: null,
+    errorMessage: null
 
+}
+
+
+let stopExecution = false;
+let studentId = null;
+
+window.onload = function() {
+    fetch('http://localhost:8080/student/getId')
+        .then(response => response.text())
+        .then(data => {
+            console.log(data);
+            studentId = data;
+                            })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+}
 
 function stop() {
     stopExecution = true;
@@ -61,7 +81,7 @@ function runit() {
     Sk.configure({
         output:outf,
         read:builtinRead,
-        execLimit: 10000,
+        execLimit: 7500,
         inputTakesPrompt: true,
         timeoutMsg: () => { throw new Error("Your program timed out"); },
         killableWhile: true,
@@ -78,10 +98,16 @@ function runit() {
             }
         }
     });
+    let pythonLogRequestDTO = Object.create(PythonLogRequestDTO);
     myPromise.then(function(mod) {
+        pythonLogRequestDTO.id = studentId;
+        pythonLogRequestDTO.pythonCode = prog;
+
             console.log('success');
         },
         function(err) {
+            let pythonLogRequestDTO = Object.create(PythonLogRequestDTO);
+            pythonLogRequestDTO.errorMessage = err.toString();
         let interrupt = "Execution interrupted";
         if(err === interrupt) {
             changeOutputText(interrupt);
@@ -95,7 +121,18 @@ function runit() {
             displayError(lineNumber, editor.getLine(lineNumber), err.toString());
             console.log(err.toString());
         }
-        });
+            let jsonData = JSON.stringify(pythonLogRequestDTO);
+            console.log('logging error' + jsonData);
+
+            fetch('http://localhost:8080/python/log', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: jsonData,
+            }).then( r =>console.log(r));
+
+    });
 }
 
 function extractLineNumber(errorString) {

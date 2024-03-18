@@ -42,3 +42,8 @@
 .highlighted-error {
     background-color: #f3e5c7;
 }
+
+.darkMode {
+    background-color: #1e1e1e;
+    color: white;
+}

@@ -19,6 +19,17 @@ window.onload = function() {
         .catch((error) => {
             console.error('Error:', error);
         });
+    const darkModeToggle = document.getElementById('darkModeToggle');
+    const yourcodeTextarea = document.getElementById('yourcode');
+    darkModeToggle.addEventListener('click', () => {
+        if (yourcodeTextarea.classList.contains('darkMode')) {
+            yourcodeTextarea.classList.remove('darkMode');
+            darkModeToggle.textContent = '🌙'; // Change icon to moon
+        } else {
+            yourcodeTextarea.classList.add('darkMode');
+            darkModeToggle.textContent = '☀️'; // Change icon to sun
+        }
+    });
 }
 
 function stop() {
@@ -164,3 +175,5 @@ function isLineEmpty(lineNumber) {
     const lineContent = editor.getLine(lineNumber);
     return !lineContent || !lineContent.trim();
 }
+
+

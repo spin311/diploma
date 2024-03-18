@@ -99,14 +99,10 @@ function runit() {
         }
     });
     let pythonLogRequestDTO = Object.create(PythonLogRequestDTO);
-    myPromise.then(function(mod) {
-        pythonLogRequestDTO.id = studentId;
-        pythonLogRequestDTO.pythonCode = prog;
-
+    myPromise.then(function() {
             console.log('success');
         },
         function(err) {
-            let pythonLogRequestDTO = Object.create(PythonLogRequestDTO);
             pythonLogRequestDTO.errorMessage = err.toString();
         let interrupt = "Execution interrupted";
         if(err === interrupt) {
@@ -121,18 +117,23 @@ function runit() {
             displayError(lineNumber, editor.getLine(lineNumber), err.toString());
             console.log(err.toString());
         }
-            let jsonData = JSON.stringify(pythonLogRequestDTO);
-            console.log('logging error' + jsonData);
 
-            fetch('http://localhost:8080/python/log', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: jsonData,
-            }).then( r =>console.log(r));
+    }).finally(
+        function () {
+            pythonLogRequestDTO.pythonCode = prog;
+            pythonLogRequestDTO.id = studentId;
+        let jsonData = JSON.stringify(pythonLogRequestDTO);
+        console.log('logging error' + jsonData);
+        fetch('http://localhost:8080/python/log', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: jsonData,
+        }).then( r =>console.log(r));
+        }
 
-    });
+    );
 }
 
 function extractLineNumber(errorString) {

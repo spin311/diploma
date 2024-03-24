@@ -10,23 +10,33 @@
 
 <body>
 <h1 id="naslov">Hiter inženiring: Učenje s pomočjo chatGPT</h1>
+<h4>Progress: <span id="progress">1</span>  / 5</h4>
+
 <div class="container">
-    <div id="python" class="row-item">
+    <div class="row-item" >
+        <p id="navodila">Napišite funkcijo v Pythonu, ki sprejme seznam števil kot vhod in vrne vsoto vseh sodih števil v seznamu.</p>
+    <div id="border">
+
         <form>
             <label for="yourcode"></label>
-            <textarea id="yourcode" cols="40" rows="20">print("Hello World")</textarea><br />
-            <button type="button" onclick="runit()">Run</button>
-            <button type="button" onclick="stop()">Stop</button>
-            <button type="button" onclick="submitCode()">Submit</button>
-            <button id="darkModeToggle">🌙</button>
+            <textarea id="yourcode" cols="100" rows="20">print("Hello World")</textarea><br />
+            <button type="button" id="run" onclick="runit()">Run</button>
+            <button type="button" id="stop" onclick="stop()">Stop</button>
+            <button type="button" id="previous" onclick="previousCode()">&lt; Previous</button>
+            <button type="button" id="next" onclick="nextCode()">Next &gt;</button>
 
 
         </form>
     </div>
-        <div class="output-div row-item">
+        <div class="output-div">
             <p>Output:</p>
             <pre id="output" ></pre>
         </div>
+    </div>
+    <div class="row-item">
+        <p>chatGPT</p>
+
+    </div>
 </div>
 
 <!-- If you want turtle graphics include a canvas -->

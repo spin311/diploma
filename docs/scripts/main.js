@@ -1,13 +1,23 @@
 let PythonLogRequestDTO = {
     id: null,
     pythonCode: null,
-    errorMessage: null
+    errorMessage: null,
+    taskNumber: null
 
 }
 
 
 let stopExecution = false;
 let studentId = null;
+const tasks = [
+    {id: 1, text: "Napišite funkcijo v Pythonu, ki sprejme seznam števil kot vhod in vrne vsoto vseh sodih števil v seznamu."},
+    {id: 2, text: "Implementirajte funkcijo v Pythonu, ki sprejme seznam števil kot vhod in vrne največji element v seznamu."},
+    {id: 3, text: "Napišite funkcijo v Pythonu, ki sprejme seznam kot vhod in vrne nov seznam z obrnjenimi elementi (brez uporabe vgrajene funkcije reverse())."},
+    {id: 4, text: "Ustvarite funkcijo v Pythonu, ki sprejme seznam števil in ciljno število kot vhod ter vrne število pojavitev ciljnega števila v seznamu."},
+    {id: 5, text: "Implementirajte funkcijo v Pythonu, ki sprejme seznam kot vhod in vrne nov seznam brez podvojenih elementov, pri tem pa ohranja izvirni red elementov."},
+];
+let currentTask = 1;
+let codes = ["", "", "", "", ""];
 
 window.onload = function() {
     fetch('http://localhost:8080/student/getId')
@@ -19,17 +29,7 @@ window.onload = function() {
         .catch((error) => {
             console.error('Error:', error);
         });
-    const darkModeToggle = document.getElementById('darkModeToggle');
     const yourcodeTextarea = document.getElementById('yourcode');
-    darkModeToggle.addEventListener('click', () => {
-        if (yourcodeTextarea.classList.contains('darkMode')) {
-            yourcodeTextarea.classList.remove('darkMode');
-            darkModeToggle.textContent = '🌙'; // Change icon to moon
-        } else {
-            yourcodeTextarea.classList.add('darkMode');
-            darkModeToggle.textContent = '☀️'; // Change icon to sun
-        }
-    });
 }
 
 function stop() {
@@ -133,6 +133,7 @@ function runit() {
         function () {
             pythonLogRequestDTO.pythonCode = prog;
             pythonLogRequestDTO.id = studentId;
+            pythonLogRequestDTO.taskNumber = currentTask;
         let jsonData = JSON.stringify(pythonLogRequestDTO);
         console.log('logging error' + jsonData);
         fetch('http://localhost:8080/python/log', {
@@ -159,9 +160,28 @@ function highlightLine(lineNumber) {
     }
 }
 
-function submitCode() {
-    let code = editor.getValue();
-    console.log(code);
+function switchAndSaveCode() {
+    editor.getDoc().setValue(codes[currentTask - 1]);
+    document.getElementById("navodila").innerHTML = tasks[currentTask - 1].text;
+    document.getElementById("progress").innerHTML = currentTask.toString();
+}
+
+function previousCode() {
+    if (currentTask > 1){
+        codes[currentTask - 1] = editor.getValue();
+        currentTask--;
+        switchAndSaveCode();
+    }
+
+
+}
+
+function nextCode() {
+    if(currentTask < 5) {
+        codes[currentTask - 1] = editor.getValue();
+        currentTask++;
+        switchAndSaveCode();
+    }
 
 }
 
@@ -175,5 +195,12 @@ function isLineEmpty(lineNumber) {
     const lineContent = editor.getLine(lineNumber);
     return !lineContent || !lineContent.trim();
 }
+// Prevent closing the window with unsaved code
+window.addEventListener('beforeunload', function (e) {
+    // Cancel the event
+    e.preventDefault();
+    // Chrome requires returnValue to be set
+    e.returnValue = '';
+});
 
 

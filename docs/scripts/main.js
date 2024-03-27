@@ -269,7 +269,11 @@ function getChat(){
 
     const question = document.createElement('div');
     const chatInput = document.getElementById('chatGPT-input');
+    const chatWindow = document.getElementById('text-area');
+    console.log(chatInput)
     question.classList.add('question');
+    question.innerHTML = chatInput.value;
+    chatWindow.appendChild(question);
 
 
 

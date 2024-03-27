@@ -34,11 +34,19 @@ header {
     padding: 1px;
     margin: 0;
 }
-/*#hide-nav {*/
-/*    position: absolute;*/
-/*    top: 6%;*/
-/*    left: 2%;*/
-/*}*/
+.text-area {
+    height: 500px;
+    overflow: scroll;
+}
+
+.question {
+    background-color: #4685e0;
+    padding: 20px 0;
+}
+.answer {
+    background-color: #27ec48;
+    padding: 20px 0;
+}
 
 main, nav, #hide-nav {
     padding-left: 20px;
@@ -79,11 +87,6 @@ main, nav {
     background-color: #1e1e1e;
     color: white;
 }
-
-
-
-
-                                                     /* CSS */
 .button-8 {
  background-color: #e1ecf4;
  border-radius: 3px;

@@ -265,6 +265,17 @@ function isLineEmpty(lineNumber) {
 function copyId() {
     navigator.clipboard.writeText(studentId);
 }
+function getChat(){
+
+    const question = document.createElement('div');
+    const chatInput = document.getElementById('chatGPT-input');
+    question.classList.add('question');
+
+
+
+
+}
+
 // Prevent closing the window with unsaved code
 // window.addEventListener('beforeunload', function (e) {
 //     // Cancel the event

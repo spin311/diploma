@@ -66,7 +66,7 @@
                 </div>
             </form>
         </div>
-        <div class="col-sm-3 ps-0">
+        <div class="col-sm-2 ps-0">
             <div class="card output-card">
                 <div class="card-header">
                     <h5 class="card-title">Output</h5>
@@ -79,8 +79,20 @@
 
 
         </div>
-        <div class="col-sm-4">
-            <p>chatGPT</p>
+        <div class="col-sm-5">
+            <div class="card">
+                <div class="card-header"><h5>chatGPT</h5></div>
+                <div class="card-body">
+                    <div class="text-area">
+                    </div>
+                    <form>
+                        <label for="chatGPT-input"></label>
+                        <textarea id="chatGPT-input" cols="67" rows="3"></textarea><br />
+                            <button type="button" class="button-8" id="submit" onclick="getChat()">Submit <i class="fa-solid fa-arrow-up"></i></button>
+                    </form>
+                </div>
+            </div>
+        </div>
         </div>
     </div>
 <div class="flexbox">
@@ -109,6 +121,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.1/codemirror.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.1/mode/python/python.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="./scripts/main.js"></script>
 
 </html>

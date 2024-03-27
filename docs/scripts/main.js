@@ -15,9 +15,35 @@ const tasks = [
     {id: 3, text: "Napišite funkcijo v Pythonu, ki sprejme seznam kot vhod in vrne nov seznam z obrnjenimi elementi (brez uporabe vgrajene funkcije reverse())."},
     {id: 4, text: "Ustvarite funkcijo v Pythonu, ki sprejme seznam števil in ciljno število kot vhod ter vrne število pojavitev ciljnega števila v seznamu."},
     {id: 5, text: "Implementirajte funkcijo v Pythonu, ki sprejme seznam kot vhod in vrne nov seznam brez podvojenih elementov, pri tem pa ohranja izvirni red elementov."},
+    {id: 6, text: "Napišite funkcijo v Pythonu, ki sprejme niz kot vhod in vrne niz v obratnem vrstnem redu."},
+    {id: 7, text: "Implementirajte funkcijo v Pythonu, ki sprejme seznam nizov kot vhod in vrne nov seznam, ki vsebuje samo nize, ki se začnejo s črko 'a'."},
+    {id: 8, text: "Ustvarite funkcijo v Pythonu, ki sprejme dve števili kot vhod in vrne njun produkt. Če je produkt večji od 1000, potem vrne njuno vsoto."},
+    {id: 9, text: "Razvijte funkcijo v Pythonu, ki sprejme seznam števil kot vhod in vrne nov seznam, ki vsebuje samo sode številke."},
+    {id: 10, text: "Oblikujte funkcijo v Pythonu, ki sprejme niz kot vhod in vrne slovar, kjer so ključi znaki v nizu in vrednosti so število pojavitev vsakega znaka."},
 ];
+const themes = [
+    'default',
+    'monokai',
+    'lucario',
+    'paraiso-light',
+    'ayu-mirage',
+    'eclipse',
+    'rubyblue',
+    'dracula',
+    'ambiance',
+    'panda-syntax',
+    'the-matrix',
+    'abbott',
+    'abcdef',
+    'base16-dark',
+    'lesser-dark',
+    'liquibyte',
+    '3024-night',
+    'isotope',
+];
+
 let currentTask = 1;
-let codes = ["", "", "", "", ""];
+let codes = ["", "", "", "", "", "", "", "", "", ""];
 
 window.onload = function() {
     fetch('http://localhost:8080/student/getId')
@@ -30,6 +56,47 @@ window.onload = function() {
         .catch((error) => {
             console.error('Error:', error);
         });
+    const dropdownMenu = document.querySelector('.dropdown-menu');
+
+    themes.forEach(theme => {
+        const dropdownItem = document.createElement('li');
+        dropdownItem.classList.add('dropdown-item');
+        dropdownItem.textContent = theme;
+        dropdownMenu.appendChild(dropdownItem);
+    });
+
+// Add an event listener to the dropdown menu
+    dropdownMenu.addEventListener('click', event => {
+        event.preventDefault();
+        const selectedTheme = event.target.textContent;
+        editor.setOption('theme', selectedTheme);
+    });
+
+    // Get the fa-square-minus icon
+    const icon = document.getElementById('hide-nav');
+
+// Get the navigation section
+    const nav = document.getElementById('navigation');
+
+// Add an event listener to the icon
+    icon.addEventListener('click', () => {
+        // Check if the icon is fa-square-minus
+        if (icon.classList.contains('fa-square-minus')) {
+            // Hide the navigation section
+            nav.style.display = 'none';
+
+            // Change the icon to fa-square-plus
+            icon.classList.remove('fa-square-minus');
+            icon.classList.add('fa-square-plus');
+        } else {
+            // Show the navigation section
+            nav.style.display = 'block';
+
+            // Change the icon to fa-square-minus
+            icon.classList.remove('fa-square-plus');
+            icon.classList.add('fa-square-minus');
+        }
+    });
 }
 
 function stop() {
@@ -58,7 +125,7 @@ function displayError(linenumber, lineText, errorText) {
     const mypre = document.getElementById("output");
     let displayText = errorText + "\n" + "line " + (linenumber + 1) + ": " + lineText;
     changeOutputText(displayText, mypre);
-    changeOutputColor("#ffcccc");
+    changeOutputColor("#ef2f2f");
 
 }
 function changeOutputText(text, htmlElement= document.getElementById("output")) {
@@ -82,7 +149,7 @@ function builtinRead(x) {
 // call Sk.importMainWithBody()
 function runit() {
     stopExecution = false;
-    changeOutputColor("aliceblue");
+    changeOutputColor("white");
     const prog = editor.getDoc().getValue();
     const mypre = document.getElementById("output");
     mypre.innerHTML = '';
@@ -162,6 +229,7 @@ function switchAndSaveCode() {
     editor.getDoc().setValue(codes[currentTask - 1]);
     document.getElementById("navodila").innerHTML = tasks[currentTask - 1].text;
     document.getElementById("progress").innerHTML = currentTask.toString();
+    document.getElementById("progress-bar").style.width = (currentTask * 10).toString() + "%";
 }
 
 function previousCode() {
@@ -175,7 +243,7 @@ function previousCode() {
 }
 
 function nextCode() {
-    if(currentTask < 5) {
+    if(currentTask < tasks.length) {
         codes[currentTask - 1] = editor.getValue();
         currentTask++;
         switchAndSaveCode();
@@ -198,11 +266,11 @@ function copyId() {
     navigator.clipboard.writeText(studentId);
 }
 // Prevent closing the window with unsaved code
-// window.addEventListener('beforeunload', function (e) {
-//     // Cancel the event
-//     e.preventDefault();
-//     // Chrome requires returnValue to be set
-//     e.returnValue = '';
-// });
+window.addEventListener('beforeunload', function (e) {
+    // Cancel the event
+    e.preventDefault();
+    // Chrome requires returnValue to be set
+    e.returnValue = '';
+});
 
 

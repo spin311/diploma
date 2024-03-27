@@ -1,28 +1,30 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
 
-.flexbox {
-    display: flex;
-    flex-flow: wrap row;
-    justify-content: flex-start;
-    gap: 10px;
+.progress-stili {
+    height: 12px;
 
-}
-
-
-.row-item {
-    flex: 1 1 0;
 }
 .output-div {
     min-width: 150px;
 
 }
-.CodeMirror {
-    height: 500px !important;
+#progress-bar {
+    text-align: center;
 }
+.code-border {
+    border-right: none !important;
+}
+
+.CodeMirror {
+    height: 470px !important;
+}
+.navodila-card {
+    margin-bottom: -10px;
+}
+
 #naslov {
     text-align: center;
-    font-size: 2em;
-    margin: 10px;
+    font-size: 1.8em;
 
 }
 body {
@@ -39,10 +41,18 @@ header {
     padding: 1px;
     margin: 0;
 }
-main {
+/*#hide-nav {*/
+/*    position: absolute;*/
+/*    top: 6%;*/
+/*    left: 2%;*/
+/*}*/
+
+main, nav, #hide-nav {
     padding-left: 20px;
-    font-family: "Lato", sans-serif;
     font-size: 1.0em;
+}
+main, nav {
+    font-family: "Lato", sans-serif;
 }
 .py-btn {
     margin-right: 3px;
@@ -60,27 +70,16 @@ main {
 
 
 .buttons {
+    margin-top: -15px;
     margin-left: 10px;
     margin-bottom: 10px;
-
 }
-
-#border {
-    border: 1px solid black;
+.output-card {
+    height: 553px;
 }
-
-/*#chatGPT {*/
-/*    width: 300px;*/
-/*    height: auto;*/
-/*}*/
-
-/*#chatGPT-iframe {*/
-/*    width: 100%;*/
-/*    height: 100%;*/
-/*}*/
 
 .highlighted-error {
-    background-color: #f3e5c7;
+    background-color: rgba(243, 136, 136, 0.51);
 }
 
 .darkMode {

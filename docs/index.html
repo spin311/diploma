@@ -3,41 +3,73 @@
 <head>
     <title>Skulpt Python Compiler</title>
     <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./styles/stili.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="./styles/themes/3024-night.css">
+    <link rel="stylesheet" href="./styles/themes/abbott.css">
+    <link rel="stylesheet" href="./styles/themes/abcdef.css">
+    <link rel="stylesheet" href="./styles/themes/ambiance.css">
+    <link rel="stylesheet" href="./styles/themes/ayu-mirage.css">
+    <link rel="stylesheet" href="./styles/themes/base16-dark.css">
+    <link rel="stylesheet" href="./styles/themes/dracula.css">
+    <link rel="stylesheet" href="./styles/themes/eclipse.css">
+    <link rel="stylesheet" href="./styles/themes/isotope.css">
+    <link rel="stylesheet" href="./styles/themes/lesser-dark.css">
+    <link rel="stylesheet" href="./styles/themes/liquibyte.css">
+    <link rel="stylesheet" href="./styles/themes/lucario.css">
+    <link rel="stylesheet" href="./styles/themes/monokai.css">
+    <link rel="stylesheet" href="styles/themes/panda-syntax.css">
+    <link rel="stylesheet" href="./styles/themes/paraiso-light.css">
+    <link rel="stylesheet" href="./styles/themes/rubyblue.css">
+    <link rel="stylesheet" href="./styles/themes/the-matrix.css">
+
+
 
 </head>
 
 <body>
-<h1 id="naslov">Hiter inženiring: Učenje s pomočjo chatGPT</h1>
-<h4>Progress: <span id="progress">1</span>  / 5</h4>
-
-<div class="container">
+<header>
+    <h1 id="naslov">Hiter inženiring: Učenje s pomočjo chatGPT</h1>
+</header>
+<main>
+<h4 class="mt-1">Progress: <span id="progress">1</span>  / 5  </h4>
+<h6><span id="get-id">Tvoj id: <i id="studentId">/</i></span> <button id="copy" onclick="copyId()" title="copy Id"><i class="fa-regular fa-copy"></i></button></h6>
+<!--    <div class="row">-->
+<!--        <div class="col-sm-5"></div>-->
+<!--        <div class="col-sm-3"></div>-->
+<!--        <div class="col-sm-4">-->
+<!--            -->
+<!--        </div>-->
+<!--    </div>-->
+<div class="flexbox">
     <div class="row-item" >
         <p id="navodila">Napišite funkcijo v Pythonu, ki sprejme seznam števil kot vhod in vrne vsoto vseh sodih števil v seznamu.</p>
     <div id="border">
 
         <form>
             <label for="yourcode"></label>
-            <textarea id="yourcode" cols="100" rows="20">print("Hello World")</textarea><br />
-            <button type="button" id="run" onclick="runit()">Run</button>
-            <button type="button" id="stop" onclick="stop()">Stop</button>
-            <button type="button" id="previous" onclick="previousCode()">&lt; Previous</button>
-            <button type="button" id="next" onclick="nextCode()">Next &gt;</button>
-
-
+            <textarea id="yourcode" cols="20" rows="40">seznam=["tekst", 10, -2]&#10;for i in range(len(seznam)):&#10;    print(seznam[i])</textarea><br />
+            <div class="buttons">
+            <button type="button" class="py-btn" id="run" onclick="runit()">Run <i class="fa-solid fa-play play"></i></button>
+            <button type="button" class="py-btn" id="stop" onclick="stop()">Stop <i class="fa-solid fa-stop stop"></i></button>
+            <button type="button" class="py-btn" id="previous" onclick="previousCode()"><i class="fa-solid fa-caret-left"></i> Previous</button>
+            <button type="button" class="py-btn" id="next" onclick="nextCode()">Next <i class="fa-solid fa-caret-right"></i></button>
+            </div>
         </form>
     </div>
-        <div class="output-div">
+    </div>
+        <div class="output-div flex-item">
             <p>Output:</p>
             <pre id="output" ></pre>
         </div>
-    </div>
     <div class="row-item">
         <p>chatGPT</p>
 
     </div>
 </div>
+</main>
 
 <!-- If you want turtle graphics include a canvas -->
 <!--<canvas id="mycanvas" width="200" height="200"></canvas>-->

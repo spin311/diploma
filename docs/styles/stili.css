@@ -1,12 +1,13 @@
-/*#mycanvas {*/
-/*    border: 1px solid black;*/
-/*}*/
-.container {
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
+.flexbox {
     display: flex;
     flex-flow: wrap row;
     justify-content: flex-start;
     gap: 10px;
+
 }
+
 
 .row-item {
     flex: 1 1 0;
@@ -15,28 +16,68 @@
     min-width: 150px;
 
 }
-
+.CodeMirror {
+    height: 500px !important;
+}
 #naslov {
     text-align: center;
     font-size: 2em;
     margin: 10px;
 
 }
+body {
+    margin-left: 0;
+    margin-top: 0;
+    background-color: aliceblue;
+}
 
+header {
+    font-family: "Lato", sans-serif;
+
+    background-color: #0d6efd;
+    color: white;
+    padding: 1px;
+    margin: 0;
+}
+main {
+    padding-left: 20px;
+    font-family: "Lato", sans-serif;
+    font-size: 1.0em;
+}
+.py-btn {
+    margin-right: 3px;
+    padding: 5px;
+    background-color: #b8bdbe;
+    border-radius: 10%;
+}
+.play {
+    color: #48ec17;
+}
+
+.stop {
+    color: #d9534f;
+}
+
+
+.buttons {
+    margin-left: 10px;
+    margin-bottom: 10px;
+
+}
 
 #border {
     border: 1px solid black;
 }
 
-#chatGPT {
-    width: 300px;
-    height: auto;
-}
+/*#chatGPT {*/
+/*    width: 300px;*/
+/*    height: auto;*/
+/*}*/
 
-#chatGPT-iframe {
-    width: 100%;
-    height: 100%;
-}
+/*#chatGPT-iframe {*/
+/*    width: 100%;*/
+/*    height: 100%;*/
+/*}*/
 
 .highlighted-error {
     background-color: #f3e5c7;

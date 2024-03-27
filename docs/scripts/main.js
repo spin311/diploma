@@ -25,11 +25,11 @@ window.onload = function() {
         .then(data => {
             console.log(data);
             studentId = data;
+            document.getElementById("studentId").innerHTML = studentId;
                             })
         .catch((error) => {
             console.error('Error:', error);
         });
-    const yourcodeTextarea = document.getElementById('yourcode');
 }
 
 function stop() {
@@ -40,6 +40,7 @@ const editor = CodeMirror.fromTextArea(document.getElementById("yourcode"), {
     mode: "python",
     lineNumbers: true,
     indentUnit: 4,
+    theme: "monokai",
     indentWithTabs: true,
     extraKeys: {
         "Ctrl-Space": "autocomplete",
@@ -49,9 +50,6 @@ const editor = CodeMirror.fromTextArea(document.getElementById("yourcode"), {
         "Shift-Tab": "indentLess"
     }
 });
-
-// output functions are configurable.  This one just appends some text
-// to a pre element.
 function outf(text) {
     const mypre = document.getElementById("output");
     mypre.innerHTML = mypre.innerHTML + text;
@@ -84,7 +82,7 @@ function builtinRead(x) {
 // call Sk.importMainWithBody()
 function runit() {
     stopExecution = false;
-    changeOutputColor("white");
+    changeOutputColor("aliceblue");
     const prog = editor.getDoc().getValue();
     const mypre = document.getElementById("output");
     mypre.innerHTML = '';
@@ -195,12 +193,16 @@ function isLineEmpty(lineNumber) {
     const lineContent = editor.getLine(lineNumber);
     return !lineContent || !lineContent.trim();
 }
+
+function copyId() {
+    navigator.clipboard.writeText(studentId);
+}
 // Prevent closing the window with unsaved code
-window.addEventListener('beforeunload', function (e) {
-    // Cancel the event
-    e.preventDefault();
-    // Chrome requires returnValue to be set
-    e.returnValue = '';
-});
+// window.addEventListener('beforeunload', function (e) {
+//     // Cancel the event
+//     e.preventDefault();
+//     // Chrome requires returnValue to be set
+//     e.returnValue = '';
+// });
 
 

@@ -266,11 +266,11 @@ function copyId() {
     navigator.clipboard.writeText(studentId);
 }
 // Prevent closing the window with unsaved code
-window.addEventListener('beforeunload', function (e) {
-    // Cancel the event
-    e.preventDefault();
-    // Chrome requires returnValue to be set
-    e.returnValue = '';
-});
+// window.addEventListener('beforeunload', function (e) {
+//     // Cancel the event
+//     e.preventDefault();
+//     // Chrome requires returnValue to be set
+//     e.returnValue = '';
+// });
 
 

@@ -16,6 +16,11 @@
     margin-bottom: -10px;
 }
 
+.text-area {
+    display: flex;
+    flex-direction: column;
+}
+
 #naslov {
     text-align: center;
     font-size: 1.8em;
@@ -41,12 +46,74 @@ header {
 
 .question {
     background-color: #4685e0;
-    padding: 20px 0;
+    padding: 10px 20px;
+    border-radius: 18px 18px 18px 0;
+    margin: 10px;
+    color: white;
+    max-width: 90%;
+    align-self: flex-start;
+    flex-shrink: 0;
+    position: relative;
+    word-wrap: break-word;
 }
+
 .answer {
-    background-color: #27ec48;
-    padding: 20px 0;
+    background-color: #53d769;
+    padding: 10px 20px;
+    border-radius: 18px 18px 0 18px;
+    margin: 10px;
+    color: white;
+    max-width: 90%;
+    align-self: flex-end;
+    position: relative;
+    flex-shrink: 0;
+    word-wrap: break-word;
+    overflow-y: auto;
 }
+
+.question::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 0;
+    height: 0;
+    border: 10px solid transparent;
+    border-right: 0 #4685e0;
+    border-left-width: 0;
+    margin-top: -10px;
+    margin-left: -10px;
+}
+
+.answer::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 50%;
+    width: 0;
+    height: 0;
+    border: 10px solid transparent;
+    border-right-width: 0;
+    border-left: 0 #97e880;
+    margin-top: -10px;
+    margin-right: -10px;
+}
+.answer::-webkit-scrollbar {
+    width: 10px;
+}
+
+.answer::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.answer::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+.answer::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
 
 main, nav, #hide-nav {
     padding-left: 20px;
@@ -77,7 +144,6 @@ main, nav {
 }
 .output-card {
     height: 553px;
-    overflow: auto;
 }
 
 .highlighted-error {
@@ -89,29 +155,29 @@ main, nav {
     color: white;
 }
 .button-8 {
- background-color: #e1ecf4;
- border-radius: 3px;
- border: 1px solid #7aa7c7;
- box-shadow: rgba(255, 255, 255, .7) 0 1px 0 0 inset;
- box-sizing: border-box;
- color: #39739d;
- cursor: pointer;
- display: inline-block;
- font-family: -apple-system,system-ui,"Segoe UI","Liberation Sans",sans-serif;
- font-size: 13px;
- font-weight: 400;
- line-height: 1.15385;
- margin: 0;
- outline: none;
- padding: 8px .8em;
- position: relative;
- text-align: center;
- text-decoration: none;
- user-select: none;
- -webkit-user-select: none;
- touch-action: manipulation;
- vertical-align: baseline;
- white-space: nowrap;
+    background-color: #e1ecf4;
+    border-radius: 3px;
+    border: 1px solid #7aa7c7;
+    box-shadow: rgba(255, 255, 255, .7) 0 1px 0 0 inset;
+    box-sizing: border-box;
+    color: #39739d;
+    cursor: pointer;
+    display: inline-block;
+    font-family: -apple-system,system-ui,"Segoe UI","Liberation Sans",sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.15385;
+    margin: 0;
+    outline: none;
+    padding: 8px .8em;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: baseline;
+    white-space: nowrap;
 }
 
 .button-8:hover,

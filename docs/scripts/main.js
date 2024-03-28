@@ -265,17 +265,21 @@ function isLineEmpty(lineNumber) {
 function copyId() {
     navigator.clipboard.writeText(studentId);
 }
-function getChat(){
-
+async function getChat(){
     const question = document.createElement('div');
-    const chatInput = document.getElementById('chatGPT-input');
+    const chatInput = document.getElementById('chatGPT-input').value;
+
     const chatWindow = document.getElementById('text-area');
-    console.log(chatInput)
+    question.innerHTML = chatInput;
     question.classList.add('question');
-    question.innerHTML = chatInput.value;
     chatWindow.appendChild(question);
 
 
+    let chatGptoutput;
+    const answer = document.createElement('div');
+    answer.classList.add('answer');
+    answer.innerHTML = "You can ask me anything programming related or ask for help with the task. I will do my best to help you.";
+    chatWindow.appendChild(answer);
 
 
 }

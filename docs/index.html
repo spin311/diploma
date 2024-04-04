@@ -63,6 +63,8 @@
                         <ul id="theme-dropdown" class="dropdown-menu">
                         </ul>
                     </span>
+                    <button type="button" class="button-8" id="submitCode" onclick="submitAll()">Submit <i class="fa-solid fa-square-arrow-up-right"></i></button>
+
                 </div>
             </form>
         </div>
@@ -88,7 +90,8 @@
                     <form>
                         <label for="chatGPT-input"></label>
                         <textarea id="chatGPT-input" cols="67" rows="3"></textarea><br />
-                            <button type="button" class="button-8" id="submit" onclick="getChat()">Submit <i class="fa-solid fa-arrow-up"></i></button>
+                            <button type="button" class="button-8" id="submitChat" onclick="getChat()">Submit <i class="fa-solid fa-arrow-up"></i></button>
+                        <button type="button" class="button-8" id="testSubmit" onclick="testChat()">Test <i class="fa-solid fa-arrow-up"></i></button>
                     </form>
                 </div>
             </div>

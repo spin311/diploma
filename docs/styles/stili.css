@@ -44,31 +44,27 @@ header {
     overflow: scroll;
 }
 
-.question {
-    background-color: #4685e0;
+.question, .answer {
     padding: 10px 20px;
-    border-radius: 18px 18px 18px 0;
     margin: 10px;
     color: white;
     max-width: 90%;
-    align-self: flex-start;
-    flex-shrink: 0;
     position: relative;
-    word-wrap: break-word;
+    white-space: pre-wrap;
+    flex-shrink: 0;
+
+}
+
+.question {
+    background-color: #4685e0;
+    border-radius: 18px 18px 18px 0;
+    align-self: flex-start;
 }
 
 .answer {
     background-color: #53d769;
-    padding: 10px 20px;
     border-radius: 18px 18px 0 18px;
-    margin: 10px;
-    color: white;
-    max-width: 90%;
     align-self: flex-end;
-    position: relative;
-    flex-shrink: 0;
-    word-wrap: break-word;
-    overflow-y: auto;
 }
 
 .question::after {

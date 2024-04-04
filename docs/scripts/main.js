@@ -1,3 +1,12 @@
+let ChatLogDTO = {
+    id: null,
+    chatNumber: null,
+    codeNumber: null,
+    chatQuestion: null,
+    chatAnswer: null,
+    timeStamp: null,
+}
+
 let PythonLogRequestDTO = {
     id: null,
     pythonCode: null,
@@ -6,7 +15,9 @@ let PythonLogRequestDTO = {
 
 }
 
+let chatLogDTOS = [];
 
+let chatCounter = 1;
 let stopExecution = false;
 let studentId = null;
 const tasks = [
@@ -196,6 +207,7 @@ function runit() {
 
     }).finally(
         function () {
+            codes[currentTask - 1] = prog;
             pythonLogRequestDTO.pythonCode = prog;
             pythonLogRequestDTO.id = studentId;
             pythonLogRequestDTO.taskNumber = currentTask;
@@ -228,8 +240,12 @@ function highlightLine(lineNumber) {
 function switchAndSaveCode() {
     editor.getDoc().setValue(codes[currentTask - 1]);
     document.getElementById("navodila").innerHTML = tasks[currentTask - 1].text;
-    document.getElementById("progress").innerHTML = currentTask.toString();
-    document.getElementById("progress-bar").style.width = (currentTask * 10).toString() + "%";
+    changeProgressBar();
+    function changeProgressBar() {
+        document.getElementById("progress").innerHTML = currentTask.toString();
+        document.getElementById("progress-bar").style.width = (currentTask * 10).toString() + "%";
+    }
+
 }
 
 function previousCode() {
@@ -266,6 +282,46 @@ function copyId() {
     navigator.clipboard.writeText(studentId);
 }
 async function getChat(){
+    const questionPre = document.createElement('pre');
+    const chatInput = document.getElementById('chatGPT-input').value;
+
+    let chatLogDTO = Object.create(ChatLogDTO);
+    chatLogDTO.chatQuestion = chatInput;
+    chatLogDTO.chatNumber = chatCounter;
+    chatCounter++;
+    chatLogDTO.codeNumber = currentTask;
+    chatLogDTO.id = studentId;
+
+
+    const chatWindow = document.getElementById('text-area');
+    questionPre.classList.add('question');
+    questionPre.innerHTML = chatInput;
+    chatWindow.appendChild(questionPre);
+
+
+    const answerPre = document.createElement('pre');
+    answerPre.classList.add('answer');
+
+    const response = await fetch('http://localhost:8080/openai/getOpenAiChat', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(chatInput)
+        });
+    console.log(response);
+    const responseBody = await response.text();
+    const formattedBody = responseBody.replace(/\\n/g, '\n');
+    answerPre.innerHTML = formattedBody;
+    chatLogDTO.chatAnswer = formattedBody;
+    chatLogDTO.timeStamp = new Date().toISOString();
+    chatLogDTOS.push(chatLogDTO);
+    chatWindow.appendChild(answerPre);
+    console.log(chatLogDTOS);
+    chatWindow.scrollTop = chatWindow.scrollHeight;
+    }
+
+function testChat(){
     const question = document.createElement('div');
     const chatInput = document.getElementById('chatGPT-input').value;
 
@@ -275,11 +331,84 @@ async function getChat(){
     chatWindow.appendChild(question);
 
 
-    let chatGptoutput;
-    const answer = document.createElement('div');
+    const answer = document.createElement('pre');
     answer.classList.add('answer');
-    answer.innerHTML = "You can ask me anything programming related or ask for help with the task. I will do my best to help you.";
+    const testAnswer = "You can use the `max()` function to find the highest value in a Python array. Here's an example:\n" +
+        "\n" +
+        "```python\n" +
+        "my_array = [1, 5, 2, 8, 4]\n" +
+        "highest_value = max(my_array)\n" +
+        "print(highest_value)\n" +
+        "```\n" +
+        "\n" +
+        "This will output:\n" +
+        "```\n" +
+        "8\n" +
+        "```";
+    answer.innerHTML = testAnswer;
     chatWindow.appendChild(answer);
+
+    let chatLogDTO = Object.create(ChatLogDTO);
+    chatLogDTO.chatQuestion = chatInput;
+    chatLogDTO.chatNumber = chatCounter;
+    chatCounter++;
+    chatLogDTO.codeNumber = currentTask;
+    chatLogDTO.id = studentId;
+    chatLogDTO.chatAnswer = testAnswer;
+    chatLogDTO.timeStamp = new Date().toISOString();
+    chatLogDTOS.push(chatLogDTO);
+    console.log(chatLogDTOS);
+    smoothScrollToBottom(chatWindow);
+
+
+}
+
+function smoothScrollToBottom(element) {
+    const scrollHeight = element.scrollHeight;
+    const speed = 30;
+    let scrollPosition = element.scrollTop;
+    let difference = scrollHeight - scrollPosition;
+
+    function step() {
+        difference = scrollHeight - scrollPosition;
+        scrollPosition += difference / speed;
+        element.scrollTop = scrollPosition;
+
+        if (difference > 1) {
+            window.requestAnimationFrame(step);
+        }
+    }
+
+    window.requestAnimationFrame(step);
+}
+
+function submitAll() {
+    let emptyFields = [];
+    codes.forEach(function(item, index) {
+        if (item.trim() === "") {
+            emptyFields.push(index + 1);
+        }
+    });
+    if (emptyFields.length > 0) {
+        alert("Niste izpolnili vseh nalog. Manjkajo naloge: " + emptyFields.join(", "));
+        return;
+    }
+
+    let submitObject = {
+        id: studentId,
+        chatLogs: chatLogDTOS,
+        codes: codes
+    };
+    let jsonData = JSON.stringify(submitObject);
+
+    console.log('submitting code' + jsonData);
+    fetch('http://localhost:8080/python/submit', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: jsonData,
+    }).then( r =>console.log(r));
 
 
 }

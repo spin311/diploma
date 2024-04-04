@@ -1,0 +1,12 @@
+You can use the `max()` function to find the highest value in a Python array. Here's an example:
+
+```python
+my_array = [1, 5, 2, 8, 4]
+highest_value = max(my_array)
+print(highest_value)
+```
+
+This will output:
+```
+8
+```

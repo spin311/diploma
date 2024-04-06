@@ -12,7 +12,6 @@ let PythonLogRequestDTO = {
     pythonCode: null,
     errorMessage: null,
     taskNumber: null
-
 }
 
 let chatLogDTOS = [];
@@ -20,17 +19,18 @@ let chatLogDTOS = [];
 let chatCounter = 1;
 let stopExecution = false;
 let studentId = null;
+let codeHasError = true;
 const tasks = [
-    {id: 1, text: "Napišite funkcijo v Pythonu, ki sprejme seznam števil kot vhod in vrne vsoto vseh sodih števil v seznamu."},
-    {id: 2, text: "Implementirajte funkcijo v Pythonu, ki sprejme seznam števil kot vhod in vrne največji element v seznamu."},
-    {id: 3, text: "Napišite funkcijo v Pythonu, ki sprejme seznam kot vhod in vrne nov seznam z obrnjenimi elementi (brez uporabe vgrajene funkcije reverse())."},
-    {id: 4, text: "Ustvarite funkcijo v Pythonu, ki sprejme seznam števil in ciljno število kot vhod ter vrne število pojavitev ciljnega števila v seznamu."},
-    {id: 5, text: "Implementirajte funkcijo v Pythonu, ki sprejme seznam kot vhod in vrne nov seznam brez podvojenih elementov, pri tem pa ohranja izvirni red elementov."},
-    {id: 6, text: "Napišite funkcijo v Pythonu, ki sprejme niz kot vhod in vrne niz v obratnem vrstnem redu."},
-    {id: 7, text: "Implementirajte funkcijo v Pythonu, ki sprejme seznam nizov kot vhod in vrne nov seznam, ki vsebuje samo nize, ki se začnejo s črko 'a'."},
-    {id: 8, text: "Ustvarite funkcijo v Pythonu, ki sprejme dve števili kot vhod in vrne njun produkt. Če je produkt večji od 1000, potem vrne njuno vsoto."},
-    {id: 9, text: "Razvijte funkcijo v Pythonu, ki sprejme seznam števil kot vhod in vrne nov seznam, ki vsebuje samo sode številke."},
-    {id: 10, text: "Oblikujte funkcijo v Pythonu, ki sprejme niz kot vhod in vrne slovar, kjer so ključi znaki v nizu in vrednosti so število pojavitev vsakega znaka."},
+    {id: 1, text: "Napišite funkcijo v Pythonu, ki sprejme seznam števil kot vhod in vrne vsoto vseh sodih števil v seznamu.", chatAllowed: true, dificulty: 1},
+    {id: 2, text: "Implementirajte funkcijo v Pythonu, ki sprejme seznam števil kot vhod in vrne največji element v seznamu.", chatAllowed: true, dificulty: 2},
+    {id: 3, text: "Napišite funkcijo v Pythonu, ki sprejme seznam kot vhod in vrne nov seznam z obrnjenimi elementi (brez uporabe vgrajene funkcije reverse()).", chatAllowed: true, dificulty: 3},
+    {id: 4, text: "Ustvarite funkcijo v Pythonu, ki sprejme seznam števil in ciljno število kot vhod ter vrne število pojavitev ciljnega števila v seznamu.", chatAllowed: true, dificulty: 1},
+    {id: 5, text: "Implementirajte funkcijo v Pythonu, ki sprejme seznam kot vhod in vrne nov seznam brez podvojenih elementov, pri tem pa ohranja izvirni red elementov.", chatAllowed: true, dificulty: 2},
+    {id: 6, text: "Napišite funkcijo v Pythonu, ki sprejme niz kot vhod in vrne niz v obratnem vrstnem redu.", chatAllowed: false, dificulty: 1},
+    {id: 7, text: "Implementirajte funkcijo v Pythonu, ki sprejme seznam nizov kot vhod in vrne nov seznam, ki vsebuje samo nize, ki se začnejo s črko 'a'.", chatAllowed: false, dificulty: 2},
+    {id: 8, text: "Ustvarite funkcijo v Pythonu, ki sprejme dve števili kot vhod in vrne njun produkt. Če je produkt večji od 1000, potem vrne njuno vsoto.", chatAllowed: false, dificulty: 3},
+    {id: 9, text: "Razvijte funkcijo v Pythonu, ki sprejme seznam števil kot vhod in vrne nov seznam, ki vsebuje samo sode številke.", chatAllowed: false, dificulty: 1},
+    {id: 10, text: "Oblikujte funkcijo v Pythonu, ki sprejme niz kot vhod in vrne slovar, kjer so ključi znaki v nizu in vrednosti so število pojavitev vsakega znaka.", chatAllowed: false, dificulty: 2},
 ];
 const themes = [
     'default',
@@ -53,10 +53,11 @@ const themes = [
     'isotope',
 ];
 
-let currentTask = 1;
+let currentTask = 0;
 let codes = ["", "", "", "", "", "", "", "", "", ""];
 
 window.onload = function() {
+    shuffleArray(tasks);
     fetch('http://localhost:8080/student/getId')
         .then(response => response.text())
         .then(data => {
@@ -153,11 +154,6 @@ function builtinRead(x) {
     return Sk.builtinFiles["files"][x];
 }
 
-// Here's everything you need to run a python program in skulpt
-// grab the code from your textarea
-// get a reference to your pre element for output
-// configure the output function
-// call Sk.importMainWithBody()
 function runit() {
     stopExecution = false;
     changeOutputColor("white");
@@ -187,6 +183,7 @@ function runit() {
     });
     let pythonLogRequestDTO = Object.create(PythonLogRequestDTO);
     myPromise.then(function() {
+            codeHasError = false;
             console.log('success');
         },
         function(err) {
@@ -196,6 +193,7 @@ function runit() {
             changeOutputText(interrupt);
         }
         else {
+            codeHasError = true;
             let lineNumber = extractLineNumber(err.toString());
             while (isLineEmpty(lineNumber)) {
                 lineNumber--;
@@ -207,10 +205,11 @@ function runit() {
 
     }).finally(
         function () {
+            if (currentTask === 0) return;
             codes[currentTask - 1] = prog;
             pythonLogRequestDTO.pythonCode = prog;
             pythonLogRequestDTO.id = studentId;
-            pythonLogRequestDTO.taskNumber = currentTask;
+            pythonLogRequestDTO.taskNumber = tasks[currentTask - 1].id;
         let jsonData = JSON.stringify(pythonLogRequestDTO);
         console.log('logging error' + jsonData);
         fetch('http://localhost:8080/python/log', {
@@ -238,6 +237,7 @@ function highlightLine(lineNumber) {
 }
 
 function switchAndSaveCode() {
+    toggleChat();
     editor.getDoc().setValue(codes[currentTask - 1]);
     document.getElementById("navodila").innerHTML = tasks[currentTask - 1].text;
     changeProgressBar();
@@ -249,22 +249,38 @@ function switchAndSaveCode() {
 }
 
 function previousCode() {
-    if (currentTask > 1){
+    if (currentTask >= 1){
         codes[currentTask - 1] = editor.getValue();
         currentTask--;
         switchAndSaveCode();
     }
-
-
 }
 
 function nextCode() {
+    codeHasError = true;
+    chatLogDTOS = [];
     if(currentTask < tasks.length) {
-        codes[currentTask - 1] = editor.getValue();
+        if (currentTask > 0) {
+            codes[currentTask - 1] = editor.getValue();
+        }
         currentTask++;
         switchAndSaveCode();
     }
+}
+function toggleChat() {
+    let isChatAllowed = tasks[currentTask - 1].chatAllowed;
 
+    if (isChatAllowed === true) {
+        console.log('isChatAllowed: ' + isChatAllowed);
+        document.getElementById('chatGPT-input').disabled = false;
+        document.getElementById('submitChat').disabled = false;
+        document.getElementById('chatGPT-input').value = "";
+    } else {
+        console.log('isChatAllowed: ' + isChatAllowed);
+        document.getElementById('chatGPT-input').value = "Za to nalogo uporaba chatGPT ni dovoljena.";
+        document.getElementById('chatGPT-input').disabled = true;
+        document.getElementById('submitChat').disabled = true;
+    }
 }
 
 editor.on('change', function() {
@@ -282,6 +298,9 @@ function copyId() {
     navigator.clipboard.writeText(studentId);
 }
 async function getChat(){
+    if(tasks[currentTask - 1].chatAllowed === false) {
+        return;
+    }
     const questionPre = document.createElement('pre');
     const chatInput = document.getElementById('chatGPT-input').value;
 
@@ -378,40 +397,51 @@ function smoothScrollToBottom(element) {
             window.requestAnimationFrame(step);
         }
     }
-
     window.requestAnimationFrame(step);
 }
 
 function submitAll() {
-    let emptyFields = [];
-    codes.forEach(function(item, index) {
-        if (item.trim() === "") {
-            emptyFields.push(index + 1);
-        }
-    });
-    if (emptyFields.length > 0) {
-        alert("Niste izpolnili vseh nalog. Manjkajo naloge: " + emptyFields.join(", "));
+
+    // let submitObject = {
+    //     id: studentId,
+    //     chatLogs: chatLogDTOS,
+    //     codes: codes
+    // };
+    // let jsonData = JSON.stringify(submitObject);
+    //
+    // console.log('submitting code' + jsonData);
+    // fetch('http://localhost:8080/python/submit', {
+    //     method: 'POST',
+    //     headers: {
+    //         'Content-Type': 'application/json',
+    //     },
+    //     body: jsonData,
+    // }).then( r =>console.log(r));
+}
+function submitPyCode() {
+    if (currentTask !== 0 && codes[currentTask - 1].trim() === "") {
+        alert("Niste izpolnili naloge.");
         return;
     }
-
-    let submitObject = {
-        id: studentId,
-        chatLogs: chatLogDTOS,
-        codes: codes
-    };
-    let jsonData = JSON.stringify(submitObject);
-
-    console.log('submitting code' + jsonData);
-    fetch('http://localhost:8080/python/submit', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: jsonData,
-    }).then( r =>console.log(r));
-
-
+    if (codeHasError) {
+        alert("Vaš koda vsebuje napake ali pa ni bila še prevedena. Popravite kodo pred oddajo.");
+        return;
+    }
+    if (currentTask !== 0) {
+        submitAll();
+    }
+    nextCode();
 }
+
+
+
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+}
+
 
 // Prevent closing the window with unsaved code
 // window.addEventListener('beforeunload', function (e) {

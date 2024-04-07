@@ -4,7 +4,7 @@ let ChatLogDTO = {
     codeNumber: null,
     chatQuestion: null,
     chatAnswer: null,
-    timeStamp: null,
+    timestamp: null,
 };
 
 let PythonLogRequestDTO = {
@@ -15,6 +15,7 @@ let PythonLogRequestDTO = {
 };
 
 let SubmitDTO = {
+    taskNumber: null,
     errorCount: null,
     correctCount: null,
     startTime: null,
@@ -171,6 +172,7 @@ function runit() {
     stopExecution = false;
     changeOutputColor("white");
     const prog = editor.getDoc().getValue();
+    if (prog === "") return;
     changeOutputText();
     Sk.pre = "output";
     Sk.configure({
@@ -277,6 +279,7 @@ function resetOutputAndVariables() {
     chatLogDTOS = [];
     errorCount = 0;
     correctCount = 0;
+    chatCounter = 1;
 }
 
 function nextCode() {
@@ -329,10 +332,11 @@ async function getChat(){
     const chatInput = document.getElementById('chatGPT-input').value;
 
     let chatLogDTO = Object.create(ChatLogDTO);
+    chatLogDTO.timestamp = new Date().toISOString();
     chatLogDTO.chatQuestion = chatInput;
     chatLogDTO.chatNumber = chatCounter;
     chatCounter++;
-    chatLogDTO.codeNumber = currentTask;
+    chatLogDTO.codeNumber = tasks[currentTask - 1].id;
     chatLogDTO.id = studentId;
 
 
@@ -357,7 +361,6 @@ async function getChat(){
     const formattedBody = responseBody.replace(/\\n/g, '\n');
     answerPre.innerHTML = formattedBody;
     chatLogDTO.chatAnswer = formattedBody;
-    chatLogDTO.timeStamp = new Date().toISOString();
     chatLogDTOS.push(chatLogDTO);
     chatWindow.appendChild(answerPre);
     console.log(chatLogDTOS);
@@ -398,7 +401,6 @@ function testChat(){
     chatLogDTO.codeNumber = currentTask;
     chatLogDTO.id = studentId;
     chatLogDTO.chatAnswer = testAnswer;
-    chatLogDTO.timeStamp = new Date().toISOString();
     chatLogDTOS.push(chatLogDTO);
     console.log(chatLogDTOS);
     smoothScrollToBottom(chatWindow);
@@ -432,21 +434,24 @@ function submitAll() {
     pythonLogRequestDTO.taskNumber = tasks[currentTask - 1].id;
     let submitDTO = Object.create(SubmitDTO);
 
+    submitDTO.taskNumber = tasks[currentTask - 1].id;
     submitDTO.errorCount = errorCount;
     submitDTO.correctCount = correctCount;
-    submitDTO.startTime = startTime;
-    submitDTO.endTime = endTime;
+    submitDTO.startTime = startTime.toISOString();
+    submitDTO.endTime = endTime.toISOString();
     let timeDiff = endTime - startTime;
     timeDiff /= 1000;
     submitDTO.seconds = Math.round(timeDiff);
     submitDTO.totalQuestions = chatCounter - 1;
 
 
+
     let submitObject = {
-        chatLogs: chatLogDTOS,
+        chatDTOList: chatLogDTOS,
         pythonLogRequestDTO: pythonLogRequestDTO,
         submitDTO: submitDTO
     };
+    console.log('submitting code' + submitObject);
     let jsonData = JSON.stringify(submitObject);
     console.log('submitting code' + jsonData);
     fetch('http://localhost:8080/python/submit', {

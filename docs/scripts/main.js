@@ -5,14 +5,23 @@ let ChatLogDTO = {
     chatQuestion: null,
     chatAnswer: null,
     timeStamp: null,
-}
+};
 
 let PythonLogRequestDTO = {
     id: null,
     pythonCode: null,
     errorMessage: null,
     taskNumber: null
-}
+};
+
+let SubmitDTO = {
+    errorCount: null,
+    correctCount: null,
+    startTime: null,
+    endTime: null,
+    totalQuestions: null,
+    seconds: null
+};
 
 let chatLogDTOS = [];
 
@@ -20,17 +29,21 @@ let chatCounter = 1;
 let stopExecution = false;
 let studentId = null;
 let codeHasError = true;
+let startTime = null;
+let endTime = null;
+let errorCount = 0;
+let correctCount = 0;
 const tasks = [
-    {id: 1, text: "Napišite funkcijo v Pythonu, ki sprejme seznam števil kot vhod in vrne vsoto vseh sodih števil v seznamu.", chatAllowed: true, dificulty: 1},
-    {id: 2, text: "Implementirajte funkcijo v Pythonu, ki sprejme seznam števil kot vhod in vrne največji element v seznamu.", chatAllowed: true, dificulty: 2},
-    {id: 3, text: "Napišite funkcijo v Pythonu, ki sprejme seznam kot vhod in vrne nov seznam z obrnjenimi elementi (brez uporabe vgrajene funkcije reverse()).", chatAllowed: true, dificulty: 3},
-    {id: 4, text: "Ustvarite funkcijo v Pythonu, ki sprejme seznam števil in ciljno število kot vhod ter vrne število pojavitev ciljnega števila v seznamu.", chatAllowed: true, dificulty: 1},
-    {id: 5, text: "Implementirajte funkcijo v Pythonu, ki sprejme seznam kot vhod in vrne nov seznam brez podvojenih elementov, pri tem pa ohranja izvirni red elementov.", chatAllowed: true, dificulty: 2},
-    {id: 6, text: "Napišite funkcijo v Pythonu, ki sprejme niz kot vhod in vrne niz v obratnem vrstnem redu.", chatAllowed: false, dificulty: 1},
-    {id: 7, text: "Implementirajte funkcijo v Pythonu, ki sprejme seznam nizov kot vhod in vrne nov seznam, ki vsebuje samo nize, ki se začnejo s črko 'a'.", chatAllowed: false, dificulty: 2},
-    {id: 8, text: "Ustvarite funkcijo v Pythonu, ki sprejme dve števili kot vhod in vrne njun produkt. Če je produkt večji od 1000, potem vrne njuno vsoto.", chatAllowed: false, dificulty: 3},
-    {id: 9, text: "Razvijte funkcijo v Pythonu, ki sprejme seznam števil kot vhod in vrne nov seznam, ki vsebuje samo sode številke.", chatAllowed: false, dificulty: 1},
-    {id: 10, text: "Oblikujte funkcijo v Pythonu, ki sprejme niz kot vhod in vrne slovar, kjer so ključi znaki v nizu in vrednosti so število pojavitev vsakega znaka.", chatAllowed: false, dificulty: 2},
+    {id: 1, text: "Napišite funkcijo v Pythonu, ki sprejme seznam števil kot vhod in vrne vsoto vseh sodih števil v seznamu.", chatAllowed: true, difficulty: 1},
+    {id: 2, text: "Implementirajte funkcijo v Pythonu, ki sprejme seznam števil kot vhod in vrne največji element v seznamu.", chatAllowed: true, difficulty: 2},
+    {id: 3, text: "Napišite funkcijo v Pythonu, ki sprejme seznam kot vhod in vrne nov seznam z obrnjenimi elementi (brez uporabe vgrajene funkcije reverse()).", chatAllowed: true, difficulty: 3},
+    {id: 4, text: "Ustvarite funkcijo v Pythonu, ki sprejme seznam števil in ciljno število kot vhod ter vrne število pojavitev ciljnega števila v seznamu.", chatAllowed: true, difficulty: 1},
+    {id: 5, text: "Implementirajte funkcijo v Pythonu, ki sprejme seznam kot vhod in vrne nov seznam brez podvojenih elementov, pri tem pa ohranja izvirni red elementov.", chatAllowed: true, difficulty: 2},
+    {id: 6, text: "Napišite funkcijo v Pythonu, ki sprejme niz kot vhod in vrne niz v obratnem vrstnem redu.", chatAllowed: false, difficulty: 1},
+    {id: 7, text: "Implementirajte funkcijo v Pythonu, ki sprejme seznam nizov kot vhod in vrne nov seznam, ki vsebuje samo nize, ki se začnejo s črko 'a'.", chatAllowed: false, difficulty: 2},
+    {id: 8, text: "Ustvarite funkcijo v Pythonu, ki sprejme dve števili kot vhod in vrne njun produkt. Če je produkt večji od 1000, potem vrne njuno vsoto.", chatAllowed: false, difficulty: 3},
+    {id: 9, text: "Razvijte funkcijo v Pythonu, ki sprejme seznam števil kot vhod in vrne nov seznam, ki vsebuje samo sode številke.", chatAllowed: false, difficulty: 1},
+    {id: 10, text: "Oblikujte funkcijo v Pythonu, ki sprejme niz kot vhod in vrne slovar, kjer so ključi znaki v nizu in vrednosti so število pojavitev vsakega znaka.", chatAllowed: false, difficulty: 2},
 ];
 const themes = [
     'default',
@@ -140,7 +153,7 @@ function displayError(linenumber, lineText, errorText) {
     changeOutputColor("#ef2f2f");
 
 }
-function changeOutputText(text, htmlElement= document.getElementById("output")) {
+function changeOutputText(text="", htmlElement= document.getElementById("output")) {
     htmlElement.innerHTML = text;
 }
 
@@ -158,8 +171,7 @@ function runit() {
     stopExecution = false;
     changeOutputColor("white");
     const prog = editor.getDoc().getValue();
-    const mypre = document.getElementById("output");
-    mypre.innerHTML = '';
+    changeOutputText();
     Sk.pre = "output";
     Sk.configure({
         output:outf,
@@ -184,9 +196,11 @@ function runit() {
     let pythonLogRequestDTO = Object.create(PythonLogRequestDTO);
     myPromise.then(function() {
             codeHasError = false;
+            correctCount++;
             console.log('success');
         },
         function(err) {
+            errorCount++;
             pythonLogRequestDTO.errorMessage = err.toString();
         let interrupt = "Execution interrupted";
         if(err === interrupt) {
@@ -256,12 +270,22 @@ function previousCode() {
     }
 }
 
-function nextCode() {
+function resetOutputAndVariables() {
+    changeOutputText();
+    startTime = new Date();
     codeHasError = true;
     chatLogDTOS = [];
+    errorCount = 0;
+    correctCount = 0;
+}
+
+function nextCode() {
+    resetOutputAndVariables();
     if(currentTask < tasks.length) {
         if (currentTask > 0) {
             codes[currentTask - 1] = editor.getValue();
+            let textArea = document.getElementById("text-area");
+            removeChildren(textArea);
         }
         currentTask++;
         switchAndSaveCode();
@@ -401,36 +425,65 @@ function smoothScrollToBottom(element) {
 }
 
 function submitAll() {
+    endTime = new Date();
+    let pythonLogRequestDTO = Object.create(PythonLogRequestDTO);
+    pythonLogRequestDTO.pythonCode = editor.getValue();
+    pythonLogRequestDTO.id = studentId;
+    pythonLogRequestDTO.taskNumber = tasks[currentTask - 1].id;
+    let submitDTO = Object.create(SubmitDTO);
 
-    // let submitObject = {
-    //     id: studentId,
-    //     chatLogs: chatLogDTOS,
-    //     codes: codes
-    // };
-    // let jsonData = JSON.stringify(submitObject);
-    //
-    // console.log('submitting code' + jsonData);
-    // fetch('http://localhost:8080/python/submit', {
-    //     method: 'POST',
-    //     headers: {
-    //         'Content-Type': 'application/json',
-    //     },
-    //     body: jsonData,
-    // }).then( r =>console.log(r));
+    submitDTO.errorCount = errorCount;
+    submitDTO.correctCount = correctCount;
+    submitDTO.startTime = startTime;
+    submitDTO.endTime = endTime;
+    let timeDiff = endTime - startTime;
+    timeDiff /= 1000;
+    submitDTO.seconds = Math.round(timeDiff);
+    submitDTO.totalQuestions = chatCounter - 1;
+
+
+    let submitObject = {
+        chatLogs: chatLogDTOS,
+        pythonLogRequestDTO: pythonLogRequestDTO,
+        submitDTO: submitDTO
+    };
+    let jsonData = JSON.stringify(submitObject);
+    console.log('submitting code' + jsonData);
+    fetch('http://localhost:8080/python/submit', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: jsonData,
+    }).then( r =>console.log(r));
+
 }
+
 function submitPyCode() {
     if (currentTask !== 0 && codes[currentTask - 1].trim() === "") {
-        alert("Niste izpolnili naloge.");
+        let myModal = new bootstrap.Modal(document.getElementById('warningModal'), {});
+        document.getElementById('warningModalBody').innerHTML = "Vaša koda je prazna. Napišite kodo in poskusite znova.";
+        myModal.show();
         return;
     }
     if (codeHasError) {
-        alert("Vaš koda vsebuje napake ali pa ni bila še prevedena. Popravite kodo pred oddajo.");
-        return;
+        let myModal = new bootstrap.Modal(document.getElementById('warningModal'), {});
+        document.getElementById('warningModalBody').innerHTML = "Vaša koda vsebuje napake ali ni bila izvedena. Popravite napake in jo zaženite ter poskusite znova.";
+        myModal.show();
     }
+    else {
+        let myModal = new bootstrap.Modal(document.getElementById('confirmSubmitModal'), {});
+        myModal.show();
+    }
+
+}
+
+function submitModal() {
     if (currentTask !== 0) {
         submitAll();
     }
     nextCode();
+
 }
 
 
@@ -439,6 +492,12 @@ function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [array[i], array[j]] = [array[j], array[i]];
+    }
+}
+
+function removeChildren(element) {
+    while (element.firstChild) {
+        element.removeChild(element.firstChild);
     }
 }
 

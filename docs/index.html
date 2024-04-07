@@ -63,6 +63,7 @@
                         <ul id="theme-dropdown" class="dropdown-menu">
                         </ul>
                     </span>
+                    </span>
                     <button type="button" class="button-8" id="submitCode" onclick="submitPyCode()">Submit <i class="fa-solid fa-square-arrow-up-right"></i></button>
 
                 </div>
@@ -81,22 +82,59 @@
 
 
         </div>
-        <div class="col-sm-5">
-            <div class="card">
-                <div class="card-header"><h5>chatGPT</h5></div>
-                <div class="card-body">
-                    <div class="text-area" id="text-area">
+            <div class="col-sm-5">
+                <div class="card">
+                    <div class="card-header"><h5>chatGPT</h5></div>
+                    <div class="card-body">
+                        <div class="text-area" id="text-area">
+                        </div>
+                        <form>
+                            <label for="chatGPT-input"></label>
+                            <textarea id="chatGPT-input" cols="67" rows="3"></textarea><br />
+                                <button type="button" class="button-8" id="submitChat" onclick="getChat()">Submit <i class="fa-solid fa-arrow-up"></i></button>
+                            <button type="button" class="button-8" id="testSubmit" onclick="testChat()">Test <i class="fa-solid fa-arrow-up"></i></button>
+                        </form>
                     </div>
-                    <form>
-                        <label for="chatGPT-input"></label>
-                        <textarea id="chatGPT-input" cols="67" rows="3"></textarea><br />
-                            <button type="button" class="button-8" id="submitChat" onclick="getChat()">Submit <i class="fa-solid fa-arrow-up"></i></button>
-                        <button type="button" class="button-8" id="testSubmit" onclick="testChat()">Test <i class="fa-solid fa-arrow-up"></i></button>
-                    </form>
                 </div>
             </div>
         </div>
+    <!-- Modal warning -->
+    <div class="modal fade" id="warningModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="warningModalLabel">Naloge ni bilo mogoče oddati  <i class="fa-solid fa-triangle-exclamation text-warning"></i></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="warningModalBody">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close </button>
+                </div>
+            </div>
         </div>
+    </div>
+    <!-- Modal Submit -->
+    <div class="modal fade" id="confirmSubmitModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Oddaja naloge</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Ali ste prepričani, da želite oddati nalogo?<br>
+                    Vračanje na predhodne naloge ni mogoče.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-success" data-bs-dismiss="modal" onclick="submitModal()">Submit <i class="fa-solid fa-check"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
 </main>
 

@@ -263,7 +263,7 @@ function highlightLine(lineNumber) {
 
 function switchAndSaveCode() {
     toggleChat();
-    editor.getDoc().setValue(currentCode);
+    editor.getDoc().setValue("");
     document.getElementById("navodila").innerHTML = tasks[currentTask - 1].text;
     changeProgressBar();
     clearTimeout(timeoutId);

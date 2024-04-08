@@ -10,7 +10,7 @@
 }
 
 .CodeMirror {
-    height: 470px !important;
+    height: 530px !important;
 }
 .navodila-card {
     margin-bottom: -10px;
@@ -146,7 +146,7 @@ main, nav {
     margin-bottom: 10px;
 }
 .output-card {
-    height: 553px;
+    height: 665px;
 }
 
 .highlighted-error {

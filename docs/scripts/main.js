@@ -221,7 +221,7 @@ function runit() {
 
     }).finally(
         function () {
-            if (currentTask === 0) return;
+            if (currentTask === 0 || prog.trim() === "") return;
             codes[currentTask - 1] = prog;
             pythonLogRequestDTO.pythonCode = prog;
             pythonLogRequestDTO.id = studentId;
@@ -471,9 +471,9 @@ function submitPyCode() {
         myModal.show();
         return;
     }
-    if (codeHasError) {
+    if (codeHasError || document.getElementById("output").innerHTML === "") {
         let myModal = new bootstrap.Modal(document.getElementById('warningModal'), {});
-        document.getElementById('warningModalBody').innerHTML = "Vaša koda vsebuje napake ali ni bila izvedena. Popravite napake in jo zaženite ter poskusite znova.";
+        document.getElementById('warningModalBody').innerHTML = "Vaša koda vsebuje napake ali nima izpisa. Popravite napake in jo zaženite ter poskusite znova.";
         myModal.show();
     }
     else {
@@ -508,11 +508,11 @@ function removeChildren(element) {
 
 
 // Prevent closing the window with unsaved code
-// window.addEventListener('beforeunload', function (e) {
-//     // Cancel the event
-//     e.preventDefault();
-//     // Chrome requires returnValue to be set
-//     e.returnValue = '';
-// });
+window.addEventListener('beforeunload', function (e) {
+    // Cancel the event
+    e.preventDefault();
+    // Chrome requires returnValue to be set
+    e.returnValue = '';
+});
 
 

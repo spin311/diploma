@@ -34,7 +34,7 @@
 <nav id="navigation">
     <div class="container mb-1">
     <div class="progress progress-stili">
-        <div id="progress-bar" class="progress-bar progress-bar-striped bg-success" style="width:10%"></div>
+        <div id="progress-bar" class="progress-bar progress-bar-striped bg-success" style="width: 0;"></div>
     </div>
 
     </div>
@@ -46,7 +46,7 @@
         <div class="col-sm-5 ">
             <div class="card navodila-card">
 
-            <p id="navodila" class="card-header ">Testna naloga. Poskusite napisati program, ki 10x izpiše niz "živjo svet". Ko se seznanite s postavitvijo strani, kliknite gumb "Submit"</p>
+            <p id="navodila" class="card-header unselectable">Testna naloga. Poskusite napisati program, ki 10x izpiše niz "živjo svet". Ko se seznanite s postavitvijo strani, kliknite gumb "Submit"</p>
             </div>
             <form>
                 <label for="yourcode"></label>
@@ -54,8 +54,7 @@
                 <div class="buttons">
                     <button type="button" class="button-8" id="run" onclick="runit()">Run <i class="fa-solid fa-play play"></i></button>
                     <button type="button" class="button-8" id="stop" onclick="stop()">Stop <i class="fa-solid fa-stop stop"></i></button>
-                    <button type="button" class="button-8" id="previous" onclick="previousCode()"><i class="fa-solid fa-caret-left"></i> Previous</button>
-                    <button type="button" class="button-8" id="next" onclick="nextCode()">Next <i class="fa-solid fa-caret-right"></i></button>
+                    <button type="button" class="button-8" id="submitCode" onclick="submitPyCode()">Submit <i class="fa-solid fa-square-arrow-up-right"></i></button>
                     <span class="dropdown">
                         <button type="button" class="button-8  dropdown-toggle" data-bs-toggle="dropdown">
                            <i class="fa-solid fa-paint-roller text-primary"></i> Themes
@@ -63,9 +62,6 @@
                         <ul id="theme-dropdown" class="dropdown-menu">
                         </ul>
                     </span>
-                    </span>
-                    <button type="button" class="button-8" id="submitCode" onclick="submitPyCode()">Submit <i class="fa-solid fa-square-arrow-up-right"></i></button>
-
                 </div>
             </form>
         </div>
@@ -88,11 +84,11 @@
                     <div class="card-body">
                         <div class="text-area" id="text-area">
                         </div>
+                        </div>
                         <form>
                             <label for="chatGPT-input"></label>
-                            <textarea id="chatGPT-input" cols="67" rows="3"></textarea><br />
-                                <button type="button" class="button-8" id="submitChat" onclick="getChat()">Submit <i class="fa-solid fa-arrow-up"></i></button>
-                            <button type="button" class="button-8" id="testSubmit" onclick="testChat()">Test <i class="fa-solid fa-arrow-up"></i></button>
+                            <textarea id="chatGPT-input" cols="64" rows="3"></textarea><br />
+                                <button type="button" class="button-8 mt-1 mx-1" id="submitChat" onclick="getChat()">Submit <i class="fa-solid fa-arrow-up"></i></button>
                         </form>
                     </div>
                 </div>

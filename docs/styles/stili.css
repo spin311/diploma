@@ -132,6 +132,13 @@ main, nav {
     color: #d9534f;
 }
 
+.unselectable {
+    -webkit-user-select: none;  /* Chrome, Safari, Opera */
+    -moz-user-select: none;     /* Firefox */
+    -ms-user-select: none;      /* IE/Edge */
+    user-select: none;          /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
+}
+
 
 .buttons {
     margin-top: -15px;

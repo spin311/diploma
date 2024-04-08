@@ -11,7 +11,10 @@ let PythonLogRequestDTO = {
     id: null,
     pythonCode: null,
     errorMessage: null,
-    taskNumber: null
+    taskNumber: null,
+    timestamp: null,
+    autoSubmitted: null,
+    currentTask: null
 };
 
 let SubmitDTO = {
@@ -34,6 +37,9 @@ let startTime = null;
 let endTime = null;
 let errorCount = 0;
 let correctCount = 0;
+let timeoutId = null;
+let logCodeTimer = 5000;
+let logCodeTimerInterval = 1000;
 const tasks = [
     {id: 1, text: "Napišite funkcijo v Pythonu, ki sprejme seznam števil kot vhod in vrne vsoto vseh sodih števil v seznamu.", chatAllowed: true, difficulty: 1},
     {id: 2, text: "Implementirajte funkcijo v Pythonu, ki sprejme seznam števil kot vhod in vrne največji element v seznamu.", chatAllowed: true, difficulty: 2},
@@ -68,7 +74,7 @@ const themes = [
 ];
 
 let currentTask = 0;
-let codes = ["", "", "", "", "", "", "", "", "", ""];
+let currentCode = "";
 
 window.onload = function() {
     shuffleArray(tasks);
@@ -168,6 +174,16 @@ function builtinRead(x) {
     return Sk.builtinFiles["files"][x];
 }
 
+function logCode(jsonData) {
+    fetch('http://localhost:8080/python/log', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: jsonData,
+    }).then(r => console.log(r));
+}
+
 function runit() {
     stopExecution = false;
     changeOutputColor("white");
@@ -218,25 +234,18 @@ function runit() {
             displayError(lineNumber, editor.getLine(lineNumber), err.toString());
             console.log(err.toString());
         }
-
     }).finally(
         function () {
-            if (currentTask === 0 || prog.trim() === "") return;
-            codes[currentTask - 1] = prog;
-            pythonLogRequestDTO.pythonCode = prog;
-            pythonLogRequestDTO.id = studentId;
-            pythonLogRequestDTO.taskNumber = tasks[currentTask - 1].id;
-        let jsonData = JSON.stringify(pythonLogRequestDTO);
-        console.log('logging error' + jsonData);
-        fetch('http://localhost:8080/python/log', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: jsonData,
-        }).then( r =>console.log(r));
+            logCodeTimer += logCodeTimerInterval;
+            clearTimeout(timeoutId);
+            setLogTimeout();
+            if (currentTask === 0 || prog.trim() === "" || currentCode === prog) return;
+            currentCode = prog;
+            fillPythonLogRequestDTO(pythonLogRequestDTO, false);
+            let jsonData = JSON.stringify(pythonLogRequestDTO);
+            logCode(jsonData);
+            disableButtonForTime('run', 5000);
         }
-
     );
 }
 
@@ -254,9 +263,14 @@ function highlightLine(lineNumber) {
 
 function switchAndSaveCode() {
     toggleChat();
-    editor.getDoc().setValue(codes[currentTask - 1]);
+    editor.getDoc().setValue(currentCode);
     document.getElementById("navodila").innerHTML = tasks[currentTask - 1].text;
     changeProgressBar();
+    clearTimeout(timeoutId);
+    logCodeTimer = 5000;
+    logCodeTimerInterval = 1000;
+    setLogTimeout();
+
     function changeProgressBar() {
         document.getElementById("progress").innerHTML = currentTask.toString();
         document.getElementById("progress-bar").style.width = (currentTask * 10).toString() + "%";
@@ -264,16 +278,34 @@ function switchAndSaveCode() {
 
 }
 
-function previousCode() {
-    if (currentTask >= 1){
-        codes[currentTask - 1] = editor.getValue();
-        currentTask--;
-        switchAndSaveCode();
-    }
+function setLogTimeout() {
+    timeoutId = setTimeout(() => {
+        console.log('setting timeout');
+        console.log(currentCode);
+        console.log(editor.getValue());
+        if (currentCode !== editor.getValue()) {
+            console.log('Auto logging code');
+            currentCode = editor.getValue();
+            let pythonLogRequestDTO = Object.create(PythonLogRequestDTO);
+            fillPythonLogRequestDTO(pythonLogRequestDTO, true);
+            let jsonData = JSON.stringify(pythonLogRequestDTO);
+            logCode(jsonData);
+            if (logCodeTimer >= 60000) {
+                logCodeTimer = 30000;
+            }
+        }
+        else {
+            logCodeTimer += logCodeTimerInterval;
+            logCodeTimerInterval += 1000;
+        }
+        setLogTimeout();
+    }, logCodeTimer);
 }
 
 function resetOutputAndVariables() {
+    let textArea = document.getElementById("text-area");
     changeOutputText();
+    removeChildren(textArea);
     startTime = new Date();
     codeHasError = true;
     chatLogDTOS = [];
@@ -282,13 +314,22 @@ function resetOutputAndVariables() {
     chatCounter = 1;
 }
 
+function fillPythonLogRequestDTO(pythonLogRequestDTO, autoSubmitted=false) {
+    pythonLogRequestDTO.timestamp = new Date().toISOString();
+    pythonLogRequestDTO.pythonCode = editor.getValue();
+    pythonLogRequestDTO.id = studentId;
+    if (currentTask > 0) {
+        pythonLogRequestDTO.taskNumber = tasks[currentTask - 1].id;
+    }
+    pythonLogRequestDTO.autoSubmitted = autoSubmitted;
+    pythonLogRequestDTO.currentTask = currentTask;
+}
+
 function nextCode() {
     resetOutputAndVariables();
     if(currentTask < tasks.length) {
         if (currentTask > 0) {
-            codes[currentTask - 1] = editor.getValue();
-            let textArea = document.getElementById("text-area");
-            removeChildren(textArea);
+            currentCode = editor.getValue();
         }
         currentTask++;
         switchAndSaveCode();
@@ -325,19 +366,23 @@ function copyId() {
     navigator.clipboard.writeText(studentId);
 }
 async function getChat(){
-    if(tasks[currentTask - 1].chatAllowed === false) {
-        return;
+    const chatInput = document.getElementById('chatGPT-input').value;
+    if(currentTask > 0) {
+        if(tasks[currentTask - 1].chatAllowed === false || chatInput.length === 0) {
+            return;
+        }
     }
     const questionPre = document.createElement('pre');
-    const chatInput = document.getElementById('chatGPT-input').value;
-
     let chatLogDTO = Object.create(ChatLogDTO);
     chatLogDTO.timestamp = new Date().toISOString();
     chatLogDTO.chatQuestion = chatInput;
     chatLogDTO.chatNumber = chatCounter;
     chatCounter++;
-    chatLogDTO.codeNumber = tasks[currentTask - 1].id;
+    if(currentTask > 0) {
+        chatLogDTO.codeNumber = tasks[currentTask - 1].id;
+    }
     chatLogDTO.id = studentId;
+
 
 
     const chatWindow = document.getElementById('text-area');
@@ -356,55 +401,37 @@ async function getChat(){
         },
         body: JSON.stringify(chatInput)
         });
+    let responseBody, formattedBody;
+    if (!response.ok) {
+        formattedBody = `An error has occured: ${response.status}`;
+    }
+    else {
+        responseBody = await response.text();
+        console.log(responseBody);
+        formattedBody = responseBody.replace(/\\n/g, '\n');
+    }
     console.log(response);
-    const responseBody = await response.text();
-    const formattedBody = responseBody.replace(/\\n/g, '\n');
+
     answerPre.innerHTML = formattedBody;
     chatLogDTO.chatAnswer = formattedBody;
     chatLogDTOS.push(chatLogDTO);
     chatWindow.appendChild(answerPre);
     console.log(chatLogDTOS);
-    chatWindow.scrollTop = chatWindow.scrollHeight;
+    smoothScrollToBottom(chatWindow);
+    disableButtonForTime('submitChat',5000);
     }
 
-function testChat(){
-    const question = document.createElement('div');
-    const chatInput = document.getElementById('chatGPT-input').value;
-
-    const chatWindow = document.getElementById('text-area');
-    question.innerHTML = chatInput;
-    question.classList.add('question');
-    chatWindow.appendChild(question);
-
-
-    const answer = document.createElement('pre');
-    answer.classList.add('answer');
-    const testAnswer = "You can use the `max()` function to find the highest value in a Python array. Here's an example:\n" +
-        "\n" +
-        "```python\n" +
-        "my_array = [1, 5, 2, 8, 4]\n" +
-        "highest_value = max(my_array)\n" +
-        "print(highest_value)\n" +
-        "```\n" +
-        "\n" +
-        "This will output:\n" +
-        "```\n" +
-        "8\n" +
-        "```";
-    answer.innerHTML = testAnswer;
-    chatWindow.appendChild(answer);
-
-    let chatLogDTO = Object.create(ChatLogDTO);
-    chatLogDTO.chatQuestion = chatInput;
-    chatLogDTO.chatNumber = chatCounter;
-    chatCounter++;
-    chatLogDTO.codeNumber = currentTask;
-    chatLogDTO.id = studentId;
-    chatLogDTO.chatAnswer = testAnswer;
-    chatLogDTOS.push(chatLogDTO);
-    console.log(chatLogDTOS);
-    smoothScrollToBottom(chatWindow);
-
+function disableButtonForTime(buttonId, time) {
+    let button = document.getElementById(buttonId);
+    let previousColor = button.color;
+    button.disabled = true;
+    button.color = "gray !important";
+    console.log("disabling button");
+    setTimeout(() => {
+        button.disabled = false;
+        button.color = previousColor;
+        console.log("enabling button");
+    }, time);
 
 }
 
@@ -428,10 +455,9 @@ function smoothScrollToBottom(element) {
 
 function submitAll() {
     endTime = new Date();
+    clearTimeout(timeoutId);
     let pythonLogRequestDTO = Object.create(PythonLogRequestDTO);
-    pythonLogRequestDTO.pythonCode = editor.getValue();
-    pythonLogRequestDTO.id = studentId;
-    pythonLogRequestDTO.taskNumber = tasks[currentTask - 1].id;
+    fillPythonLogRequestDTO(pythonLogRequestDTO, false);
     let submitDTO = Object.create(SubmitDTO);
 
     submitDTO.taskNumber = tasks[currentTask - 1].id;
@@ -465,7 +491,7 @@ function submitAll() {
 }
 
 function submitPyCode() {
-    if (currentTask !== 0 && codes[currentTask - 1].trim() === "") {
+    if (currentTask !== 0 && currentCode.trim() === "") {
         let myModal = new bootstrap.Modal(document.getElementById('warningModal'), {});
         document.getElementById('warningModalBody').innerHTML = "Vaša koda je prazna. Napišite kodo in poskusite znova.";
         myModal.show();
@@ -508,11 +534,11 @@ function removeChildren(element) {
 
 
 // Prevent closing the window with unsaved code
-window.addEventListener('beforeunload', function (e) {
-    // Cancel the event
-    e.preventDefault();
-    // Chrome requires returnValue to be set
-    e.returnValue = '';
-});
+// window.addEventListener('beforeunload', function (e) {
+//     // Cancel the event
+//     e.preventDefault();
+//     // Chrome requires returnValue to be set
+//     e.returnValue = '';
+// });
 
 

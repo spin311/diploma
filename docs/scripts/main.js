@@ -46,18 +46,15 @@ const tasks = [
     {id: 1, text: "Napišite program, ki prebere tri števila in izpiše srednje med njimi (tj. število, od katerega" +
             " je vsaj eno od preostalih dveh števil v trojici manjše ali enako in vsaj eno večje ali enako)", chatAllowed: false, difficulty: 1, vhod: "7 13 4", izhod: "7"},
     {id: 2, text: "Napiši python funkcijo, ki sprejme seznam in vrne nov seznam, ki vsebuje samo prvi in zadnji element seznama.<br>" +
-            "Če ima vhodni seznam manj kot 2 elementa program napiše \"ERROR!\"", chatAllowed: true, difficulty: 1, vhod: "[1, 2, 3, 4, 5]", izhod: "[1, 5]" },
+            "Če ima vhodni seznam manj kot dva elementa program napiše \"ERROR!\"", chatAllowed: true, difficulty: 1, vhod: "[1, 2, 3, 4, 5]", izhod: "[1, 5]" },
     {id: 3, text: "Napiši python program, ki sprejme seznam števil, in izpiše povprečje vseh števil iz seznama.", chatAllowed: false, difficulty: 1, vhod: "[1, 2, 3, 4, 5, 6]", izhod: "3.5"},
     {id: 4, text: "Napiši Python program, kjer uporabnik vpiše število 0-9. Program nato izpiše vsa števila med 0 in 20(vključno s tema številoma), ki ne vsebujejo vnešene števke.", chatAllowed: true, difficulty: 1, vhod: "1", izhod: "0 2 3 4 5 6 7 8 9 20"},
     {id: 5, text: "Napišite program, ki prebere števila a, b in k in izpiše zaporedje števil od a do b s korakom<br>" +
             "k (povečamo za k). V primeru: a < b naj se izpis zaključi pri največjem številu, ki ni večje od b, v primeru<br>" +
             "a > b pa pri najmanjšem številu, ki ni manjše od b.<br>" +
-            "Pred izpisom zaporedja naj program preveri, ali vhod zadošča sledečima pogojema:<br>" +
-            "• korak k ni enak 0<br>" +
-            "• korak je pozitiven v primeru a < b oziroma negativen v primeru a > b.<br>" +
-            "Če vhod katerega od pogojev ne izpolnjuje, naj program izpiše zgolj besedo NAPAKA.", chatAllowed: false, difficulty: 2, vhod: "1 10 2", izhod: "1 3 5 7 9"},
+            "Če je korak enak 0, izpiši NAPAKA in zaključi program.", chatAllowed: false, difficulty: 2, vhod: "1 10 2", izhod: "1 3 5 7 9"},
     {id: 6, text: "Napiši funkcijo, ki prešteje število samoglasnikov (a e i o u) v podani besedi.", chatAllowed: true, difficulty: 1, vhod: "programiranje", izhod: "5"},
-    {id: 7, text: "Napiši program, ki prebere dve enomestni števili in vsako izmed števil izpiše število x * x krat v širino in x * x krat v višino.", chatAllowed: false, difficulty: 3, vhod: "3 4", izhod: "333 4444<br>333 4444<br>333 4444<br>    4444<br>"},
+    {id: 7, text: "Napiši program, ki prebere dve enomestni števili in vsako izmed števil izpiše število x * x krat v širino in x * x krat v višino. Prvo število je vedno večje od drugega.<br> Če ti je naloga prezahtevna, reši samo za eno število.", chatAllowed: false, difficulty: 3, vhod: "3 4", izhod: "333 4444<br>333 4444<br>333 4444<br>    4444<br>"},
     {id: 8, text: "Napišite funkcijo, ki sprejme dva niza in vrne True, če je sta niza anagrama (iz črk ene besede lahko sestavimo drugo besedo, npr. kar in rak) in vrne False, če nista anagrama.", chatAllowed: true, difficulty: 3, vhod: "kar rak", izhod: "True"},
 ];
 const themes = [

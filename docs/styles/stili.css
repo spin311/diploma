@@ -9,6 +9,10 @@
 
 }
 
+#output {
+    white-space: pre-wrap;
+}
+
 .CodeMirror {
     height: 530px !important;
 }

@@ -40,7 +40,8 @@ let correctCount = 0;
 let timeoutId = null;
 let logCodeTimer = 5000;
 let logCodeTimerInterval = 1000;
-let serverUrl = "http://localhost:8080";
+let maxTokens = 500;
+let serverUrl = "https://diploma-service-endpoints.azuremicroservices.io";
 const tasks = [
     {id: 1, text: "Napišite funkcijo v Pythonu, ki sprejme seznam števil kot vhod in vrne vsoto vseh sodih števil v seznamu.", chatAllowed: true, difficulty: 1},
     {id: 2, text: "Implementirajte funkcijo v Pythonu, ki sprejme seznam števil kot vhod in vrne največji element v seznamu.", chatAllowed: true, difficulty: 2},
@@ -246,7 +247,6 @@ function runit() {
             fillPythonLogRequestDTO(pythonLogRequestDTO, false);
             let jsonData = JSON.stringify(pythonLogRequestDTO);
             logCode(jsonData);
-            disableButtonForTime('run', 5000);
         }
     );
 }
@@ -396,42 +396,70 @@ async function getChat(){
     const answerPre = document.createElement('pre');
     answerPre.classList.add('answer');
 
-    const response = await fetch(serverUrl + '/openai/getOpenAiChat', {
+    // const response = await fetch(serverUrl + '/openai/getOpenAiChat', {
+    //     method: 'POST',
+    //     headers: {
+    //         'Content-Type': 'application/json',
+    //     },
+    //     body: JSON.stringify(chatInput)
+    //     });
+    // let responseBody, formattedBody;
+    // if (!response.ok) {
+    //     formattedBody = `An error has occured: ${response.status}`;
+    // }
+    // else {
+    //     responseBody = await response.text();
+    //     console.log(responseBody);
+    //     formattedBody = responseBody.replace(/\\n/g, '\n');
+    // }
+    // console.log(response);
+
+    const response = await fetch('https://api.openai.com/v1/chat/completions', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
+            'Authorization': `Bearer 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`
         },
-        body: JSON.stringify(chatInput)
-        });
-    let responseBody, formattedBody;
-    if (!response.ok) {
-        formattedBody = `An error has occured: ${response.status}`;
+        body: JSON.stringify({
+            model: 'gpt-3.5-turbo-0125',
+            messages: [
+                {
+                    "role": "user",
+                    "content": chatInput.trim()
+                }],
+            max_tokens: maxTokens
+        })
+    });
+    console.log(response);
+    const data = await response.json();
+    console.log(data);
+    let chatAnswer = '';
+    if(data.choices && data.choices.length > 0) {
+        chatAnswer = data.choices[0].message.content;
+
     }
     else {
-        responseBody = await response.text();
-        console.log(responseBody);
-        formattedBody = responseBody.replace(/\\n/g, '\n');
+        chatAnswer = "ChatGPT trenutno ni na voljo.";
     }
-    console.log(response);
 
-    answerPre.innerHTML = formattedBody;
-    chatLogDTO.chatAnswer = formattedBody;
+    answerPre.innerHTML = chatAnswer;
+    chatLogDTO.chatAnswer = chatAnswer;
     chatLogDTOS.push(chatLogDTO);
     chatWindow.appendChild(answerPre);
     console.log(chatLogDTOS);
     smoothScrollToBottom(chatWindow);
-    disableButtonForTime('submitChat',5000);
+    disableButtonForTime('submitChat',7500);
     }
 
 function disableButtonForTime(buttonId, time) {
     let button = document.getElementById(buttonId);
-    let previousColor = button.color;
+    let previousText = button.innerHTML;
     button.disabled = true;
-    button.color = "gray !important";
+    button.innerHTML = "Počakajte...";
     console.log("disabling button");
     setTimeout(() => {
+        button.innerHTML = previousText;
         button.disabled = false;
-        button.color = previousColor;
         console.log("enabling button");
     }, time);
 

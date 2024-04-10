@@ -41,7 +41,7 @@ let timeoutId = null;
 let logCodeTimer = 5000;
 let logCodeTimerInterval = 2000;
 let maxTokens = 1000;
-let serverUrl = "https://diploma-service-endpoints.azuremicroservices.io";
+let serverUrl = "http://localhost:8080";
 const tasks = [
     {id: 1, text: "Napišite program, ki prebere tri števila in izpiše srednje med njimi (tj. število, od katerega" +
             " je vsaj eno od preostalih dveh števil v trojici manjše ali enako in vsaj eno večje ali enako)", chatAllowed: false, difficulty: 1, vhod: "7 13 4", izhod: "7"},
@@ -401,7 +401,7 @@ async function getChat(){
         headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer TODO`
-        }, //TODO
+        }, //TODO NEW OPENAI API KEY
         body: JSON.stringify({
             model: 'gpt-3.5-turbo-0125',
             messages: [

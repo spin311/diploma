@@ -418,7 +418,7 @@ async function getChat(){
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer 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`
+            'Authorization': `Bearer TODO`
         },
         body: JSON.stringify({
             model: 'gpt-3.5-turbo-0125',

@@ -38,9 +38,9 @@ let endTime = null;
 let errorCount = 0;
 let correctCount = 0;
 let timeoutId = null;
-let logCodeTimer = 30000;
-let logCodeTimerInterval = 5000;
-let maxTokens = 500;
+let logCodeTimer = 30000; //TODO
+let logCodeTimerInterval = 5000; //TODO
+let maxTokens = 50; //TODO
 let serverUrl = "https://diploma-service-endpoints.azuremicroservices.io";
 const tasks = [
     {id: 1, text: "Napišite funkcijo v Pythonu, ki sprejme seznam števil kot vhod in vrne vsoto vseh sodih števil v seznamu.", chatAllowed: true, difficulty: 1},
@@ -418,8 +418,8 @@ async function getChat(){
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer TODO`
-        },
+            'Authorization': `Bearer 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`
+        }, //TODO
         body: JSON.stringify({
             model: 'gpt-3.5-turbo-0125',
             messages: [
@@ -448,7 +448,7 @@ async function getChat(){
     chatWindow.appendChild(answerPre);
     console.log(chatLogDTOS);
     smoothScrollToBottom(chatWindow);
-    disableButtonForTime('submitChat',7500);
+    disableButtonForTime('submitChat',5000);
     }
 
 function disableButtonForTime(buttonId, time) {

@@ -41,7 +41,7 @@ let timeoutId = null;
 let logCodeTimer = 30000;
 let logCodeTimerInterval = 5000;
 let maxTokens = 500;
-let serverUrl = "TODO";
+let serverUrl = "http://localhost:8080";
 const tasks = [
     {id: 1, text: "Napišite funkcijo v Pythonu, ki sprejme seznam števil kot vhod in vrne vsoto vseh sodih števil v seznamu.", chatAllowed: true, difficulty: 1},
     {id: 2, text: "Implementirajte funkcijo v Pythonu, ki sprejme seznam števil kot vhod in vrne največji element v seznamu.", chatAllowed: true, difficulty: 2},

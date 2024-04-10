@@ -40,6 +40,7 @@ let correctCount = 0;
 let timeoutId = null;
 let logCodeTimer = 5000;
 let logCodeTimerInterval = 1000;
+let serverUrl = "http://localhost:8080";
 const tasks = [
     {id: 1, text: "Napišite funkcijo v Pythonu, ki sprejme seznam števil kot vhod in vrne vsoto vseh sodih števil v seznamu.", chatAllowed: true, difficulty: 1},
     {id: 2, text: "Implementirajte funkcijo v Pythonu, ki sprejme seznam števil kot vhod in vrne največji element v seznamu.", chatAllowed: true, difficulty: 2},
@@ -78,7 +79,7 @@ let currentCode = "";
 
 window.onload = function() {
     shuffleArray(tasks);
-    fetch('http://localhost:8080/student/getId')
+    fetch( serverUrl + '/student/getId', )
         .then(response => response.text())
         .then(data => {
             console.log(data);
@@ -175,7 +176,8 @@ function builtinRead(x) {
 }
 
 function logCode(jsonData) {
-    fetch('http://localhost:8080/python/log', {
+    console.log(jsonData);
+    fetch(serverUrl + '/python/log', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -394,7 +396,7 @@ async function getChat(){
     const answerPre = document.createElement('pre');
     answerPre.classList.add('answer');
 
-    const response = await fetch('http://localhost:8080/openai/getOpenAiChat', {
+    const response = await fetch(serverUrl + '/openai/getOpenAiChat', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -480,7 +482,8 @@ function submitAll() {
     console.log('submitting code' + submitObject);
     let jsonData = JSON.stringify(submitObject);
     console.log('submitting code' + jsonData);
-    fetch('http://localhost:8080/python/submit', {
+    const submitEndpoint = serverUrl + '/python/submit';
+    fetch(submitEndpoint, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

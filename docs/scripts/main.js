@@ -41,7 +41,7 @@ let timeoutId = null;
 let logCodeTimer = 30000; //TODO
 let logCodeTimerInterval = 5000; //TODO
 let maxTokens = 50; //TODO
-let serverUrl = "https://diploma-service-endpoints.azuremicroservices.io";
+let serverUrl = "http://localhost:8080";
 const tasks = [
     {id: 1, text: "Napišite funkcijo v Pythonu, ki sprejme seznam števil kot vhod in vrne vsoto vseh sodih števil v seznamu.", chatAllowed: true, difficulty: 1},
     {id: 2, text: "Implementirajte funkcijo v Pythonu, ki sprejme seznam števil kot vhod in vrne največji element v seznamu.", chatAllowed: true, difficulty: 2},
@@ -418,7 +418,7 @@ async function getChat(){
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer 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`
+            'Authorization': `Bearer TODO`
         }, //TODO
         body: JSON.stringify({
             model: 'gpt-3.5-turbo-0125',

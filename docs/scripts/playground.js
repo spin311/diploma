@@ -1,7 +1,7 @@
 let stopExecution = false;
 let codeHasError = true;
 let timeoutId = null;
-let maxTokens = 250;
+let maxTokens = 500;
 const tasks = [
     {id: 1, text: "Napiši program, ki prebere stavek iz več besed in vrne isti stavek, z obratnim vrstnim redom črk posamezne besede.", chatAllowed: false, difficulty: 1, vhod: "Danes je lep dan", izhod: "senaD ej pel nad"},
     {id: 2, text: "Napiši funkcijo, ki sprejme dva seznama in vrne nov seznam, ki vsebuje samo elemente, ki se pojavijo v obeh seznamih.", chatAllowed: true, difficulty: 1, vhod: "[1, 2, 3, 4, 5], [3, 4, 5, 6, 7]", izhod: "[3, 4, 5]"},
@@ -279,7 +279,7 @@ async function getChat(){
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer TODO`
+            'Authorization': `Bearer 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`
         }, //TODO
         body: JSON.stringify({
             model: 'gpt-3.5-turbo-0125',

@@ -298,10 +298,28 @@ V naslednjih poglavjih bomo pregledali obstoječo literaturo in raziskave na pod
 
 
 \chapter{Pregled področja}
-Razvoj programske kode je zahteven proces, ki vključuje pretvorbo specifikacije problema v programsko implementirano rešitev. Zgodnja orodja umetne inteligence so uporabljala strojno učenje za podporo razvijalcem skozi vse faze razvoja programske opreme in so vključevala pridobivanje programske specifikacije jezika in napoved uporabnikovega vnosa. \textcite{zhang2003machine}
+Razvoj programske kode je proces, ki vključuje pretvorbo specifikacije problema v programsko implementirano rešitev. Zgodnja orodja za olajšanje postopka so uporabljala strojno učenje za podporo razvijalcev skozi vse faze razvoja programske opreme in so med drugimi vključevala pridobivanje programske specifikacije in napoved uporabnikovega vnosa. \textcite{zhang2003machine} \\
 
-Veliki jezikovni modeli (angleško LLM) so vrsta umetne inteligence, zasnovana za razumevanje in ustvarjanje besedila, ki je blizu ljedem. Treniranje temelji na vnaprej naučenih vzorcih z obsežnim usposabljanjem na veliki količini podatkov, kot so spletne strani, knjige, članki. S pomočjo podatkov lahko model prepozna statistične vzorce in strukture človeškega jezika, kar omogoča, da se nauči slovnice, sintakse in semantične odnose v jeziku. Po končanem učenju se model navadno usmeri in prilagodi za določeno domeno ali nalogo, kot je na primer prevajanje, generiranje besedila, prepoznavanje slik, ipd.
+Z današnjimi napredki na področjih globokega učenja in procesiranja naravnega jezika so se razvili napredni modeli za pomoč pri kodiranju, ki omogočajo avtomatsko dopolnjevanje in reševanje problemov v kodi v realnem času.
+Obstaja veliko poskusov samodejnega prevajanja specifikacij v računalniško kodo s pomočjo formalnih modelov za avtomatsko generiranje kode *citat* ali pa s pomočjo strojno naučenega procesiranja naravnega jezika. Arhiterkure globokega učenja, ki so se dobro prilegajo procesiranju naravnega jezika so omogočile razvoj modelom ko sta GPT-2 in GPT-3 *citat*. Ti modeli lahko izvajajo
+jezikovne naloge, kot sta prevajanje in odgovarjanje na vprašanja
+iz nabora podatkov CoQA *vir* Po prilagajanju na specializiranih naborih podatkov lahko modeli opravljajo naloge, kot so dopolnjevanje kode in načrtovanje strojne opreme. *citat* Najsodobnejši modeli imajo na milijarde parametrov, ki jih je mogoče naučiti, in so učeni na več milijonih programskih repozitorijev. V tem delu se bomo osredotočili na modela chatGPT-3.5 in Copilot. *več o teh orodjih* \\
+Copilot temelji na družini modelov OpenAI Codex *citat*. Modeli Codex kot osnovo vzamejo model GPT-3 *citat*, ki ga nato prilagodijo na podlagi kode iz GitHuba. ?Njegov način tokenizacije je skoraj identičen z GPT-3, uporablja kodiranje parov bajtov za pretvorbo izvornega besedila v zaporedje žetonov, vendar je bil besedni zaklad GPT-3 razširjen z dodajanem namenskih žetonov za bele prostore (tj. žeton za dva presledka, žeton za
+tri presledke, do 25 presledkov). To tokenizerju omogoča učinkoviteje
+kodiranje izvorne kode. (ki ima veliko belih presledkov) \\
+Pomembna lastnost, ki sta jo Codex in Copilot podedovala od
+GPT-3, je, da ob pozivu ustvarita najverjetnejši odgovor
+za poziv na podlagi tega, kar je bilo pridobljeno
+iz izkušenj, pridobljenih pri usposabljanju. V kontekstu generiranja kode to pomeni,
+da model ne bo nujno ustvaril najboljše kode (po
+po kateri koli izbrani metriki - zmogljivost, varnost itd.),
+temveč tisto, ki se najbolje ujema s predhodno in naučeno kodo.
+Posledično na kakovost generirane kode močno vlivajo semantično nepomembne lastnosti poziva. \cite{9833571}
+
+? Veliki jezikovni modeli (angleško LLM) so vrsta umetne inteligence, zasnovana za razumevanje in ustvarjanje besedila, ki je blizu ljedem. Treniranje temelji na vnaprej naučenih vzorcih z obsežnim usposabljanjem na veliki količini podatkov, kot so spletne strani, knjige, članki. S pomočjo podatkov lahko model prepozna statistične vzorce in strukture človeškega jezika, kar omogoča, da se nauči slovnice, sintakse in semantične odnose v jeziku. Po končanem učenju se model navadno usmeri in prilagodi za določeno domeno ali nalogo, kot je na primer prevajanje, generiranje besedila, prepoznavanje slik, ipd. *cite* ?
 \section{Asistenti na področju umetne inteligence} 
+
+
  
 
 \section{Hitro programiranje}
@@ -310,6 +328,12 @@ Veliki jezikovni modeli (angleško LLM) so vrsta umetne inteligence, zasnovana z
 Preučevanje prednosti in slabosti, ocena pravilnosti in razlage rešitve, primerjava z ostalimi  AI asistenti.
 
 \section{Programiranje z GithubCopilot}
+Podjetje OpenAI je leta 2021 prvič predstavilo svoj nov produkt, OpenAI Codex, AI sistem na podlagi globokeda učenja, ki je bil naučen na več kot 50 milijonih GitHub repozitorijih. S podanim opisom programskega problema v naravnem jeziku Codex generira kodo za rešitev kot izhod. Zna razložiti kodo, jo prevesti med programskimi jeziki in poiskati ter popraviti napake v kodi.
+
+*vir = https://openai.com/index/openai-codex/
++the robots are coming vir
+
+
 Preučevanje prednosti in slabosti, ocena pravilnosti in razlage rešitve, primerjava z ostalimi  AI asistenti.
 
 \section{Ugotovitve in primerjava}

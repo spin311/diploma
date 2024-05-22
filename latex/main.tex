@@ -9,10 +9,8 @@
 \usepackage{graphicx,epsfig}
 \usepackage[slovene]{babel}
 \usepackage{cite}
-
 \usepackage[pdftex,colorlinks,citecolor=black,filecolor=black,linkcolor=black,urlcolor=black,pagebackref]{hyperref}
 \usepackage{tikz}
-
 %Velikost strani - dvostransko
 \oddsidemargin 1.4cm
 \evensidemargin 0.35cm
@@ -37,9 +35,9 @@
 \newcommand{\gnuplot}{\textbf{gnuplot}}
 \newcommand{\pgfname}{\textsc{pgf}}
 \newcommand{\tikzname}{Ti\emph{k}Z}
-
+\usepackage[backend=biber,style=apa]{biblatex}
+\addbibresource{references.bib} 
 \begin{document}
-
 \thispagestyle{empty} 
 \begin{center}
 {\large 
@@ -113,7 +111,7 @@ različica 3 ali (po želji) novejšo različico. To pomeni, da se lahko prosto 
 Podrobnosti licence so dostopne na spletni strani \url{http://www.gnu.org/licenses/}.
 }
 
-\begin{center}
+\begin{center} 
 \ \\ \vfill
 {\em
 Besedilo je oblikovano z urejevalnikom besedil \LaTeX. \\ Slike so izdelane s pomočjo jezika \pgfname/\tikzname. \\ Grafi so narisani
@@ -138,7 +136,7 @@ dvigne v študent\-skem referatu,  preden odda izdelek v vezavo!
 
 %********************************************
 
-% stran 4 med uvodnimi listi je prazna
+% stran 4 med uvodnimi listi je prazna 
 \ \thispagestyle{empty}
 
 \newpage
@@ -150,11 +148,11 @@ dvigne v študent\-skem referatu,  preden odda izdelek v vezavo!
 \thispagestyle{empty}
 
 \vspace{1cm}
-\begin{center}
+\begin{center} 
 {\Large \textbf{IZJAVA O AVTORSTVU}}
 \end{center}
 
-\begin{center}
+\begin{center} 
 {\Large diplomskega dela}
 \end{center}
 
@@ -166,21 +164,21 @@ z vpisno številko \hspace{0.5cm} xxxxxxx,
 
 \vspace{1cm}
 sem avtor/-ica diplomskega dela z naslovom:
-
+   
 \vspace{0.5cm}
 Naslov diplomskega dela
 
 \vspace{1.5cm}
 S svojim podpisom zagotavljam, da:
 \begin{itemize}
-	\item sem diplomsko delo izdelal/-a samostojno pod mentorstvom
-
+	\item sem diplomsko delo izdelal/-a samostojno pod mentorstvom 
+	
 	prof. [doc.] dr. Ime Priimek
-
-	in somentorstvom
-
+	
+	in somentorstvom 
+	
 	prof. [doc.] dr. Ime Priimek
-
+	
 	\item	so elektronska oblika diplomskega dela, naslov (slov., angl.), povzetek (slov., angl.) ter ključne besede (slov., 			angl.) identični s tiskano obliko diplomskega dela
 	\item soglašam z javno objavo elektronske oblike diplomskega dela v zbirki ''Dela FRI''.
 \end{itemize}
@@ -188,7 +186,7 @@ S svojim podpisom zagotavljam, da:
 \vspace{1cm}
 V Ljubljani, dne xx.xx.20xx \hspace{1cm} Podpis avtorja/-ice:
 
-\newpage
+\newpage 
 
 %********************************************
 
@@ -221,8 +219,8 @@ Na tem mestu se diplomant zahvali vsem, ki so kakorkoli pripomogli k uspešni iz
 
 %********************************************
 
-\renewcommand\thepage{}
-\tableofcontents
+\renewcommand\thepage{} 
+\tableofcontents 
 \renewcommand\thepage{\arabic{page}}
 
 \thispagestyle{empty}
@@ -247,11 +245,10 @@ Seznam uporabljenih kratic in simbolov, ki morajo biti enotni v celotnem delu, n
 \pagenumbering{arabic}
 
 \chapter*{Povzetek}
-
 \addcontentsline{toc}{chapter}{Povzetek}
 
 Povzetek naj posreduje bralcu kratko vsebino dela. Zajema naj namen dela, področje, na katerega se delo nanaša,
-uporabljene metode, poglavitne rezultate dela, zaključke in priporočila.
+uporabljene metode, poglavitne rezultate dela, zaključke in priporočila. 
 Povzetek naj ne obsega več kot eno stran, obi\v cajno ima le 200 do 300 besed. Napiše se povsem na koncu,
 ko je že jasna vsebina vseh ostalih poglavij.
 
@@ -292,15 +289,20 @@ Ključne besede v angleškem jeziku.
 
 \chapter{Uvod}
 
-Umetna inteligenca je postala nepogrešljivo orodje pri programiranju. Orodja za generiranje kode s pomočjo umetne inteligence so vse bolj razširjena v inženirstvu programske opreme in ponujajo možnost generiranja kode na podlagi pozivov v naravnem jeziku ali delnih vnosov kode. Pomembni primeri teh orodij so GitHub Copilot, Amazon CodeWhisperer in ChatGPT podjetja OpenAI. Omenjena orodja uporabljajo tako začetni, kot tudi izkušenejši programerji in pripomorejo k hitrejšemu in učinkovitejšemu reševanju problemov, s katerimi se programerji soočajo.
-Namen diplomskega dela je raziskati prednosti in slabosti hitrega inženiringa (angleško prompt engineering) v programskem inženirstvu ter preizkusiti uporabnost orodja ChatGPT podjetja OpenAI pri učenju programiranja.
+Umetna inteligenca je postala nepogrešljivo orodje pri programiranju, saj omogoča hitrejše in učinkovitejše reševanje problemov. Orodja za generiranje kode s pomočjo umetne inteligence, kot so GitHub Copilot, Amazon CodeWhisperer in ChatGPT podjetja OpenAI, postajajo vse bolj razširjena in se uporabljajo tako med začetniki kot med izkušenimi programerji. Ta orodja omogočajo generiranje kode na podlagi pozivov v naravnem jeziku ali delnih vnosov kode, kar bistveno poenostavi proces programiranja.
+
+Motivacija za to delo izhaja iz želje po razumevanju, kako ta orodja vplivajo na proces učenja programiranja, še posebej med otroki. V dobi, ko postaja poznavanje programiranja vse pomembnejše, je ključnega pomena raziskati, ali umetna inteligenca lahko pospeši proces učenja in izboljša razumevanje programerskih konceptov. Hkrati je pomembno preučiti tudi morebitne slabosti uporabe takšnih orodij, da bi lahko izoblikovali najboljše prakse za njihovo uporabo v izobraževanju.
+
+V naslednjih poglavjih bomo pregledali obstoječo literaturo in raziskave na področju hitrega inženirstva in uporabe AI orodij v programiranju. Nato bomo opisali metodologijo raziskave, kjer bomo predstavili postopek zbiranja podatkov in analizo uspešnosti otrok pri reševanju Python vaj z in brez pomoči ChatGPT. V empiričnem delu bomo predstavili rezultate raziskave in jih podrobno analizirali. Na koncu bomo povzeli ključne ugotovitve, prednosti in slabosti uporabe AI orodij pri učenju programiranja ter podali priporočila za nadaljnje raziskave in prakso.
 
 
 
 \chapter{Pregled področja}
-Veliki jezikovni modeli (angleško LLM) so vrsta umetne inteligence, zasnovana za razumevanje in ustvarjanje besedila, ki je blizu ljedem. Treniranje temelji na vnaprej naučenih vzorcih z obsežnim usposabljanjem na veliki količini podatkov, kot so spletne strani, knjige, članki. S pomočjo podatkov lahko model prepozna statistične vzorce in strukture človeškega jezika, kar omogoča, da se nauči slovnice, sintakse in semantične odnose v jeziku. Po končanem učenju se model navadno usmeri in prilagodi za določeno domeno ali nalogo, kot je na primer prevajanje, generiranje besedila, prepoznavanje slik, ipd.
-\section{Asistenti na področju umetne inteligence}
+Razvoj programske kode je zahteven proces, ki vključuje pretvorbo specifikacije problema v programsko implementirano rešitev. Zgodnja orodja umetne inteligence so uporabljala strojno učenje za podporo razvijalcem skozi vse faze razvoja programske opreme in so vključevala pridobivanje programske specifikacije jezika in napoved uporabnikovega vnosa. \textcite{zhang2003machine}
 
+Veliki jezikovni modeli (angleško LLM) so vrsta umetne inteligence, zasnovana za razumevanje in ustvarjanje besedila, ki je blizu ljedem. Treniranje temelji na vnaprej naučenih vzorcih z obsežnim usposabljanjem na veliki količini podatkov, kot so spletne strani, knjige, članki. S pomočjo podatkov lahko model prepozna statistične vzorce in strukture človeškega jezika, kar omogoča, da se nauči slovnice, sintakse in semantične odnose v jeziku. Po končanem učenju se model navadno usmeri in prilagodi za določeno domeno ali nalogo, kot je na primer prevajanje, generiranje besedila, prepoznavanje slik, ipd.
+\section{Asistenti na področju umetne inteligence} 
+ 
 
 \section{Hitro programiranje}
 
@@ -347,6 +349,11 @@ Thorsten Brants, Ashok C. Popat, Peng Xu, Franz J. Och, \& Jeffrey Dean.
 Yong Zheng.
 \newblock Authors Info \& Claims.
 \newblock In \textit{SIGITE '23: Proceedings of the 24th Annual Conference on Information Technology Education}, October 2023, pages 66--72, 2023. DOI: \url{10.1145/3585059.3611431}.
+\bibitem{baidoo2023education}
+D.~BAİDOO-ANU and L.~OWUSU ANSAH.
+\newblock Education in the Era of Generative Artificial Intelligence (AI): Understanding the Potential Benefits of ChatGPT in Promoting Teaching and Learning.
+\newblock \textit{Journal of AI}, 7(1), 52--62, 2023. DOI: \url{10.61969/jai.1337500}.
+
 \end{thebibliography}
 
 

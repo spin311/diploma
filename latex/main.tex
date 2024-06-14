@@ -234,6 +234,10 @@ Na tem mestu se diplomant zahvali vsem, ki so kakorkoli pripomogli k uspešni iz
 
 Seznam uporabljenih kratic in simbolov, ki morajo biti enotni v celotnem delu, ne glede na označevanje v uporabljenih virih.
 
+UI - umetna inteligenca
+VJM - veliki jezikovni modeli
+PNJ - procesiranje naravnih jezikov
+
 %\cleardoublepage
 
 \clearpage{\pagestyle{empty}\cleardoublepage}
@@ -289,46 +293,59 @@ Ključne besede v angleškem jeziku.
 
 \chapter{Uvod}
 
-Umetna inteligenca je postala nepogrešljivo orodje pri programiranju, saj omogoča hitrejše in učinkovitejše reševanje problemov. Orodja za generiranje kode s pomočjo umetne inteligence, kot so GitHub Copilot, Amazon CodeWhisperer in ChatGPT podjetja OpenAI, postajajo vse bolj razširjena in se uporabljajo tako med začetniki kot med izkušenimi programerji. Ta orodja omogočajo generiranje kode na podlagi pozivov v naravnem jeziku ali delnih vnosov kode, kar bistveno poenostavi proces programiranja.
+Orodja za dopolnjevanje in generiranje kode so bistvenega pomena pri programiranju, saj omogočajo hitrejše in učinkovitejše reševanje problemov. Orodja za generiranje kode s pomočjo umetne inteligence, kot so GitHub Copilot, Amazon CodeWhisperer in ChatGPT podjetja OpenAI, postajajo vse bolj razširjena in se uporabljajo tako med začetniki kot tudi med izkušenimi programerji. Ta orodja omogočajo generiranje kode na podlagi pozivov v naravnem jeziku ali delnih vnosov kode, kar bistveno poenostavi proces programiranja.
 
-Motivacija za to delo izhaja iz želje po razumevanju, kako ta orodja vplivajo na proces učenja programiranja, še posebej med otroki. V dobi, ko postaja poznavanje programiranja vse pomembnejše, je ključnega pomena raziskati, ali lahko umetna inteligenca pospeši proces učenja in izboljša razumevanje programerskih konceptov. Hkrati je pomembno preučiti tudi morebitne slabosti uporabe takšnih orodij, da bi lahko izoblikovali najboljše prakse za njihovo uporabo v izobraževanju.
+Namen te študije je preučiti prednosti in slabosti najpopularnejših orodij za umetno inteligenco (UI) ter raziskati, kako omenjena orodja vplivajo na proces učenja in programiranja pri začetnih programerjih s preučevanjem hitrosti in kvalitete kode na različnih programerskih problemih v jeziku Python. V dobi, ko postaja poznavanje programiranja vse pomembnejše, je ključnega pomena raziskati, ali lahko UI pospeši proces učenja in izboljša razumevanje programerskih konceptov.  
 
-V naslednjih poglavjih bomo pregledali obstoječo literaturo in raziskave na področju hitrega inženirstva in uporabe orodij UI v programiranju. Nato bomo opisali metodologijo raziskave, kjer bomo predstavili postopek zbiranja podatkov in analizo uspešnosti otrok pri reševanju Python vaj z in brez pomoči ChatGPT. V empiričnem delu bomo predstavili rezultate raziskave in jih podrobno analizirali. Na koncu bomo povzeli ključne ugotovitve, prednosti in slabosti uporabe AI orodij pri učenju programiranja ter podali priporočila za nadaljnje raziskave in prakso.
+V naslednjih poglavjih bomo pregledali razvoj programske kode in vlogo strojnega učenja ter naprednih jezikovnih modelov pri avtomatizaciji tega procesa. Najprej bomo raziskali zgodovinski razvoj orodij za podporo razvijalcem in zgodnje uporabe strojnega učenja pri pridobivanju specifikacij in napovedovanju uporabniškega vnosa. Nato bomo obravnavali sodobne arhitekture globokega učenja, kot sta GPT-2 in GPT-3, ki omogočajo napredne funkcionalnosti avtomatskega dopolnjevanja in generiranja kode.
 
 
 
 \chapter{Pregled področja}
 Razvoj programske kode je proces, ki vključuje pretvorbo specifikacije problema v programsko implementirano rešitev. Zgodnja orodja za olajšanje postopka so uporabljala strojno učenje za podporo razvijalcev skozi vse faze razvoja programske opreme in so med drugimi vključevala pridobivanje programske specifikacije in napoved uporabnikovega vnosa. \textcite{zhang2003machine} \\
+Med zgodnjo opremo sodijo orodja za dopolnjevanje kode, ki so na voljo v večini urejevalnikov kode in ki izpišejo kontekstualno relevantne spremenljivke, metode, razrede in druge dele kode v obliki plavajočega menija. Razvijalci se lahko z raziskovanjem in izbiranjem v tem meniju izognejo pogostim slovničnim in logičnim napakam, zmanjšajo število odvečnih pritiskov na tipke in raziskujejo nove API-je namesto da porabljajo čas in napor za iskanje dokumentacije. Nekatera znana orodja za dopolnjevanje kode vključujejo IntelliSense v Visual Studio Code in vgrajeno dopolnjevanje kode v orodjih JetBrains IDE2. 
+Čeprav lahko ta orodja izpisujejo odlomke kode, se bistveno razlikujejo od generatorjev kode.
 Z današnjimi napredki na področjih globokega učenja in procesiranja naravnega jezika so se razvili napredni modeli za pomoč pri kodiranju, ki omogočajo avtomatsko dopolnjevanje in reševanje problemov v kodi v realnem času.
-Obstaja veliko poskusov samodejnega prevajanja specifikacij v računalniško kodo s pomočjo formalnih modelov za avtomatsko generiranje kode *citat* ali pa s pomočjo strojno naučenega procesiranja naravnega jezika. Arhiterkure globokega učenja, ki so se dobro prilegajo procesiranju naravnega jezika so omogočile razvoj modelom ko sta GPT-2 in GPT-3 *citat*. Ti modeli lahko izvajajo
-jezikovne naloge, kot sta prevajanje in odgovarjanje na vprašanja iz nabora podatkov CoQA. *vir* Po prilagajanju glede na specializiran nabor podatkov lahko modeli opravljajo naloge, kot so dopolnjevanje kode in načrtovanje strojne opreme. *citat* Najsodobnejši modeli imajo na milijarde parametrov, ki jih je mogoče naučiti, in so učeni na več milijonih programskih repozitorijev. V tem delu se bomo osredotočili na modela chatGPT-3.5 in Copilot. *več o teh orodjih* \\
+Obstaja veliko poskusov samodejnega prevajanja specifikacij v računalniško kodo s pomočjo formalnih modelov za avtomatsko generiranje kode ali pa s pomočjo strojno naučenega procesiranja naravnega jezika. Arhitekture globokega učenja, ki se dobro prilegajo procesiranju naravnega jezika, so omogočile razvoj modelom ko sta GPT-2 in GPT-3 *. Ti modeli lahko izvajajo jezikovne naloge, kot sta prevajanje in odgovarjanje na vprašanja iz nabora podatkov CoQA. Po prilagajanju glede na specializiran nabor podatkov lahko modeli opravljajo naloge, kot so dopolnjevanje kode in načrtovanje strojne opreme.  Najsodobnejši modeli imajo na milijarde parametrov, ki jih je mogoče naučiti, in so učeni na več milijonih programskih repozitorijev. V tem delu se bomo osredotočili na modela chatGPT-3.5 in Copilot.
+V naslednjem poglavju bomo najprej pregledali obstoječo literaturo povezano z uporabo UI s poudarkom na hitrem inženiringu in pisanju programske opreme s pomočjo UI. 
+
 \section{Sorodna literatura}
 
 \cite{app13095783}
-Namen tega poglavja je pregledati obstoječo literaturo povezano z uporabo umetne inteligence (UI) s poudarkom na hitrem inženiringu in pisanju programske opreme s pomočjo UI. 
-Rudolph et al. (2023) so raziskovali priložnosti in izzive uporabe ChatGPT v izobraževanju. Ugotovili so, da ChatGPT ponuja velike prednosti, kot so omogočanje personaliziranega učenja in zagotavljanje takojšnjih povratnih informacij, vendar prinaša tudi izzive, vključno z morebitno prekomerno odvisnostjo od UI in potrebo po robustni digitalni pismenosti med študenti.
-Uporaba modelov, ki temeljijo na UI, kot je ChatGPT, v računalniškem programiranju je obširno raziskana. Ti modeli so uspešni pri nalogah, kot so popravilo kode, povzemanje, dokončanje, popravljanje, razvrščanje in generiranje kode. Na primer, AlphaCode, napreden jezikovni model, je pokazal znatne zmožnosti pri različnih programerskih nalogah, kar poudarja potencial ChatGPT pri pomoči pri izobraževanju programiranja.
-Obstoječa literatura poudarja preoblikovalni potencial ChatGPT v izobraževalnih okoljih, zlasti pri izboljšanju akademske uspešnosti in podpiranju personaliziranega učenja. Vendar pa poudarja tudi potrebo po etičnih premislekih in pomembnosti kombiniranja UI orodij s tradicionalnimi učnimi metodami za obvladovanje njihovih omejitev. Z nadaljnjim razvojem področja UI v izobraževanju bodo nadaljnje raziskave ključne za optimizacijo uporabe ChatGPT in podobnih orodij v različnih izobraževalnih kontekstih
 
-? Veliki jezikovni modeli (angleško LLM) so vrsta umetne inteligence, zasnovana za razumevanje in ustvarjanje besedila, ki je blizu ljedem. Treniranje temelji na vnaprej naučenih vzorcih z obsežnim usposabljanjem na veliki količini podatkov, kot so spletne strani, knjige, članki. S pomočjo podatkov lahko model prepozna statistične vzorce in strukture človeškega jezika, kar omogoča, da se nauči slovnice, sintakse in semantične odnose v jeziku. Po končanem učenju se model navadno usmeri in prilagodi za določeno domeno ali nalogo, kot je na primer prevajanje, generiranje besedila, prepoznavanje slik, ipd. *cite* ?
+V delu Rudolph et al. (2023) so raziskovali priložnosti in izzive uporabe ChatGPT v izobraževanju. Ugotovili so, da ChatGPT ponuja velike prednosti, kot so omogočanje personaliziranega učenja in zagotavljanje takojšnjih povratnih informacij, vendar prinaša tudi izzive, vključno z možnostjo prekomerne odvisnosti od UI in potrebo po splošni digitalni pismenosti med študenti.
+Uporaba modelov, ki temeljijo na UI, kot je ChatGPT, v računalniškem programiranju je obširno raziskana. Ti modeli so uspešni pri nalogah, kot so dopolnitve kode, povzemanje, dokončanje, popravljanje, razvrščanje in generiranje kode. Na primer, AlphaCode, napreden jezikovni model, je pokazal znatne zmožnosti pri različnih programerskih nalogah, kar poudarja potencial ChatGPT pri pomoči pri izobraževanju programiranja.
+V delu \cite{MORADIDAKHEL2023111734} je raziskano programiranje s programom GitHub Copilot, kjer se primerja kvaliteta in pravilnost rešitev, ki jih ponuja GitHub Copilot.
+Sorodno delo je tudi \cite{yetistiren2023evaluating}, kjer je narejena primerjava GitHub Copilot, Amazon CodeWhisperer in ChatGPT. V delu se omenjena orodja primerja, ter raziskuje pravilnost, kvaliteta, varnost in zanesljivost generirane kode za vsako orodje.
+Veliko del je bilo narejenih z namenom preučevanja kvalitete in pravilnosti kode, ki jo orodja UI generirajo. Pri teh študijah se je potrebno zavedati, da se orodja UI stalno in zelo hitro razvijajo in lahko rezultati meril uspešnosti, ki so bili pridobljeni v preteklosti, ne držijo več za novejše verzije orodij.
+Pri iskanju sorodne literature je bilo najdenih veliko del, ki preučujejo generirano kodo orodij UI. Ni pa bila še narejena študija, ki bi preučevala hitrost in pravilnost programiranja začetnikov ob souporabi ChatGPT napram njihovem programiranju brez orodij. V naslednjih poglavjih bomo pregledali in primerjali najpopularnejša orodja za UI.
+
+
+
+
 \section{Asistenti na področju umetne inteligence}
-Veliki jezikovni modeli 
-
-
+Veliki jezikovni modeli (angleško LLM) so vrsta umetne inteligence, zasnovana za razumevanje in ustvarjanje besedila, ki je blizu ljudem. Treniranje temelji na vnaprej naučenih vzorcih z obsežnim usposabljanjem na veliki količini podatkov, kot so spletne strani, knjige, članki. S pomočjo podatkov lahko model prepozna statistične vzorce in strukture človeškega jezika, kar omogoča, da se nauči slovnice, sintakse in semantične odnose v jeziku. Po končanem učenju se model navadno usmeri in prilagodi za določeno domeno ali nalogo, kot je na primer prevajanje, generiranje besedila, prepoznavanje slik, ipd.
 \cite{10.1145/3520312.3534862}
+V zadnjih letih je prišlo do velikega napredka na področju procesiranja naravnih jezikov (PNJ) predvsem z razvojem arhitekture transformatorjev in mehanizma pozornosti. Mehanizma  
 
-\section{Hitro programiranje}
+** vir https://www.datacamp.com/blog/attention-mechanism-in-llms-intuition?dc_referrer=https%3A%2F%2Fwww.google.com%2F 
+\cite{vaswani2023attention}
 
-\section{Programiranje s ChatGPT}
-\cite{app13095783}
+\cite{KASNECI2023102274}
+
+
+
+
+\section{ChatGPT}
+
 Napredek na področju umetne inteligence (UI), zlasti velikih jezikovnih modelov (VJM), je močno vplival na številna področja, vključno z izobraževanjem in razvojem programske opreme. Med temi inovacijami je ChatGPT, ki ga je razvilo podjetje OpenAI, postal pomembno orodje tako v izobraževalnih okoljih kot v praktičnih programerskih aplikacijah. To poglavje obravnava vlogo ChatGPT v hitrem inženiringu in razvoju programske opreme, ocenjuje njegove prednosti, izzive in prihodnje vplive.
 Hiter inženiring vključuje oblikovanje vhodov za modele UI, da bi dosegli želene odzive. Kot model UI, usposobljen na obsežnih podatkovnih zbirkah, je ChatGPT pokazal izjemno sposobnost interpretacije in generiranja besedil, podobnih človeškim, na podlagi različnih pozivov. Ta sposobnost je neprecenljiva v izobraževalnih okoljih, kjer lahko pomaga pri ustvarjanju interaktivnih učnih okolij, zagotavljanju takojšnjih povratnih informacij in generiranju učne vsebine. Na primer, ChatGPT lahko pomaga študentom pri razlagi zapletenih konceptov na enostavnejši način, s čimer izboljša njihovo učno izkušnjo.
 Na področju razvoja programske opreme ChatGPT nudi veliko podporo pri generiranju kode, odpravljanju napak in optimizaciji. Orodja, kot so GitHub Copilot in Amazon CodeWhisperer, ki jih poganjajo modeli UI, podobni ChatGPT, pomagajo razvijalcem pri generiranju delov kode na podlagi opisov v naravnem jeziku. Ta funkcionalnost ne samo pospešuje proces kodiranja, temveč tudi pomaga začetnikom pri razumevanju strukture in sintakse kode.
 Integracija ChatGPT v izobraževalne sisteme predstavlja številne priložnosti in izzive. Pozitivno je, da ChatGPT lahko demokratizira dostop do izobraževanja, saj zagotavlja prilagojeno mentorstvo in pomoč študentom po vsem svetu. Omogoča interaktivne učne izkušnje in pomaga pri razumevanju zapletenih predmetov, kot je programiranje. Raziskave so pokazale, da študenti, ki uporabljajo ChatGPT za programerske naloge in reševanje problemov, dosegajo boljše rezultate in razumevanje.
 
 Vendar pa uporaba ChatGPT prinaša tudi tveganja, vključno z morebitnim prekomernim zanašanjem na UI za reševanje problemov, kar lahko ovira razvoj kritičnega mišljenja. Poleg tega je potrebno nenehno preverjanje natančnosti in zanesljivosti vsebine, ki jo generira UI, da bi preprečili širjenje napačnih informacij.
-
-\section{Programiranje z GithubCopilot}
+\cite{app13095783}
+\section{GitHub Copilot}
 Podjetje OpenAI je leta 2021 prvič predstavilo svoj nov produkt, OpenAI Codex, AI sistem na podlagi globokeda učenja, ki je bil naučen na več kot 50 milijonih GitHub repozitorijih. S podanim opisom programskega problema v naravnem jeziku Codex generira kodo za rešitev kot izhod. Zna razložiti kodo, jo prevesti med programskimi jeziki in poiskati ter popraviti napake v kodi.
 Copilot temelji na družini modelov OpenAI Codex *citat*. Modeli Codex kot osnovo vzamejo model GPT-3 *citat*, ki ga nato prilagodijo na podlagi kode iz GitHuba. ?Njegov način tokenizacije je skoraj identičen z GPT-3, uporablja kodiranje parov bajtov za pretvorbo izvornega besedila v zaporedje žetonov, vendar je bil besedni zaklad GPT-3 razširjen z dodajanem namenskih žetonov za bele prostore (tj. žeton za dva presledka, žeton za
 tri presledke, do 25 presledkov). To tokenizerju omogoča učinkoviteje
@@ -343,6 +360,7 @@ temveč tisto, ki se najbolje ujema s predhodno in naučeno kodo.
 Posledično na kakovost generirane kode močno vlivajo semantično nepomembne lastnosti poziva. \cite{9833571}
 
 *vir = https://openai.com/index/openai-codex/
+\cite{10.1145/3520312.3534862}
 +the robots are coming vir
 
 

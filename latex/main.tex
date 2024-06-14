@@ -313,22 +313,29 @@ V naslednjem poglavju bomo najprej pregledali obstoječo literaturo povezano z u
 
 \cite{app13095783}
 
-V delu Rudolph et al. (2023) so raziskovali priložnosti in izzive uporabe ChatGPT v izobraževanju. Ugotovili so, da ChatGPT ponuja velike prednosti, kot so omogočanje personaliziranega učenja in zagotavljanje takojšnjih povratnih informacij, vendar prinaša tudi izzive, vključno z možnostjo prekomerne odvisnosti od UI in potrebo po splošni digitalni pismenosti med študenti.
+Med že objavljenimi deli so bile raziskane priložnosti in izzive uporabe ChatGPT v izobraževanju.Ugotovili so, da ChatGPT ponuja velike prednosti, kot so omogočanje personaliziranega učenja in zagotavljanje takojšnjih povratnih informacij, vendar prinaša tudi izzive, vključno z možnostjo prekomerne odvisnosti od UI in potrebo po splošni digitalni pismenosti med študenti.
 Uporaba modelov, ki temeljijo na UI, kot je ChatGPT, v računalniškem programiranju je obširno raziskana. Ti modeli so uspešni pri nalogah, kot so dopolnitve kode, povzemanje, dokončanje, popravljanje, razvrščanje in generiranje kode. Na primer, AlphaCode, napreden jezikovni model, je pokazal znatne zmožnosti pri različnih programerskih nalogah, kar poudarja potencial ChatGPT pri pomoči pri izobraževanju programiranja.
+\cite{rudolph2023war}
 V delu \cite{MORADIDAKHEL2023111734} je raziskano programiranje s programom GitHub Copilot, kjer se primerja kvaliteta in pravilnost rešitev, ki jih ponuja GitHub Copilot.
 Sorodno delo je tudi \cite{yetistiren2023evaluating}, kjer je narejena primerjava GitHub Copilot, Amazon CodeWhisperer in ChatGPT. V delu se omenjena orodja primerja, ter raziskuje pravilnost, kvaliteta, varnost in zanesljivost generirane kode za vsako orodje.
 Veliko del je bilo narejenih z namenom preučevanja kvalitete in pravilnosti kode, ki jo orodja UI generirajo. Pri teh študijah se je potrebno zavedati, da se orodja UI stalno in zelo hitro razvijajo in lahko rezultati meril uspešnosti, ki so bili pridobljeni v preteklosti, ne držijo več za novejše verzije orodij.
-Pri iskanju sorodne literature je bilo najdenih veliko del, ki preučujejo generirano kodo orodij UI. Ni pa bila še narejena študija, ki bi preučevala hitrost in pravilnost programiranja začetnikov ob souporabi ChatGPT napram njihovem programiranju brez orodij. V naslednjih poglavjih bomo pregledali in primerjali najpopularnejša orodja za UI.
+Pri iskanju sorodne literature je bilo najdenih veliko del, ki preučujejo generirano kodo orodij UI. Ni pa bila še narejena študija, ki bi preučevala hitrost in pravilnost programiranja začetnikov ob souporabi ChatGPT napram njihovi kakovosti programiranja brez orodij. V naslednjih poglavjih bomo preučili razvoj orodij UI ter najpopularnejše predstavnike tudi primerjali.
 
 
 
 
-\section{Asistenti na področju umetne inteligence}
+\section{Veliki jezikovni modeli}
 Veliki jezikovni modeli (angleško LLM) so vrsta umetne inteligence, zasnovana za razumevanje in ustvarjanje besedila, ki je blizu ljudem. Treniranje temelji na vnaprej naučenih vzorcih z obsežnim usposabljanjem na veliki količini podatkov, kot so spletne strani, knjige, članki. S pomočjo podatkov lahko model prepozna statistične vzorce in strukture človeškega jezika, kar omogoča, da se nauči slovnice, sintakse in semantične odnose v jeziku. Po končanem učenju se model navadno usmeri in prilagodi za določeno domeno ali nalogo, kot je na primer prevajanje, generiranje besedila, prepoznavanje slik, ipd.
 \cite{10.1145/3520312.3534862}
-V zadnjih letih je prišlo do velikega napredka na področju procesiranja naravnih jezikov (PNJ) predvsem z razvojem arhitekture transformatorjev in mehanizma pozornosti. Mehanizma  
+V zadnjih letih je prišlo do velikega napredka na področju procesiranja naravnih jezikov (PNJ) predvsem z razvojem arhitekture transformatorjev in mehanizma pozornosti.
+Transformator je arhitektura globokega učenja, ki jo je razvil Google in temelji na mehanizmu večglave pozornosti, predstavljenem v članku "Attention Is All You Need" iz leta 2017. Besedilo se pretvori v numerične reprezentacije, imenovane žetoni, vsak žeton pa se s pomočjo tabele za vstavljanje besed pretvori v vektor. Na vsaki plasti se nato vsak žeton kontekstualizira z drugimi žetoni prek vzporednega mehanizma večglave pozornosti, ki omogoča, da se signal za ključne žetone okrepi, manj pomembni žetoni pa se zmanjšajo.
+Rekurentne enote so komponente v nekaterih nevronskih mrežah, ki si zapomnijo prejšnje informacije, da lahko pri obdelavi novega podatka upoštevajo kontekst. Vendar pa zaradi tega potrebujejo več časa za treniranje, ker morajo vsakič obdelati informacije korak za korakom.
+Prednost transformatorjev je, da nimajo rekurentnih enot, kar jim omogoča, da obdelujejo podatke hitreje in bolj učinkovito. Poleg transformatorjev je pomembne spremembe prinesel tudi mehanizem pozornosti.
+\cite{NIPS2017_3f5ee243}
 
-** vir https://www.datacamp.com/blog/attention-mechanism-in-llms-intuition?dc_referrer=https%3A%2F%2Fwww.google.com%2F 
+Mehanizem pozornosti za razliko od tradicionalnih metod, ki besede obravnavajo ločeno, vsaki besedi dodeli uteži glede na njeno pomembnost za trenutno nalogo. To modelu omogoča, da zajame odvisnosti dolgega dosega, hkrati analizira lokalne in globalne kontekste ter razrešuje dvoumnosti s pozornostjo do informativnih delov stavka.
+\cite{datacamp_attention_2024}
+
 \cite{vaswani2023attention}
 
 \cite{KASNECI2023102274}

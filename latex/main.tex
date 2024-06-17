@@ -307,7 +307,7 @@ Razvoj programske kode je proces, ki vključuje pretvorbo specifikacije problema
 Med zgodnjo opremo sodijo orodja za dopolnjevanje kode, ki so na voljo v večini urejevalnikov kode in ki izpišejo kontekstualno relevantne spremenljivke, metode, razrede in druge dele kode v obliki plavajočega menija. Razvijalci se lahko z raziskovanjem in izbiranjem v tem meniju izognejo pogostim slovničnim in logičnim napakam, zmanjšajo število odvečnih pritiskov na tipke in raziskujejo nove API-je namesto da porabljajo čas in napor za iskanje dokumentacije. Nekatera znana orodja za dopolnjevanje kode vključujejo IntelliSense v Visual Studio Code in vgrajeno dopolnjevanje kode v orodjih JetBrains IDE2.
 Čeprav lahko ta orodja izpisujejo odlomke kode, se bistveno razlikujejo od generatorjev kode.
 Z današnjimi napredki na področjih globokega učenja in procesiranja naravnega jezika so se razvili napredni modeli za pomoč pri kodiranju, ki omogočajo avtomatsko dopolnjevanje in reševanje problemov v kodi v realnem času.
-Obstaja veliko poskusov samodejnega prevajanja specifikacij v računalniško kodo s pomočjo formalnih modelov za avtomatsko generiranje kode ali pa s pomočjo strojno naučenega procesiranja naravnega jezika. Arhitekture globokega učenja, ki se dobro prilegajo procesiranju naravnega jezika, so omogočile razvoj modelom ko sta GPT-2 in GPT-3 *. Ti modeli lahko izvajajo jezikovne naloge, kot sta prevajanje in odgovarjanje na vprašanja iz nabora podatkov CoQA. Po prilagajanju glede na specializiran nabor podatkov lahko modeli opravljajo naloge, kot so dopolnjevanje kode in načrtovanje strojne opreme.  Najsodobnejši modeli imajo na milijarde parametrov, ki jih je mogoče naučiti, in so učeni na več milijonih programskih repozitorijev. V tem delu se bomo osredotočili na modela chatGPT-3.5 in Copilot.
+Obstaja veliko poskusov samodejnega prevajanja specifikacij v računalniško kodo s pomočjo formalnih modelov za avtomatsko generiranje kode ali pa s pomočjo strojno naučenega procesiranja naravnega jezika. Arhitekture globokega učenja, ki se dobro prilegajo procesiranju naravnega jezika, so omogočile razvoj modelom ko sta GPT-2 in GPT-3. Ti modeli lahko izvajajo jezikovne naloge, kot sta prevajanje in odgovarjanje na vprašanja iz nabora podatkov CoQA. Po prilagajanju glede na specializiran nabor podatkov lahko modeli opravljajo naloge, kot so dopolnjevanje kode in načrtovanje strojne opreme.  Najsodobnejši modeli imajo na milijarde parametrov, ki jih je mogoče naučiti, in so učeni na več milijonih programskih repozitorijev. V tem delu se bomo osredotočili na modela chatGPT-3.5 in Copilot.
 V naslednjem poglavju bomo najprej pregledali obstoječo literaturo povezano z uporabo UI s poudarkom na hitrem inženiringu in razvoju programske opreme s pomočjo UI.
 
 \section{Sorodna literatura}
@@ -357,7 +357,15 @@ Trenutni najsodobnejši veliki jezikovni modeli za kodo so pokazali pomemben nap
 
 \section{ChatGPT}
 
-Napredek na področju UI, zlasti velikih jezikovnih modelov (VJM), je močno vplival na številna področja, vključno z izobraževanjem in razvojem programske opreme. Med temi inovacijami je ChatGPT, ki ga je razvilo podjetje OpenAI, postal pomembno orodje tako v izobraževalnih okoljih kot v praktičnih programerskih aplikacijah. To poglavje obravnava vlogo ChatGPT v hitrem inženiringu in razvoju programske opreme, ocenjuje njegove prednosti, izzive in prihodnje vplive.
+ChatGPT je jezikovni model, ki ga je 30. novembra 2022 objavila organizacija OpenAI in je na voljo od 1. februarja 2023. \cite{openai_codex}
+ChatGPT uporablja napredne algoritme strojnega učenja za ustvarjanje človeku podobnih odgovorov. Treniran je na obsežni količini tekstovnih besedil iz interneta. Glavni namen uporabe jezikovnega modela je imitiranje človeškega pogovora, kljub temu pa je zelo vsestranski in lahko opravlja številne naloge, kot so kodiranje in odpravljanje hroščev v programski opremi, iskanje odgovorov na izpitna
+vprašanja, sestavljanje pesniških del in glasbenih besedil ter drugo. ChatGPT je bil posebej prilagojen na podlagi modela iz serije GPT-3.59, ki je v začetku leta 2022 zaključil svoj proces usposabljanja z uporabo nadzorovanega učenja, kot tudi učenja z okrepitvijo. Poleg tega organizacija OpenAI še naprej zbira povratne informacije iz pogovorov z ChatGPT, da bi izboljšali in izpopolnili njegovo delovanje.
+Omembe vredno je tudi, da je ChatGPT postal najhitreje rastoča aplikacija v zgodovini
+glede na študijo švicarske banke Union Bank of Switzerland. Januarja 2023 je ChatGPT dnevno obiskalo 13 milijonov unikatnih obiskovalcev, kar je več kot dvakrat toliko kot v istem letu decembra, kot je pokazala študija. Poročilo navaja tudi, da je v prvih dveh mesecih ChatGPT dosegel mesečno bazo uporabnikov 100 milijonov.
+
+\cite{yetistiren2023evaluating}
+
+Napredek na področju UI, zlasti velikih jezikovnih modelov (VJM), je močno vplival na številna področja, vključno z izobraževanjem in razvojem programske opreme. ChatGPT je postalo pomembno orodje tako v izobraževalnih okoljih kot tudi v praktičnih programerskih aplikacijah. To poglavje obravnava vlogo ChatGPT v hitrem inženiringu in razvoju programske opreme, ocenjuje njegove prednosti, izzive in prihodnje vplive.
 Hiter inženiring vključuje oblikovanje vhodov za modele UI, da bi dosegli želene odzive. Kot model UI, usposobljen na obsežnih podatkovnih zbirkah, je ChatGPT pokazal izjemno sposobnost interpretacije in generiranja besedil, podobnih človeškim, na podlagi različnih pozivov. Ta sposobnost je neprecenljiva v izobraževalnih okoljih, kjer lahko pomaga pri ustvarjanju interaktivnih učnih okolij, zagotavljanju takojšnjih povratnih informacij in generiranju učne vsebine. Na primer, ChatGPT lahko pomaga študentom pri razlagi zapletenih konceptov na enostavnejši način, s čimer izboljša njihovo učno izkušnjo.
 Na področju razvoja programske opreme ChatGPT nudi veliko podporo pri generiranju kode, odpravljanju napak in optimizaciji. Orodja, kot so GitHub Copilot in Amazon CodeWhisperer, ki jih poganjajo modeli UI, podobni ChatGPT, pomagajo razvijalcem pri generiranju delov kode na podlagi opisov v naravnem jeziku. Ta funkcionalnost ne samo pospešuje proces kodiranja, temveč tudi pomaga začetnikom pri razumevanju strukture in sintakse kode.
 Integracija ChatGPT v izobraževalne sisteme predstavlja številne priložnosti in izzive. Pozitivno je, da ChatGPT lahko demokratizira dostop do izobraževanja, saj zagotavlja prilagojeno mentorstvo in pomoč študentom po vsem svetu. Omogoča interaktivne učne izkušnje in pomaga pri razumevanju zapletenih predmetov, kot je programiranje. Raziskave so pokazale, da študenti, ki uporabljajo ChatGPT za programerske naloge in reševanje problemov, dosegajo boljše rezultate in razumevanje.
@@ -365,27 +373,35 @@ Integracija ChatGPT v izobraževalne sisteme predstavlja številne priložnosti 
 Vendar pa uporaba ChatGPT prinaša tudi tveganja, vključno z morebitnim prekomernim zanašanjem na UI za reševanje problemov, kar lahko ovira razvoj kritičnega mišljenja. Poleg tega je potrebno nenehno preverjanje natančnosti in zanesljivosti vsebine, ki jo generira UI, da bi preprečili širjenje napačnih informacij.
 \cite{app13095783}
 \section{GitHub Copilot}
-Podjetje OpenAI je leta 2021 prvič predstavilo svoj nov produkt, OpenAI Codex, AI sistem na podlagi globokeda učenja, ki je bil naučen na več kot 50 milijonih GitHub repozitorijih. S podanim opisom programskega problema v naravnem jeziku Codex generira kodo za rešitev kot izhod. Zna razložiti kodo, jo prevesti med programskimi jeziki in poiskati ter popraviti napake v kodi.
-Copilot temelji na družini modelov OpenAI Codex *citat*. Modeli Codex kot osnovo vzamejo model GPT-3 *citat*, ki ga nato prilagodijo na podlagi kode iz GitHuba. ?Njegov način tokenizacije je skoraj identičen z GPT-3, uporablja kodiranje parov bajtov za pretvorbo izvornega besedila v zaporedje žetonov, vendar je bil besedni zaklad GPT-3 razširjen z dodajanem namenskih žetonov za bele prostore (tj. žeton za dva presledka, žeton za
-tri presledke, do 25 presledkov). To tokenizerju omogoča učinkoviteje
-kodiranje izvorne kode. (ki ima veliko belih presledkov) \\
-Pomembna lastnost, ki sta jo Codex in Copilot podedovala od
-GPT-3, je, da ob pozivu ustvarita najverjetnejši odgovor
-za poziv na podlagi tega, kar je bilo pridobljeno
-iz izkušenj, pridobljenih pri usposabljanju. V kontekstu generiranja kode to pomeni,
-da model ne bo nujno ustvaril najboljše kode (po
-po kateri koli izbrani metriki - zmogljivost, varnost itd.),
-temveč tisto, ki se najbolje ujema s predhodno in naučeno kodo.
-Posledično na kakovost generirane kode močno vlivajo semantično nepomembne lastnosti poziva. \cite{9833571}
 
-*vir = https://openai.com/index/openai-codex/
+GitHub Copilot je napredno orodje za generiranje kode, ki se uporablja znotraj različnih integriranih razvojnih okolij (angl. IDE), kot so Visual Studio Code, Neovim, IDE podjetja JetBrains in GitHub Codespaces. Kot razširitev teh okolij, GitHub Copilot neprekinjeno zbira uporabniške vnose kode in pošilja izseke v osnovni model OpenAI Codex. Podjetje OpenAI je leta 2021 prvič predstavilo OpenAI Codex, sistem UI, ki temelji na sistemu globokega učenja, ki je bil naučen na več kot 50 milijonih GitHub repozitorijih. Copilot generira kodo in predstavi rezultate modela OpenAI Codex tako, da predlagano generirano kodo prilagodi trenutni napisani kodi programerja znotraj IDE. OpenAI Codex je zmožen generirati kodo na podlagi opisa programskega problema v naravnem jeziku, kar omogoča reševanje nalog z generiranjem ustrezne kode. Poleg tega zna Codex kodo razložiti, jo prevesti med programskimi jeziki, napisati dokumentacijo, ter poiskati in popraviti napake v kodi.
+Copilot temelji na družini modelov OpenAI Codex. Modeli Codex kot osnovo vzamejo model GPT-3, ki ga nato prilagodijo na podlagi kode iz GitHuba. Njegov način tokenizacije je skoraj identičen z GPT-3, uporablja kodiranje parov bajtov za pretvorbo izvornega besedila v zaporedje žetonov, vendar je bil besedni zaklad GPT-3 razširjen z dodajanem namenskih žetonov za bele prostore (tj. žeton za dva presledka, žeton za tri presledke, vse do 25 presledkov). To tokenizerju omogoča učinkoviteje kodiranje izvorne kode. (ki ima veliko belih presledkov) Pomembna lastnost, ki sta jo Codex in Copilot podedovala od GPT-3, je, da ob pozivu ustvarita najverjetnejši odgovor za poziv na podlagi tega, kar je bilo pridobljeno iz izkušenj, pridobljenih pri usposabljanju. V kontekstu generiranja kode to pomeni, da model ne bo nujno ustvaril najboljše kode (po kateri koli izbrani metriki - zmogljivost, varnost itd.), temveč tisto, ki se najbolje ujema s predhodno in naučeno kodo. Posledično na kakovost generirane kode močno vlivajo semantično nepomembne lastnosti poziva. \cite{9833571}
 \cite{10.1145/3520312.3534862}
-+the robots are coming vir
 
+\section{Amazon CodeWhisperer}
+Amazon CodeWhisperer izboljša produktivnost razvijalcev z generiranjem priporočil za kodo na podlagi komentarjev razvijalcev v angleščini in predhodne kode v IDE. AWS je napovedal Amazon CodeWhisperer 23. junija 2022. Predlogi kode, ki jih ponuja temeljijo na modelih strojnega učenja, ki so bili naučeni na različnih Amazonovih podatkovnih virih ter z odprtokodnimi repozitoriji. Ko
+razvijalci napišejo komentar v urejevalniku kode v svojem IDE, CodeWhisperer samodejno pregleda komentar in določi najprimernejše storitve v oblaku in javne knjižnice. Nato bo neposredno v urejevalniku kode vrnil odlomek kode. CodeWhisperer razvijalcem dodatno poenostavi uporabo storitev AWS, saj ponuja predloge za AWS API kodo v storitvah, kot je Amazon Elastic Compute Cloud (EC2), AWS Lambda in Amazon Simple Storage Service (S3). CodeWhisperer podpira več IDE, vključno z JetBrains, Visual Studio Code, AWS Cloud9 ali konzolo AWS Lambda kot del nabora orodij AWS IDE. Trenutno podpira Javo, JavaScript, Python, C\# in Typescript. Kot dodatno funkcijo ima CodeWhisperer sledilnik referenc, ki zazna priporočila za kodo podobne določenim podatkom za usposabljanje CodeWhispererja in ta priporočila posreduje razvijalcem. CodeWhisperer lahko tudi pregleda kodo in opredeli varnostne težave.
 
-Preučevanje prednosti in slabosti, ocena pravilnosti in razlage rešitve, primerjava z ostalimi  AI asistenti.
 
 \section{Ugotovitve in primerjava}
+
+\begin{table*}[ht]
+\centering
+\caption{Comparing Relevant Code Generation Tools}
+\begin{tabular}{|l|l|l|l|}
+\hline
+\textbf{Feature}               & \textbf{Tool 1}           & \textbf{Tool 2}           & \textbf{Tool 3}           \\ \hline
+Language Support               & Multiple languages        & Single language           & Multiple languages        \\ \hline
+Frameworks Supported           & Major frameworks          & Limited frameworks        & Major frameworks          \\ \hline
+Target Platforms               & Web, Mobile, Desktop      & Web only                  & Web and Mobile            \\ \hline
+Documentation Generation       & Yes                       & No                        & Yes                       \\ \hline
+Code Quality                   & High                      & Medium                    & High                      \\ \hline
+User Interface                 & Graphical and CLI         & CLI only                  & Graphical                 \\ \hline
+Community Support              & Strong                    & Moderate                  & Strong                    \\ \hline
+Pricing                        & Freemium                  & Subscription              & One-time purchase         \\ \hline
+\end{tabular}
+\label{tab:comparison}
+\end{table*}
 
 \chapter{Preučevanje hitrega programiranja na skupini otrok}
 \section{Načrtovanje}

@@ -3,22 +3,26 @@
 % Uporabljeni paketi
 \usepackage[utf8]{inputenc}
 \usepackage{cmap}
+\usepackage{float}
 \usepackage{type1ec}
 \usepackage[T1]{fontenc}
 \usepackage{fancyhdr}
 \usepackage{graphicx,epsfig}
 \usepackage[slovene]{babel}
-\usepackage{cite}
-\usepackage[pdftex,colorlinks,citecolor=black,filecolor=black,linkcolor=black,urlcolor=black,pagebackref]{hyperref}
 \usepackage{tikz}
-\usepackage[backend=biber,style=numeric,sorting=none]{biblatex} % Ensure biblatex is configured correctly
-\addbibresource{references.bib} % Ensure the .bib file is correctly specified
-\usepackage{array}
+\usepackage[
+  backend=biber,
+  style=numeric,
+  sorting=none,
+]{biblatex}
+\usepackage{hyperref}
+\addbibresource{literatura.bib}
 \usepackage{longtable}
 \usepackage{geometry}
+\usepackage{array}
 \geometry{a4paper, margin=1in}
 
-%Nastavitev glave in repa strani
+% Nastavitev glave in repa strani
 \pagestyle{fancy}
 \fancyhead{}
 \renewcommand{\chaptermark}[1]{\markboth{\textsf{Poglavje \thechapter:\ #1}}{}}
@@ -33,11 +37,7 @@
 \newcommand{\gnuplot}{\textbf{gnuplot}}
 \newcommand{\pgfname}{\textsc{pgf}}
 \newcommand{\tikzname}{Ti\emph{k}Z}
-\usepackage{hyperref}
-\usepackage{array}
-\usepackage{longtable}
-\usepackage{geometry}
-\geometry{a4paper, margin=1in}
+
 \begin{document}
 \thispagestyle{empty}
 \begin{center}
@@ -374,6 +374,7 @@ GitHub Copilot, ki temelji na modelu ChatGPT-4, je napredno orodje za generiranj
 Pomembna razširitev GitHub Copilot Chat (GCC) je za javnost bila objavljena  29. 12. 2023. GCC znotraj IDE urejevalnika doda pogovorno okno, kjer uporabnik lahko v poljubnem naravnem jeziku postavlja vprašanja, zahteva razlago ali popravke kode, generiranje dokumentacije ali testov, brez da bi moral zapustiti IDE. Poleg poziva, ki ga podamo v pogovorno okno GCC upošteva tudi kontekst trenutno odprte datoteke urejevalnika, dodatno pa lahko v kontekst pogovora v urejevalniku odprtega projekta referenciramo poljubne datoteke, ki se nanašajo na naše vprašanje, da dobimo bolj natančen odgovor.
 \cite{github_copilot_chat}
 \cite{Sundqvist1866649}
+\newline
 Copilot temelji na družini modelov OpenAI Codex. Modeli Codex kot osnovo vzamejo model GPT-3, ki ga nato prilagodijo na podlagi kode iz GitHuba. Njegov način tokenizacije je skoraj identičen z GPT-3, uporablja kodiranje parov bajtov za pretvorbo izvornega besedila v zaporedje žetonov, vendar je bil besedni zaklad GPT-3 razširjen z dodajanem namenskih žetonov za bele prostore (tj. žeton za dva presledka, žeton za tri presledke, vse do 25 presledkov). To tokenizerju omogoča učinkoviteje kodiranje izvorne kode. (ki ima veliko belih presledkov) Pomembna lastnost, ki sta jo Codex in Copilot podedovala od GPT-3, je, da ob pozivu ustvarita najverjetnejši odgovor za poziv na podlagi tega, kar je bilo pridobljeno iz izkušenj, pridobljenih pri usposabljanju. V kontekstu generiranja kode to pomeni, da model ne bo nujno ustvaril najboljše kode (po kateri koli izbrani metriki - zmogljivost, varnost itd.), temveč tisto, ki se najbolje ujema s predhodno in naučeno kodo. Posledično na kakovost generirane kode močno vlivajo semantično nepomembne lastnosti poziva. \cite{9833571}
 \cite{10.1145/3520312.3534862}
 
@@ -386,7 +387,7 @@ razvijalci napišejo komentar v urejevalniku kode v svojem IDE, CodeWhisperer sa
 
 \section{Ugotovitve in primerjava}
 
-\begin{table}[h]
+\begin{table}[H]
 \centering
 \caption{Primerjava orodij ChatGPT, GitHub Copilot in Amazon CodeWhisperer}
 \begin{tabular}{|>{\raggedright\arraybackslash}p{3cm}|>{\raggedright\arraybackslash}p{4cm}|>{\raggedright\arraybackslash}p{4cm}|>{\raggedright\arraybackslash}p{4cm}|}
@@ -419,8 +420,7 @@ Iz javno dostopnih podatkov ter testiranja zgoraj najpopularnejših predhodno om
 
 \section{Ocena}
 
-
-\printbibliography[heading=bibintoc, title={References}]
+\printbibliography
 
 
 

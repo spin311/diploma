@@ -10,6 +10,7 @@
 \usepackage{graphicx,epsfig}
 \usepackage[slovene]{babel}
 \usepackage{tikz}
+\usepackage{csquotes}
 \usepackage[
   backend=biber,
   style=numeric,
@@ -305,7 +306,7 @@ Med zgodnjo opremo sodijo orodja za dopolnjevanje kode, ki so na voljo v večini
 Z današnjimi napredki na področjih globokega učenja in procesiranja naravnega jezika so se razvili napredni modeli za pomoč pri kodiranju, ki omogočajo avtomatsko dopolnjevanje in reševanje problemov v kodi v realnem času.
 Obstaja veliko poskusov samodejnega prevajanja specifikacij v računalniško kodo s pomočjo formalnih modelov za avtomatsko generiranje kode ali pa s pomočjo strojno naučenega procesiranja naravnega jezika. Arhitekture globokega učenja, ki se dobro prilegajo procesiranju naravnega jezika, so omogočile razvoj modelom ko sta GPT-2 in GPT-3. Ti modeli lahko izvajajo jezikovne naloge, kot sta prevajanje in odgovarjanje na vprašanja iz nabora podatkov CoQA. Po prilagajanju glede na specializiran nabor podatkov lahko modeli opravljajo naloge, kot so dopolnjevanje kode in načrtovanje strojne opreme.  Najsodobnejši modeli imajo na milijarde parametrov, ki jih je mogoče naučiti, in so učeni na več milijonih programskih repozitorijev. V tem delu se bomo osredotočili na modela chatGPT-3.5 in Copilot.
 V naslednjem poglavju bomo najprej pregledali obstoječo literaturo povezano z uporabo UI s poudarkom na hitrem inženiringu in razvoju programske opreme s pomočjo UI. 
- \textcite{zhang2003machine}
+\cite{zhang2003machine}
 \section{Sorodna literatura}
 
 \cite{app13095783}
@@ -375,7 +376,7 @@ Pomembna razširitev GitHub Copilot Chat (GCC) je za javnost bila objavljena  29
 \cite{github_copilot_chat}
 \cite{Sundqvist1866649}
 \newline
-Copilot temelji na družini modelov OpenAI Codex. Modeli Codex kot osnovo vzamejo model GPT-3, ki ga nato prilagodijo na podlagi kode iz GitHuba. Njegov način tokenizacije je skoraj identičen z GPT-3, uporablja kodiranje parov bajtov za pretvorbo izvornega besedila v zaporedje žetonov, vendar je bil besedni zaklad GPT-3 razširjen z dodajanem namenskih žetonov za bele prostore (tj. žeton za dva presledka, žeton za tri presledke, vse do 25 presledkov). To tokenizerju omogoča učinkoviteje kodiranje izvorne kode. (ki ima veliko belih presledkov) Pomembna lastnost, ki sta jo Codex in Copilot podedovala od GPT-3, je, da ob pozivu ustvarita najverjetnejši odgovor za poziv na podlagi tega, kar je bilo pridobljeno iz izkušenj, pridobljenih pri usposabljanju. V kontekstu generiranja kode to pomeni, da model ne bo nujno ustvaril najboljše kode (po kateri koli izbrani metriki - zmogljivost, varnost itd.), temveč tisto, ki se najbolje ujema s predhodno in naučeno kodo. Posledično na kakovost generirane kode močno vlivajo semantično nepomembne lastnosti poziva. \cite{9833571}
+Copilot temelji na družini modelov OpenAI Codex. Modeli Codex kot osnovo vzamejo model GPT-3, ki ga nato prilagodijo na podlagi kode iz GitHuba. Njegov način tokenizacije je skoraj identičen z GPT-3, uporablja kodiranje parov bajtov za pretvorbo izvornega besedila v zaporedje žetonov, vendar je bil besedni zaklad GPT-3 razširjen z dodajanem namenskih žetonov za bele prostore (tj. žeton za dva presledka, žeton za tri presledke, vse do 25 presledkov). To tokenizerju omogoča učinkoviteje kodiranje izvorne kode. (ki ima veliko belih presledkov) Pomembna lastnost, ki sta jo Codex in Copilot podedovala od GPT-3, je, da ob pozivu ustvarita najverjetnejši odgovor za poziv na podlagi tega, kar je bilo pridobljeno iz izkušenj, pridobljenih pri usposabljanju. V kontekstu generiranja kode to pomeni, da model ne bo nujno ustvaril najboljše kode (po kateri koli izbrani metriki - zmogljivost, varnost itd.), temveč tisto, ki se najbolje ujema s predhodno in naučeno kodo. Posledično na kakovost generirane kode močno vlivajo semantično nepomembne lastnosti poziva. %\cite{9833571}
 \cite{10.1145/3520312.3534862}
 
 
@@ -383,7 +384,6 @@ Copilot temelji na družini modelov OpenAI Codex. Modeli Codex kot osnovo vzamej
 \section{Amazon CodeWhisperer}
 Amazon CodeWhisperer izboljša produktivnost razvijalcev z generiranjem priporočil za kodo na podlagi komentarjev razvijalcev v angleščini in predhodne kode v IDE. AWS je napovedal Amazon CodeWhisperer 23. junija 2022. Predlogi kode, ki jih ponuja temeljijo na modelih strojnega učenja, ki so bili naučeni na različnih Amazonovih podatkovnih virih ter z odprtokodnimi repozitoriji. Ko
 razvijalci napišejo komentar v urejevalniku kode v svojem IDE, CodeWhisperer samodejno pregleda komentar in določi najprimernejše storitve v oblaku in javne knjižnice. Nato bo neposredno v urejevalniku kode vrnil odlomek kode. CodeWhisperer razvijalcem dodatno poenostavi uporabo storitev AWS, saj ponuja predloge za AWS API kodo v storitvah, kot je Amazon Elastic Compute Cloud (EC2), AWS Lambda in Amazon Simple Storage Service (S3). CodeWhisperer podpira več IDE, vključno z JetBrains, Visual Studio Code, AWS Cloud9 ali konzolo AWS Lambda kot del nabora orodij AWS IDE. Trenutno podpira Javo, JavaScript, Python, C\# in Typescript. Kot dodatno funkcijo ima CodeWhisperer sledilnik referenc, ki zazna priporočila za kodo podobne določenim podatkom za usposabljanje CodeWhispererja in ta priporočila posreduje razvijalcem. CodeWhisperer zna kodo tudi pregledati ter opredeliti varnostna tveganja.
-
 
 \section{Ugotovitve in primerjava}
 
@@ -411,7 +411,6 @@ Iz javno dostopnih podatkov ter testiranja zgoraj najpopularnejših predhodno om
 \cite{github_copilot_chat}
 \cite{openai_chatgpt}
 \cite{saasworthy_codewhisperer}
-\cite{github_copilot}
 
 \chapter{Preučevanje hitrega programiranja na skupini otrok}
 \section{Načrtovanje}
@@ -419,6 +418,7 @@ Iz javno dostopnih podatkov ter testiranja zgoraj najpopularnejših predhodno om
 \section{Izpeljava}
 
 \section{Ocena}
+
 
 \printbibliography
 

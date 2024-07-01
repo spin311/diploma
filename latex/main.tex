@@ -1,6 +1,6 @@
 \documentclass[12pt,a4paper]{book}
 
-%Uporabljeni paketi
+% Uporabljeni paketi
 \usepackage[utf8]{inputenc}
 \usepackage{cmap}
 \usepackage{type1ec}
@@ -11,14 +11,12 @@
 \usepackage{cite}
 \usepackage[pdftex,colorlinks,citecolor=black,filecolor=black,linkcolor=black,urlcolor=black,pagebackref]{hyperref}
 \usepackage{tikz}
-%Velikost strani - dvostransko
-\oddsidemargin 1.4cm
-\evensidemargin 0.35cm
-\textwidth 14cm
-\topmargin 0.26cm
-\headheight 0.6cm
-\headsep 1.5cm
-\textheight 20cm
+\usepackage[backend=biber,style=numeric,sorting=none]{biblatex} % Ensure biblatex is configured correctly
+\addbibresource{references.bib} % Ensure the .bib file is correctly specified
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{geometry}
+\geometry{a4paper, margin=1in}
 
 %Nastavitev glave in repa strani
 \pagestyle{fancy}
@@ -35,14 +33,13 @@
 \newcommand{\gnuplot}{\textbf{gnuplot}}
 \newcommand{\pgfname}{\textsc{pgf}}
 \newcommand{\tikzname}{Ti\emph{k}Z}
-\usepackage[backend=biber,style=apa]{biblatex}
-\addbibresource{references.bib} 
+\usepackage{hyperref}
 \usepackage{array}
 \usepackage{longtable}
 \usepackage{geometry}
 \geometry{a4paper, margin=1in}
 \begin{document}
-\thispagestyle{empty} 
+\thispagestyle{empty}
 \begin{center}
 {\large 
 UNIVERZA V LJUBLJANI\\
@@ -53,7 +50,7 @@ FAKULTETA ZA RAČUNALNIŠTVO IN INFORMATIKO\\
 {\LARGE Svit Spindler}\\
 
 \vspace{2cm}
-\textsc{\textbf{\LARGE 
+\textsc{\textbf{\LARGE
 Hiter inženiring pri razvoju programske opreme\\ 
 }}
 
@@ -175,16 +172,9 @@ Naslov diplomskega dela
 \vspace{1.5cm}
 S svojim podpisom zagotavljam, da:
 \begin{itemize}
-	\item sem diplomsko delo izdelal/-a samostojno pod mentorstvom 
-	
-	prof. [doc.] dr. Ime Priimek
-	
-	in somentorstvom 
-	
-	prof. [doc.] dr. Ime Priimek
-	
-	\item	so elektronska oblika diplomskega dela, naslov (slov., angl.), povzetek (slov., angl.) ter ključne besede (slov., 			angl.) identični s tiskano obliko diplomskega dela
-	\item soglašam z javno objavo elektronske oblike diplomskega dela v zbirki ''Dela FRI''.
+    \item sem diplomsko delo izdelal/-a samostojno pod mentorstvom prof. [doc.] dr. Ime Priimek in somentorstvom prof. [doc.] dr. Ime Priimek
+    \item so elektronska oblika diplomskega dela, naslov (slov., angl.), povzetek (slov., angl.) ter ključne besede (slov., angl.) identični s tiskano obliko diplomskega dela
+    \item soglašam z javno objavo elektronske oblike diplomskega dela v zbirki ''Dela FRI''.
 \end{itemize}
 
 \vspace{1cm}
@@ -242,6 +232,8 @@ UI - umetna inteligenca
 JM - jezikovni modeli
 VJM - veliki jezikovni modeli
 PNJ - procesiranje naravnih jezikov
+GCC - GitHub Copilot Chat
+IDE - integrirano razvojno okolje
 
 %\cleardoublepage
 
@@ -378,36 +370,44 @@ Vendar pa uporaba ChatGPT prinaša tudi tveganja, vključno z morebitnim prekome
 \cite{app13095783}
 \section{GitHub Copilot}
 
-GitHub Copilot je napredno orodje za generiranje kode, ki se uporablja znotraj različnih integriranih razvojnih okolij (angl. IDE), kot so Visual Studio Code, Neovim, IDE podjetja JetBrains in GitHub Codespaces. Kot razširitev teh okolij, GitHub Copilot neprekinjeno zbira uporabniške vnose kode in pošilja izseke v osnovni model OpenAI Codex. Podjetje OpenAI je leta 2021 prvič predstavilo OpenAI Codex, sistem UI, ki temelji na sistemu globokega učenja, ki je bil naučen na več kot 50 milijonih GitHub repozitorijih. Copilot generira kodo in predstavi rezultate modela OpenAI Codex tako, da predlagano generirano kodo prilagodi trenutni napisani kodi programerja znotraj IDE. OpenAI Codex je zmožen generirati kodo na podlagi opisa programskega problema v naravnem jeziku, kar omogoča reševanje nalog z generiranjem ustrezne kode. Poleg tega zna Codex kodo razložiti, jo prevesti med programskimi jeziki, napisati dokumentacijo, ter poiskati in popraviti napake v kodi.
+GitHub Copilot, ki temelji na modelu ChatGPT-4, je napredno orodje za generiranje kode, ki se uporablja znotraj različnih integriranih razvojnih okolij (angl. IDE), kot so Visual Studio Code, Neovim, IDE podjetja JetBrains in GitHub Codespaces. Kot razširitev teh okolij, GitHub Copilot neprekinjeno zbira uporabniške vnose kode in pošilja izseke v osnovni model OpenAI Codex. Podjetje OpenAI je leta 2021 prvič predstavilo OpenAI Codex, sistem UI, ki temelji na sistemu globokega učenja, ki je bil naučen na več kot 50 milijonih GitHub repozitorijih. Copilot generira kodo in predstavi rezultate modela OpenAI Codex tako, da predlagano generirano kodo prilagodi trenutni napisani kodi programerja znotraj IDE. OpenAI Codex je zmožen generirati kodo na podlagi opisa programskega problema v naravnem jeziku, kar omogoča reševanje nalog z generiranjem ustrezne kode. Poleg tega zna Codex kodo razložiti, jo prevesti med programskimi jeziki, napisati dokumentacijo, ter poiskati in popraviti napake v kodi.
+Pomembna razširitev GitHub Copilot Chat (GCC) je za javnost bila objavljena  29. 12. 2023. GCC znotraj IDE urejevalnika doda pogovorno okno, kjer uporabnik lahko v poljubnem naravnem jeziku postavlja vprašanja, zahteva razlago ali popravke kode, generiranje dokumentacije ali testov, brez da bi moral zapustiti IDE. Poleg poziva, ki ga podamo v pogovorno okno GCC upošteva tudi kontekst trenutno odprte datoteke urejevalnika, dodatno pa lahko v kontekst pogovora v urejevalniku odprtega projekta referenciramo poljubne datoteke, ki se nanašajo na naše vprašanje, da dobimo bolj natančen odgovor.
+\cite{github_copilot_chat}
+\cite{Sundqvist1866649}
 Copilot temelji na družini modelov OpenAI Codex. Modeli Codex kot osnovo vzamejo model GPT-3, ki ga nato prilagodijo na podlagi kode iz GitHuba. Njegov način tokenizacije je skoraj identičen z GPT-3, uporablja kodiranje parov bajtov za pretvorbo izvornega besedila v zaporedje žetonov, vendar je bil besedni zaklad GPT-3 razširjen z dodajanem namenskih žetonov za bele prostore (tj. žeton za dva presledka, žeton za tri presledke, vse do 25 presledkov). To tokenizerju omogoča učinkoviteje kodiranje izvorne kode. (ki ima veliko belih presledkov) Pomembna lastnost, ki sta jo Codex in Copilot podedovala od GPT-3, je, da ob pozivu ustvarita najverjetnejši odgovor za poziv na podlagi tega, kar je bilo pridobljeno iz izkušenj, pridobljenih pri usposabljanju. V kontekstu generiranja kode to pomeni, da model ne bo nujno ustvaril najboljše kode (po kateri koli izbrani metriki - zmogljivost, varnost itd.), temveč tisto, ki se najbolje ujema s predhodno in naučeno kodo. Posledično na kakovost generirane kode močno vlivajo semantično nepomembne lastnosti poziva. \cite{9833571}
 \cite{10.1145/3520312.3534862}
 
+
+
 \section{Amazon CodeWhisperer}
 Amazon CodeWhisperer izboljša produktivnost razvijalcev z generiranjem priporočil za kodo na podlagi komentarjev razvijalcev v angleščini in predhodne kode v IDE. AWS je napovedal Amazon CodeWhisperer 23. junija 2022. Predlogi kode, ki jih ponuja temeljijo na modelih strojnega učenja, ki so bili naučeni na različnih Amazonovih podatkovnih virih ter z odprtokodnimi repozitoriji. Ko
-razvijalci napišejo komentar v urejevalniku kode v svojem IDE, CodeWhisperer samodejno pregleda komentar in določi najprimernejše storitve v oblaku in javne knjižnice. Nato bo neposredno v urejevalniku kode vrnil odlomek kode. CodeWhisperer razvijalcem dodatno poenostavi uporabo storitev AWS, saj ponuja predloge za AWS API kodo v storitvah, kot je Amazon Elastic Compute Cloud (EC2), AWS Lambda in Amazon Simple Storage Service (S3). CodeWhisperer podpira več IDE, vključno z JetBrains, Visual Studio Code, AWS Cloud9 ali konzolo AWS Lambda kot del nabora orodij AWS IDE. Trenutno podpira Javo, JavaScript, Python, C\# in Typescript. Kot dodatno funkcijo ima CodeWhisperer sledilnik referenc, ki zazna priporočila za kodo podobne določenim podatkom za usposabljanje CodeWhispererja in ta priporočila posreduje razvijalcem. CodeWhisperer lahko tudi pregleda kodo in opredeli varnostne težave.
+razvijalci napišejo komentar v urejevalniku kode v svojem IDE, CodeWhisperer samodejno pregleda komentar in določi najprimernejše storitve v oblaku in javne knjižnice. Nato bo neposredno v urejevalniku kode vrnil odlomek kode. CodeWhisperer razvijalcem dodatno poenostavi uporabo storitev AWS, saj ponuja predloge za AWS API kodo v storitvah, kot je Amazon Elastic Compute Cloud (EC2), AWS Lambda in Amazon Simple Storage Service (S3). CodeWhisperer podpira več IDE, vključno z JetBrains, Visual Studio Code, AWS Cloud9 ali konzolo AWS Lambda kot del nabora orodij AWS IDE. Trenutno podpira Javo, JavaScript, Python, C\# in Typescript. Kot dodatno funkcijo ima CodeWhisperer sledilnik referenc, ki zazna priporočila za kodo podobne določenim podatkom za usposabljanje CodeWhispererja in ta priporočila posreduje razvijalcem. CodeWhisperer zna kodo tudi pregledati ter opredeliti varnostna tveganja.
 
 
 \section{Ugotovitve in primerjava}
 
-\begin{table*}[ht]
+\begin{table}[h]
 \centering
 \caption{Primerjava orodij ChatGPT, GitHub Copilot in Amazon CodeWhisperer}
 \begin{tabular}{|>{\raggedright\arraybackslash}p{3cm}|>{\raggedright\arraybackslash}p{4cm}|>{\raggedright\arraybackslash}p{4cm}|>{\raggedright\arraybackslash}p{4cm}|}
 \hline
-\textbf{Lastnost}               & \textbf{ChatGPT}           & \textbf{GitHub Copilot}           & \textbf{Amazon CodeWhisperer}           \\ \hline
+\textbf{Lastnost}               & \textbf{ChatGPT}           & \textbf{GitHub Copilot}           & \textbf{Amazon CodeWhisperer}          
+\\ \hline
+Razvijalec              & OpenAI      & OpenAI-Microsoft                  & AWS            \\ \hline
 Datum izdaje               & 30. 11. 2022        & 29. 10. 2021           & 23. 06. 2022       \\ \hline
 Podpora integriranega razvojnega okolja           & Ni podpore          & Večina razvojnih okolij        & Pomembnejša razvojna okolja          \\ \hline
-Razvijalec              & OpenAI      & OpenAI-Microsoft                  & AWS            \\ \hline
 Razlaga predlagane kode       & Da                       & Da                        & Ne                       \\ \hline
 Navajanje sklicev na predloge                  & Ne                      & Ne                    & Da                      \\ \hline
 Več predlogov za poziv                & Ne (možno z eksplicitnimi navodili za več predlogov)         & Da (do 10)                  & Da (do 5)               \\ \hline
-Vir podatkov za usposabljanje             & GitHub repozitoriji, zbirka podatkov OpenAI Codex, online repozitoriji GitLab, Bitbucket in SourceForge                   & "Velike količine javno objavljene kode"                  & "...treniran na vseh jezikih iz javnih repozitorijov"                    \\ \hline
-S katerimi jeziki deluje najboljše                        & Ni zapisano                  & C, C++, C\#, Go, Java, JavaScript, PHP, Python, Ruby, Scala, and TypeScript              & C\#, Java, JavaScript, Python, and TypeScript         \\ \hline
-Cena               & osnovni model zastonj, plus 20\$ / mesec          & Zastonj za posameznike, 19\$ / mesec za profesionalne uporabnike                  & Zastonj za študente, 10\$ / mesec za posameznike, 19\$ / mesec za profesionalne uporabnike               \\ \hline
+Vir podatkov za usposabljanje             & GitHub repozitoriji, zbirka podatkov OpenAI Codex, online repozitoriji GitLab, Bitbucket in SourceForge                   & "Velike količine javno objavljene kode"                  & "...treniran na vseh jezikih iz javnih repozitorijev"                    \\ \hline
+S katerimi jeziki deluje najboljše                        & Ni zapisano                  & C, C++, C\#, Go, Java, JavaScript, PHP, Python, Ruby, Scala in TypeScript              & C\#, Java, JavaScript, Python in TypeScript         \\ \hline
+Cena               & osnovni model zastonj, plus 20\$ / mesec          & Zastonj za posameznike, 19\$ / mesec za profesionalne uporabnike                  & Zastonj za študente in učitelje, 10\$ / mesec za posameznike, 19\$ / mesec za profesionalne uporabnike               \\ \hline
 \end{tabular}
 \label{tab:comparison}
-\end{table*}
+\end{table}
 
+Iz javno dostopnih podatkov ter testiranja zgoraj najpopularnejših predhodno omenjenih orodij smo naredili tabelo, ki primerja modele ChatGPT, GitHub Copilot ter Amazon CodeWhisperer. Integracijo v razvojno okolje podpirata tako GitHub Copilot kot tudi Amazon CodeWhisperer, kjer GitHub Copilot ponuja bolj obširno izbiro. Razlago predlagane kode podpira ChatGPT, od  
+\cite{github_copilot_chat}
 \cite{openai_chatgpt}
 \cite{saasworthy_codewhisperer}
 \cite{github_copilot}
@@ -419,40 +419,9 @@ Cena               & osnovni model zastonj, plus 20\$ / mesec          & Zastonj
 
 \section{Ocena}
 
-\chapter{Prijava diplomskega dela}
 
+\printbibliography[heading=bibintoc, title={References}]
 
-
-
-
-\chapter{Viri}
-Za kakovostno diplomsko delo je pomembna uporaba vseh razpoložljivih doma\-čih in tujih strokovnih ter znanstvenih virov.
-
-Yetiştiren, B., Özsoy, I., Ayerdem, M., \& Tüzün, E. (2023, April 21). Evaluating the Code Quality of AI-Assisted Code Generation Tools: An Empirical Study on GitHub Copilot, Amazon CodeWhisperer, and ChatGPT. Pridobljeno 28. 02. 2024 iz: https://arxiv.org/abs/2304.10778
-
-Thorsten Brants, Ashok C. Popat, Peng Xu, Franz J. Och, and Jeffrey Dean. 2007. Large Language Models in Machine Translation. In Proceedings of the 2007 Joint Conference on Empirical Methods in Natural Language Processing and Computational Natural Language Learning (EMNLP-CoNLL), pages 858–867, Prague, Czech Republic. Association for Computational Linguistics.
-
-\begin{thebibliography}{9}
-\bibitem{yetistiren2023evaluating}
-B.~Yetiştiren, I.~Özsoy, M.~Ayerdem, \& E.~Tüzün.
-\newblock Evaluating the Code Quality of AI-Assisted Code Generation Tools: An Empirical Study on GitHub Copilot, Amazon CodeWhisperer, and ChatGPT.
-\newblock Retrieved February 28, 2024, from \url{https://arxiv.org/abs/2304.10778} (April 21, 2023).
-
-\bibitem{brants2007large}
-Thorsten Brants, Ashok C. Popat, Peng Xu, Franz J. Och, \& Jeffrey Dean.
-\newblock Large Language Models in Machine Translation.
-\newblock In \textit{Proceedings of the 2007 Joint Conference on Empirical Methods in Natural Language Processing and Computational Natural Language Learning (EMNLP-CoNLL)}, pages 858--867, Prague, Czech Republic, 2007. Association for Computational Linguistics.
-
-\bibitem{yong2023authors}
-Yong Zheng.
-\newblock Authors Info \& Claims.
-\newblock In \textit{SIGITE '23: Proceedings of the 24th Annual Conference on Information Technology Education}, October 2023, pages 66--72, 2023. DOI: \url{10.1145/3585059.3611431}.
-\bibitem{baidoo2023education}
-D.~BAİDOO-ANU and L.~OWUSU ANSAH.
-\newblock Education in the Era of Generative Artificial Intelligence (AI): Understanding the Potential Benefits of ChatGPT in Promoting Teaching and Learning.
-\newblock \textit{Journal of AI}, 7(1), 52--62, 2023. DOI: \url{10.61969/jai.1337500}.
-
-\end{thebibliography}
 
 
 

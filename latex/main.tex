@@ -393,28 +393,46 @@ razvijalci napišejo komentar v urejevalniku kode v svojem IDE, CodeWhisperer sa
 Razvijalec              & OpenAI      & OpenAI-Microsoft                  & AWS            \\ \hline
 Datum izdaje               & 30. 11. 2022        & 29. 10. 2021           & 23. 06. 2022       \\ \hline
 Podpora integriranega razvojnega okolja           & Ni podpore          & Večina razvojnih okolij        & Pomembnejša razvojna okolja          \\ \hline
-Razlaga predlagane kode       & Da                       & Da                        & Ne                       \\ \hline
+Razlaga predlagane kode       & Da                       & Da (omogoča GitHub Copilot Chat)                           & Ne                       \\ \hline
 Navajanje sklicev na predloge                  & Ne                      & Ne                    & Da                      \\ \hline
 Več predlogov za poziv                & Ne (možno z eksplicitnimi navodili za več predlogov)         & Da (do 10)                  & Da (do 5)               \\ \hline
 Vir podatkov za usposabljanje             & GitHub repozitoriji, zbirka podatkov OpenAI Codex, online repozitoriji GitLab, Bitbucket in SourceForge                   & "Velike količine javno objavljene kode"                  & "...treniran na vseh jezikih iz javnih repozitorijev"                    \\ \hline
-S katerimi jeziki deluje najboljše                        & Ni zapisano                  & C, C++, C\#, Go, Java, JavaScript, PHP, Python, Ruby, Scala in TypeScript              & C\#, Java, JavaScript, Python in TypeScript         \\ \hline
-Cena               & osnovni model zastonj, plus 20\$ / mesec          & Zastonj za posameznike, 19\$ / mesec za profesionalne uporabnike                  & Zastonj za študente in učitelje, 10\$ / mesec za posameznike, 19\$ / mesec za profesionalne uporabnike               \\ \hline
+S katerimi jeziki deluje najboljše                        & Ni zapisano                  & C, C++, C\#, Go, Java, JavaScript, PHP, Python, Ruby, Scala in TypeScript              & C\#, Java, JavaScript, Python in TypeScript  \\ \hline
+Cena               & osnovni model zastonj, plus 20\$ / mesec          & Zastonj za študente in učitelje, 10\$ / mesec za posameznike, 19\$ / mesec za profesionalne uporabnike                    &   Zastonj za posameznike, 19\$ / mesec za profesionalne uporabnike            \\ \hline
 \end{tabular}
 \label{tab:comparison}
 \end{table}
 
-Iz javno dostopnih podatkov ter testiranja zgoraj najpopularnejših predhodno omenjenih orodij smo naredili tabelo, ki primerja modele ChatGPT, GitHub Copilot ter Amazon CodeWhisperer. Integracijo v razvojno okolje podpirata tako GitHub Copilot kot tudi Amazon CodeWhisperer, kjer GitHub Copilot ponuja bolj obširno izbiro. Razlago predlagane kode podpira ChatGPT, od  
+Iz javno dostopnih podatkov ter testiranja zgoraj najpopularnejših predhodno omenjenih orodij smo naredili zgornjo tabelo, ki primerja modele ChatGPT, GitHub Copilot ter Amazon CodeWhisperer. Integracijo v razvojno okolje podpirata tako GitHub Copilot kot tudi Amazon CodeWhisperer, kjer GitHub Copilot ponuja bolj obširno izbiro razvojnih orodij. Razlago predlagane kode podpirata ChatGPT in GitHub Copilot Chat, sklice na predlagane rešitve pa ponuja le Amazon CodeWhisperer. Največje število predlogov za podan poziv ponuja Github Copilot, pri uporabi ChatGPT pa lahko to dosežemo z eksplicitnimi navodili. ChatGPT nima podanih informacij o najbolje podprtih programskih jezikih, GitHub Copilot in Amazon CodeWhisperer navajata podprte programske jezike, pri čemer lahko vidimo, da GitHub Copilot podpira več programskih jezikov kot Amazon CodeWhisperer. Pomembna razlika v modelih je tudi v ceni, saj nižja cena pripomore k različni dostopnosti širši množici uporabnikom, kar je eden izmed razlogov za popularnost ChatGPT-ja tudi v programiranju, kljub temu, da to ni njegov prvotni namen. Kljub temu, da je osnovni model zastonj, pa lahko plačamo 20\$ na mesec za napredni model, ki uporablja GPT-4. Amazon CodeWhisperer ima tudi ugoden cenovni načrt z možnostjo brezplačne uporabe za posameznike in ceno 19\$ mesec za profesionalne uporabnike. GitHub Copilot ponuja brezplačno uporabo le za učitelje in študente, ostali uporabniki plačujejo 10\$ / mesec ali pa 19\$ / mesec, če gre za profesionalne uporabnike.
 \cite{github_copilot_chat}
 \cite{openai_chatgpt}
 \cite{saasworthy_codewhisperer}
 
-\chapter{Preučevanje hitrega programiranja na skupini otrok}
-\section{Načrtovanje}
+\chapter{Metodologija}
+Namen diplomskega dela je bil raziskati, kako hiter inženiring vpliva na proces razvoja programske opreme, s preučevanjem hitrosti in kvalitete kode pri uporabi orodij umetne inteligence. Najprimernejša metoda za pridobivanje teh podatkov je bil nadzorovan eksperiment na skupini mlajših otrok, ker omogoča natančen nadzor nad spremenljivkami ter izolirano vrednotenje reševanja programskih problemov. Ta metodologija minimizira vplive zunanjih spremenljivk, kar omogoča osredotočeno preučevanje zmožnosti in omejitev hitrega inženiringa pri razvoju programske opreme.
 
+\section{Načrt}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{spletna_stran.png}
+    \caption{Spletna stran eksperimenta}
+    \label{fig:enter-label}
+\end{figure}
+
+
+Za izvedbo eksperimenta smo izbrali več skupin mlajših otrok, ki se učijo programiranja v jeziku Python. Za namen eksperimenta je bila razvita preprosta spletna stran, ki je imela navodila za različne naloge, prostor za pisanje Python kode z označevanjem sintakse, prostor za izpis izhoda programa ter prostor za pogovor z uporabo ChatGPT-3.5. Namen strani je bil anonimizirano shranjevanje kode med eksperimentom, za namen kasnejšega preučevanja. Stran je kodo shranila ob vsakem kliku na gumb "Run" za izvajanje napisane kode ter na določen časovni interval. Shranjevalo se je napisano kodo, čas zapisa, število poskusov za trenutno nalogo ter če se je trenutna koda izvedla z napako. Eksperiment je trajal dve uri z vmesnih petnajst minutnim odmorom in je bil sestavljen iz osmih nalog. Vrstni red reševanja nalog je bil naključen brez možnosti vračanja na predhodne naloge, da bi zmanjšali prepisovanje. Za polovico nalog je bila uporaba chatGPT onemogočena, za lažjo analizo podatkov. Naloge so bile razdeljene v tri skupine težavnosti: lahke, srednje težke in težke. Težavnost naloge je bila dodeljena po pogovoru z ostalimi učitelji Pythona, glede na potrebno znanje in časovno zahtevnost naloge.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{naloga_primer.png}
+    \caption{Primer naloge}
+    \label{fig:enter-label}
+\end{figure}
 \section{Izpeljava}
-
+Eksperiment je bil izpeljan v štirih skupinah, ena izmed teh je bila v fizični obliki, ostale skupine pa so bile na daljavo. Skupaj je bilo veljavnih 32 podatkov. Eksperiment je potekal tako, da je bilo najprej predstavljena umetna inteligenca in hiter inženiring, ter najboljše prakse za uporabo ChatGPT za pomoč pri programiranju. Nato je bila rešena krajša anketa o predznanju programiranja ter o poznavanju ChatGPT-ja. Po tem so imeli dobro uro za samo reševanje nalog. Med samim eksperimentom se otrokom ni pomagalo, razen z interpretacijo navodil.
 \section{Ocena}
-
+Znotraj enake težavnosti nalog so bile naloge, pri katerih je bila omogočena uporaba pogovornega okna s ChatGPT rešene mnogo hitreje in z manj napakami. 
 
 \printbibliography
 

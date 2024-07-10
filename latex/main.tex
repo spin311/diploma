@@ -229,10 +229,22 @@ Na tem mestu se diplomant zahvali vsem, ki so kakorkoli pripomogli k uspešni iz
 
 Seznam uporabljenih kratic in simbolov, ki morajo biti enotni v celotnem delu, ne glede na označevanje v uporabljenih virih.
 
-UI - umetna inteligenca
-PNJ - procesiranje naravnih jezikov
-GCC - GitHub Copilot Chat
-IDE - integrirano razvojno okolje
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{|l|l|}
+        \hline
+        UI & umetna inteligenca \\
+        \hline
+        PNJ & procesiranje naravnih jezikov \\
+        \hline
+        GCC & GitHub Copilot Chat \\
+        \hline
+        IDE & integrirano razvojno okolje \\
+        \hline
+    \end{tabular}
+    \caption{Seznam kratic in njihovih pomenov}
+    \label{tab:abbreviations}
+\end{table}
 
 %\cleardoublepage
 
@@ -298,6 +310,18 @@ V naslednjih poglavjih bomo pregledali razvoj programske kode in vlogo strojnega
 
 
 \chapter{Pregled področja}
+Narava in kompleksnost programske opreme sta se v zadnjih 30 letih močno spremenili. V sedemdesetih letih 20. stoletja so aplikacije delovale na enem samem procesorju, proizvajale alfanumerične izhode in prejemale svoj vhod iz linearnega vira. Današnje aplikacije so veliko bolj zapletene; običajno imajo grafični uporabniški vmesnik in uporabljajo arhitekturo odjemalec-strežnik. Pogosto delujejo na dveh ali več procesorjih, pod različnimi operacijskimi sistemi in na geografsko porazdeljenih strojih. Redko katero področje v zgodovini se je  razvilo tako hitro kot razvoj programske opreme. Zato je nujno stalno potrebno izboljševati koncepte, strategije in prakse programskega inženiringa, da bi se izognili konfliktom in izboljšali proces razvoja programske opreme, da bi pravočasno in v okviru proračuna zagotovili kakovostno programsko opremo, ki jo je mogoče vzdrževati.
+\cite{aggarwal2005software}
+\section{Programski inženiring}
+Programska oprema je postala ključna za napredek na skoraj vseh področjih človekovega delovanja. Programiranje samo ne zadostuje več za izdelavo velikih programov. Obstajajo resne težave pri kakovosti,stroških, pravočasnosti in vzdrževanju številnih izdelkov programske opreme.
+Cilj programskega inženiringa je reševanje teh težav z izdelavo kakovostne programske opreme, ki je narejena pravočasno in v okviru proračuna. Da bi dosegli ta cilj, se moramo osredotočiti tako na kakovost izdelka kot tudi na procese, uporabljene za razvoj izdelka.
+Na prvi konferenci o programskem inženiringu leta 1968 je Fritz Bauer 
+definiral programski inženiring kot "Vzpostavitev in uporaba dobrih inženirskih principov za pridobitev ekonomično razvite programske opreme, ki je zanesljiva in učinkovito deluje na resničnih strojih". Stephen Schach je enako opredelil kot "Področje, katerega cilj je izdelava kakovostne programske opreme, ki je izdelana pravočasno, v okviru predvidenega proračuna in izpolnjuje zastavljene zahteve.". Obe definiciji sta priljubljeni in sprejemljivi za večino. Vendar pa se zaradi povečanja stroškov vzdrževanja programske opreme cilj zdaj premika k izdelavi kakovostne programske opreme, ki jo je mogoče vzdrževati, dostavljeno pravočasno, v okviru proračuna in prav tako izpolnjuje njene zahteve.
+Kriza programske opreme nas spremlja že od leta 1970. Od takrat se je računalniška industrija z računalniško revolucijo in nedavno z omrežno revolucijo, ki jo je sprožila in/ali pospešila eksplozivna širitev interneta in v zadnjem času spleta, razvijala z bliskovito hitrostjo.
+Računalniška industrija je zagotavljala eksponentno izboljšanje razmerja med ceno in zmogljivostjo, vendar se težave s programsko opremo niso zmanjševale. Programska oprema še vedno zamuja, presega proračun in je polna napak. Po zadnjem IBM-ovem poročilu je "31 \% projektov preklicanih, še preden so končani, 53 \% projektov presega oceno stroškov za povprečno 189 \%, na vsakih 100 projektov pa je 94 ponovnih zagonov".
+\cite{aggarwal2005software}
+
+
 Razvoj programske kode je proces, ki vključuje pretvorbo specifikacije problema v programsko implementirano rešitev. Zgodnja orodja za olajšanje postopka so uporabljala strojno učenje za podporo razvijalcev skozi vse faze razvoja programske opreme in so med drugimi vključevala pridobivanje programske specifikacije in napoved uporabnikovega vnosa.
 Med zgodnjo opremo sodijo orodja za dopolnjevanje kode, ki so na voljo v večini urejevalnikov kode in ki izpišejo kontekstualno relevantne spremenljivke, metode, razrede in druge dele kode v obliki plavajočega menija. Razvijalci se lahko z raziskovanjem in izbiranjem v tem meniju izognejo pogostim slovničnim in logičnim napakam, zmanjšajo število pritiskov na tipke in raziskujejo nove API-je namesto da porabljajo čas in napor za iskanje dokumentacije. Nekatera znana orodja za dopolnjevanje kode vključujejo IntelliSense v Visual Studio Code in vgrajeno dopolnjevanje kode v orodjih JetBrains IDE2. 
 Čeprav lahko ta orodja izpisujejo odlomke kode, se bistveno razlikujejo od generatorjev kode.

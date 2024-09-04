@@ -1,310 +1,386 @@
-\documentclass[12pt,a4paper]{book}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% datoteka diploma-FRI-vzorec.tex
+%
+% vzorčna datoteka za pisanje diplomskega dela v formatu LaTeX
+% na UL Fakulteti za računalništvo in informatiko
+%
+% na osnovi starejših verzij vkup spravil Franc Solina, maj 2021
+% prvo verzijo je leta 2010 pripravil Gašper Fijavž
+%
+% za upravljanje z literaturo ta vezija uporablja BibLaTeX
+%
+% svetujemo uporabo Overleaf.com - na tej spletni implementaciji LaTeXa ta vzorec zagotovo pravilno deluje
+%
 
-% Uporabljeni paketi
-\usepackage[utf8]{inputenc}
-\usepackage{cmap}
-\usepackage{float}
-\usepackage{type1ec}
-\usepackage[T1]{fontenc}
-\usepackage{fancyhdr}
-\usepackage{graphicx,epsfig}
-\usepackage[slovene]{babel}
-\usepackage{tikz}
+\documentclass[a4paper,12pt,openright]{book}
+%\documentclass[a4paper, 12pt, openright, draft]{book}  Nalogo preverite tudi z opcijo draft, ki pokaže, katere vrstice so predolge! Pozor, v draft opciji, se slike ne pokažejo!
+ 
+\usepackage[utf8]{inputenc}   % omogoča uporabo slovenskih črk kodiranih v formatu UTF-8
+\usepackage[slovene,english]{babel}    % naloži, med drugim, slovenske delilne vzorce
+\usepackage[pdftex]{graphicx}  % omogoča vlaganje slik različnih formatov
+\usepackage{fancyhdr}          % poskrbi, na primer, za glave strani
+\usepackage{amssymb}           % dodatni matematični simboli
+\usepackage{amsmath}           % eqref, npr.
+\usepackage{hyperxmp}
+\usepackage[hyphens]{url}
 \usepackage{csquotes}
+\usepackage[pdftex, colorlinks=true,
+						citecolor=black, filecolor=black, 
+						linkcolor=black, urlcolor=black,
+						pdfproducer={LaTeX}, pdfcreator={LaTeX}]{hyperref}
+
+\usepackage{color}
+\usepackage{soul}
+
 \usepackage[
-  backend=biber,
-  style=numeric,
-  sorting=none,
+backend=biber,
+style=numeric,
+sorting=nty,
 ]{biblatex}
-\usepackage{hyperref}
-\addbibresource{literatura.bib}
-\usepackage{longtable}
-\usepackage{geometry}
-\usepackage{array}
-\usepackage{listings}
-\lstset{
-  language=SQL,
-  basicstyle=\ttfamily,
-  keywordstyle=\color{blue},
-  commentstyle=\color{gray},
-  stringstyle=\color{red},
-  showstringspaces=false
+
+
+\addbibresource{literatura.bib} %Imports bibliography file
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%	DIPLOMA INFO
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\ttitle}{Hiter inženiring pri razvoju programske opreme}
+\newcommand{\ttitleEn}{Diploma thesis template}
+\newcommand{\tsubject}{\ttitle}
+\newcommand{\tsubjectEn}{\ttitleEn}
+\newcommand{\tauthor}{Svit Spindler}
+\newcommand{\tkeywords}{računalnik, računalnik, računalnik}
+\newcommand{\tkeywordsEn}{computer, computer, computer}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%	HYPERREF SETUP
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\hypersetup{pdftitle={\ttitle}}
+\hypersetup{pdfsubject=\ttitleEn}
+\hypersetup{pdfauthor={\tauthor}}
+\hypersetup{pdfkeywords=\tkeywordsEn}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% postavitev strani
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+
+\addtolength{\marginparwidth}{-20pt} % robovi za tisk
+\addtolength{\oddsidemargin}{40pt}
+\addtolength{\evensidemargin}{-40pt}
+
+\renewcommand{\baselinestretch}{1.3} % ustrezen razmik med vrsticami
+\setlength{\headheight}{15pt}        % potreben prostor na vrhu
+\renewcommand{\chaptermark}[1]%
+{\markboth{\MakeUppercase{\thechapter.\ #1}}{}} \renewcommand{\sectionmark}[1]%
+{\markright{\MakeUppercase{\thesection.\ #1}}} \renewcommand{\headrulewidth}{0.5pt} \renewcommand{\footrulewidth}{0pt}
+\fancyhf{}
+\fancyhead[LE,RO]{\sl \thepage} 
+%\fancyhead[LO]{\sl \rightmark} \fancyhead[RE]{\sl \leftmark}
+\fancyhead[RE]{\sc \tauthor}              % dodal Solina
+\fancyhead[LO]{\sc Diplomska naloga}     % dodal Solina
+
+
+\newcommand{\BibLaTeX}{{\sc Bib}\LaTeX}
+\newcommand{\BibTeX}{{\sc Bib}\TeX}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% naslovi
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+
+\newcommand{\autfont}{\Large}
+\newcommand{\titfont}{\LARGE\bf}
+\newcommand{\clearemptydoublepage}{\newpage{\pagestyle{empty}\cleardoublepage}}
+\setcounter{tocdepth}{1}	      % globina kazala
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% konstrukti
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+\newtheorem{izrek}{Izrek}[chapter]
+\newtheorem{trditev}{Trditev}[izrek]
+\newenvironment{dokaz}{\emph{Dokaz.}\ }{\hspace{\fill}{$\Box$}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% PDF-A
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+% define medatata
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\def\Title{\ttitle}
+\def\Author{\tauthor, matjaz.kralj@fri.uni-lj.si}
+\def\Subject{\ttitleEn}
+\def\Keywords{\tkeywordsEn}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+% \convertDate converts D:20080419103507+02'00' to 2008-04-19T10:35:07+02:00
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\def\convertDate{%
+    \getYear
 }
-\geometry{a4paper, margin=1in}
 
-% Nastavitev glave in repa strani
-\pagestyle{fancy}
-\fancyhead{}
-\renewcommand{\chaptermark}[1]{\markboth{\textsf{Poglavje \thechapter:\ #1}}{}}
-\renewcommand{\sectionmark}[1]{\markright{\textsf{\thesection\  #1}}{}}
-\fancyhead[RE]{\leftmark}
-\fancyhead[LO]{\rightmark}
-\fancyhead[LE,RO]{\thepage}
-\fancyfoot{}
-\renewcommand{\headrulewidth}{0.0pt}
-\renewcommand{\footrulewidth}{0.0pt}
+{\catcode`\D=12
+ \gdef\getYear D:#1#2#3#4{\edef\xYear{#1#2#3#4}\getMonth}
+}
+\def\getMonth#1#2{\edef\xMonth{#1#2}\getDay}
+\def\getDay#1#2{\edef\xDay{#1#2}\getHour}
+\def\getHour#1#2{\edef\xHour{#1#2}\getMin}
+\def\getMin#1#2{\edef\xMin{#1#2}\getSec}
+\def\getSec#1#2{\edef\xSec{#1#2}\getTZh}
+\def\getTZh +#1#2{\edef\xTZh{#1#2}\getTZm}
+\def\getTZm '#1#2'{%
+    \edef\xTZm{#1#2}%
+    \edef\convDate{\xYear-\xMonth-\xDay T\xHour:\xMin:\xSec+\xTZh:\xTZm}%
+}
 
-\newcommand{\gnuplot}{\textbf{gnuplot}}
-\newcommand{\pgfname}{\textsc{pgf}}
-\newcommand{\tikzname}{Ti\emph{k}Z}
+%\expandafter\convertDate\pdfcreationdate 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% get pdftex version string
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\newcount\countA
+\countA=\pdftexversion
+\advance \countA by -100
+\def\pdftexVersionStr{pdfTeX-1.\the\countA.\pdftexrevision}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% XMP data
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+\usepackage{xmpincl}
+%\includexmp{pdfa-1b}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% pdfInfo
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+\pdfinfo{%
+    /Title    (\ttitle)
+    /Author   (\tauthor, damjan@cvetan.si)
+    /Subject  (\ttitleEn)
+    /Keywords (\tkeywordsEn)
+    /ModDate  (\pdfcreationdate)
+    /Trapped  /False
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% znaki za copyright stran
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+
+\newcommand{\CcImageCc}[1]{%
+	\includegraphics[scale=#1]{cc_cc_30.pdf}%
+}
+\newcommand{\CcImageBy}[1]{%
+	\includegraphics[scale=#1]{cc_by_30.pdf}%
+}
+\newcommand{\CcImageSa}[1]{%
+	\includegraphics[scale=#1]{cc_sa_30.pdf}%
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{document}
-\thispagestyle{empty}
-\begin{center}
-{\large 
-UNIVERZA V LJUBLJANI\\
-FAKULTETA ZA RAČUNALNIŠTVO IN INFORMATIKO\\
-}
+\selectlanguage{slovene}
+\frontmatter
+\setcounter{page}{1} %
+\renewcommand{\thepage}{}       % preprečimo težave s številkami strani v kazalu
 
-\vspace{3cm}
-{\LARGE Svit Spindler}\\
-
-\vspace{2cm}
-\textsc{\textbf{\LARGE
-Hiter inženiring pri razvoju programske opreme\\ 
-}}
-
-\vspace{2cm}
-{ DIPLOMSKO DELO}\\
-{ NA UNIVERZITETNEM ŠTUDIJU\\
-}
-
-\vspace{2cm} 
-{\Large Mentor: izr. prof. dr. Dejan Lavbič}
-
-\vfill
-{\Large Ljubljana, 2024}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%naslovnica
+ \thispagestyle{empty}%
+   \begin{center}
+    {\large\sc Univerza v Ljubljani\\%
+%      Fakulteta za elektrotehniko\\% za študijski program Multimedija
+%      Fakulteta za upravo\\% za študijski program Upravna informatika
+      Fakulteta za računalništvo in informatiko\\%
+%      Fakulteta za matematiko in fiziko\\% za študijski program Računalništvo in matematika
+     }
+    \vskip 10em%
+    {\autfont \tauthor\par}%
+    {\titfont \ttitle \par}%
+    {\vskip 3em \textsc{DIPLOMSKO DELO\\[5mm]         % dodal Solina za ostale študijske programe
+%    VISOKOŠOLSKI STROKOVNI ŠTUDIJSKI PROGRAM\\ PRVE STOPNJE\\ RAČUNALNIŠTVO IN INFORMATIKA}\par}%
+     UNIVERZITETNI  ŠTUDIJSKI PROGRAM\\ PRVE STOPNJE\\ RAČUNALNIŠTVO IN INFORMATIKA}\par}%
+%    INTERDISCIPLINARNI UNIVERZITETNI\\ ŠTUDIJSKI PROGRAM PRVE STOPNJE\\ MULTIMEDIJA}\par}%
+%    INTERDISCIPLINARNI UNIVERZITETNI\\ ŠTUDIJSKI PROGRAM PRVE STOPNJE\\ UPRAVNA INFORMATIKA}\par}%
+%    INTERDISCIPLINARNI UNIVERZITETNI\\ ŠTUDIJSKI PROGRAM PRVE STOPNJE\\ RAČUNALNIŠTVO IN MATEMATIKA}\par}%
+    \vfill\null%
+% izberite pravi habilitacijski naziv mentorja!
+    {\large \textsc{Mentor}: izr. prof. dr. Dejan Lavbič\par}%
+    {\vskip 2em \large Ljubljana, \the\year \par}%
 \end{center}
+% prazna stran
+%\clearemptydoublepage      
+% izjava o licencah itd. se izpiše na hrbtni strani naslovnice
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%copyright stran
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
-
-%********************************************
-
-% stran 3 med uvodnimi listi
-\thispagestyle{empty}
-
-Namesto te strani {\bf vstavite} original izdane teme diplomskega dela s podpisom mentorja in dekana ter \v zigom fakultete, ki ga diplomant
-dvigne v študent\-skem referatu,  preden odda izdelek v vezavo!
-
-\newpage
-
-\newpage
-
-\ \thispagestyle{empty}
-
-\newpage
-
-%********************************************
-
-% stran 2 med uvodnimi listi
 \thispagestyle{empty}
 
 \vspace*{5cm}
 {\small \noindent
-To diplomsko delo je ponujeno pod licenco \textit{Creative Commons Priznanje avtorstva-Deljenje pod enakimi pogoji 2.5 Slovenija}
-ali (po želji) novejšo različico.
+To delo je ponujeno pod licenco \textit{Creative Commons Priznanje avtorstva-Deljenje pod enakimi pogoji 2.5 Slovenija} (ali novej\v so razli\v cico).
 To pomeni, da se tako besedilo, slike, grafi in druge sestavine dela kot tudi rezultati diplomskega dela lahko prosto distribuirajo,
-reproducirajo, uporabljajo, dajejo v najem, priobčujejo javnosti in predelujejo, pod pogojem, da se jasno in vidno navede avtorja in naslov tega
+reproducirajo, uporabljajo, priobčujejo javnosti in predelujejo, pod pogojem, da se jasno in vidno navede avtorja in naslov tega
 dela in da se v primeru spremembe, preoblikovanja ali uporabe tega dela v svojem delu, lahko distribuira predelava le pod
 licenco, ki je enaka tej.
-Podrobnosti licence so dostopne na spletni strani \url{http://creativecommons.si/} ali na Inštitutu za
+Podrobnosti licence so dostopne na spletni strani \href{http://creativecommons.si}{creativecommons.si} ali na Inštitutu za
 intelektualno lastnino, Streliška 1, 1000 Ljubljana.
 
+\vspace*{1cm}
 \begin{center}% 0.66 / 0.89 = 0.741573033707865
-
+\CcImageCc{0.741573033707865}\hspace*{1ex}\CcImageBy{1}\hspace*{1ex}\CcImageSa{1}%
 \end{center}
 }
 
-\vspace*{1.5cm}
+\vspace*{1cm}
 {\small \noindent
-Izvorna koda diplomskega dela, njenih rezultatov in v ta namen razvite programske opreme je ponujena pod GNU General Public License,
-različica 3 ali (po želji) novejšo različico. To pomeni, da se lahko prosto uporablja, distribuira in/ali predeluje pod njenimi pogoji.
+Izvorna koda diplomskega dela, njeni rezultati in v ta namen razvita programska oprema je ponujena pod licenco GNU General Public License,
+različica 3 (ali novejša). To pomeni, da se lahko prosto distribuira in/ali predeluje pod njenimi pogoji.
 Podrobnosti licence so dostopne na spletni strani \url{http://www.gnu.org/licenses/}.
 }
 
+\vfill
 \begin{center} 
 \ \\ \vfill
 {\em
-Besedilo je oblikovano z urejevalnikom besedil \LaTeX. \\ Slike so izdelane s pomočjo jezika \pgfname/\tikzname. \\ Grafi so narisani
-s pomočjo programa \gnuplot.}
+Besedilo je oblikovano z urejevalnikom besedil \LaTeX.}
 \end{center}
 
-\newpage
+% prazna stran
+\clearemptydoublepage
 
-\ \thispagestyle{empty}
-
-\newpage
-
-%********************************************
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % stran 3 med uvodnimi listi
 \thispagestyle{empty}
+\
+\vfill
 
-Namesto te strani {\bf vstavite} original izdane teme diplomskega dela s podpisom mentorja in dekana ter \v zigom fakultete, ki ga diplomant
-dvigne v študent\-skem referatu,  preden odda izdelek v vezavo!
+\bigskip
+\noindent\textbf{Kandidat:} Ime Priimek\\
+\noindent\textbf{Naslov:} Naslov diplomskega dela\\
+% vstavite ustrezen naziv študijskega programa!
+\noindent\textbf{Vrsta naloge:} npr. Diplomska naloga na univerzitetnem programu prve stopnje Računalništvo in informatika \\
+% izberite pravi habilitacijski naziv mentorja!
+\noindent\textbf{Mentor:} viš. pred. / doc. / izr. prof. / prof. dr. Ime Priimek\\
+\noindent\textbf{Somentor:} isto kot za mentorja
 
-\newpage
+\bigskip
+\noindent\textbf{Opis:}\\
+Besedilo teme diplomskega dela študent prepiše iz študijskega informacijskega sistema, kamor ga je vnesel mentor. 
+V nekaj stavkih bo opisal, kaj pričakuje od kandidatovega diplomskega dela. 
+Kaj so cilji, kakšne metode naj uporabi, morda bo zapisal tudi ključno literaturo.
 
-%********************************************
+\bigskip
+\noindent\textbf{Title:} Naslov diplomskega dela v angleščini
 
-% stran 4 med uvodnimi listi je prazna 
-\ \thispagestyle{empty}
+\bigskip
+\noindent\textbf{Description:}\\
+opis diplome v angleščini
 
-\newpage
-
-%********************************************
-
-% stran 5 med uvodnimi listi
-
-\thispagestyle{empty}
-
-\vspace{1cm}
-\begin{center} 
-{\Large \textbf{IZJAVA O AVTORSTVU}}
-\end{center}
-
-\begin{center} 
-{\Large diplomskega dela}
-\end{center}
-
-\vspace{1cm}
-Spodaj podpisani/-a \hspace{0.5cm} Ime Priimek,
-
-\vspace{0.5cm}
-z vpisno številko \hspace{0.5cm} xxxxxxx,
-
-\vspace{1cm}
-sem avtor/-ica diplomskega dela z naslovom:
-   
-\vspace{0.5cm}
-Naslov diplomskega dela
-
-\vspace{1.5cm}
-S svojim podpisom zagotavljam, da:
-\begin{itemize}
-    \item sem diplomsko delo izdelal/-a samostojno pod mentorstvom prof. [doc.] dr. Ime Priimek in somentorstvom prof. [doc.] dr. Ime Priimek
-    \item so elektronska oblika diplomskega dela, naslov (slov., angl.), povzetek (slov., angl.) ter ključne besede (slov., angl.) identični s tiskano obliko diplomskega dela
-    \item soglašam z javno objavo elektronske oblike diplomskega dela v zbirki ''Dela FRI''.
-\end{itemize}
-
-\vspace{1cm}
-V Ljubljani, dne xx.xx.20xx \hspace{1cm} Podpis avtorja/-ice:
-
-\newpage 
-
-%********************************************
-
-% stran 6 med uvodnimi listi je prazna pri dvostranskem tiskanju
-\ \thispagestyle{empty}
-
-\newpage
-\ \thispagestyle{empty}
-
-%********************************************
-
-% stran 7 med uvodnimi listi
-
-\chapter*{Zahvala}
-
-\thispagestyle{empty}
-
-Na tem mestu se diplomant zahvali vsem, ki so kakorkoli pripomogli k uspešni izvedbi diplomskega dela.
-\\**Zahvala podjetju Digital School D.O.O, za pomoč pri analizi učenja otrok z uporabo umetne inteligence. **
+\vfill
 
 
-\newpage
 
-%********************************************
+\vspace{2cm}
 
-% stran 8 med uvodnimi listi je prazna pri dvostranskem tiskanju
-\ \thispagestyle{empty}
+% prazna stran
+\clearemptydoublepage
 
-\newpage
+% zahvala
+\thispagestyle{empty}\mbox{}\vfill\null\it%
+\noindent
+Na tem mestu zapišite, komu se zahvaljujete za pomoč pri izdelavi diplomske naloge oziroma pri vašem študiju nasploh. Pazite, da ne boste koga pozabili. Utegnil vam bo zameriti. Temu se da izogniti tako, da celotno zahvalo izpustite.
+\rm\normalfont
 
-%********************************************
+% prazna stran
+\clearemptydoublepage
 
-\renewcommand\thepage{} 
-\tableofcontents 
-\renewcommand\thepage{\arabic{page}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% posvetilo, če sama zahvala ne zadošča :-)
+\thispagestyle{empty}\mbox{}{\vskip0.20\textheight}\mbox{}\hfill\begin{minipage}{0.55\textwidth}%
+Svoji dragi Alenčici.
+\normalfont\end{minipage}
 
-\thispagestyle{empty}
+% prazna stran
+\clearemptydoublepage
 
 
-%********************************************
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% kazalo
+\pagestyle{empty}
+\def\thepage{}% preprečimo težave s številkami strani v kazalu
+\tableofcontents{}
 
-\chapter*{Seznam uporabljenih kratic in simbolov}
 
-\thispagestyle{empty}
+% prazna stran
+\clearemptydoublepage
 
-Seznam uporabljenih kratic in simbolov, ki morajo biti enotni v celotnem delu, ne glede na označevanje v uporabljenih virih.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% seznam kratic
 
-\begin{table}[h!]
-    \centering
-    \begin{tabular}{|l|l|}
-        \hline
-        UI & umetna inteligenca \\
-        \hline
-        PNJ & procesiranje naravnih jezikov \\
-        \hline
-        GCC & GitHub Copilot Chat \\
-        \hline
-        IDE & integrirano razvojno okolje \\
-        \hline
-    \end{tabular}
-    \caption{Seznam kratic in njihovih pomenov}
-    \label{tab:abbreviations}
-\end{table}
+\chapter*{Seznam uporabljenih kratic}
 
-%\cleardoublepage
+\noindent\begin{tabular}{p{0.11\textwidth}|p{.39\textwidth}|p{.39\textwidth}}    % po potrebi razširi prvo kolono tabele na račun drugih dveh!
+  {\bf kratica} & {\bf angleško}                              & {\bf slovensko} \\ \hline
+  {\bf UI}      & umetna inteligenca               & artificial intelligence \\
+  {\bf PNJ} & procesiranje naravnih jezikov & natural language processing \\
+  {\bf GCC}   & GitHub Copilot Chat              & GitHub Copilot Chat \\
+    {\bf IDE}   & integrirano razvojno okolje              & integrated development environment \\
+%  \dots & \dots & \dots \\
+\end{tabular}
 
-\clearpage{\pagestyle{empty}\cleardoublepage}
 
-%********************************************
-%zacno se glavni listi, ki so numerirani z arabskimi stevilkami
+% prazna stran
+\clearemptydoublepage
 
-\setcounter{page}{1}
-\pagenumbering{arabic}
-
-\chapter*{Povzetek}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% povzetek
+\phantomsection
 \addcontentsline{toc}{chapter}{Povzetek}
+\chapter*{Povzetek}
 
-Povzetek naj posreduje bralcu kratko vsebino dela. Zajema naj namen dela, področje, na katerega se delo nanaša,
-uporabljene metode, poglavitne rezultate dela, zaključke in priporočila. 
-Povzetek naj ne obsega več kot eno stran, obi\v cajno ima le 200 do 300 besed. Napiše se povsem na koncu,
-ko je že jasna vsebina vseh ostalih poglavij.
+\noindent\textbf{Naslov:} \ttitle
+\bigskip
 
-Ta dokument vsebuje navodilo za izdelavo diplomskega dela v obliki in strukturi, ki je v teh navodilih predpisan za
-pisanje diplomskih nalog. Struktura dokumenta je namenjena obojestranskemu tiskanju, kjer se novo poglavje vedno za\v cne na lihi strani.
-V dejanski diplomi poglavja in podpogla\-vja  obi\v cajno niso tako kratka kot v teh navodilih.
+\noindent\textbf{Avtor:} \tauthor
+\bigskip
 
-Za oblikovanje tega dokumenta je bil uporabljen sistem \LaTeX.
-Ve\v c o \LaTeX-u lahko izve\v s na spletni strani \texttt{http://www.ctan.org/}.
-Kandidati, ki bodo svoje diplomsko delo oblikovali s pomo\v cjo
-\LaTeX-a, lahko izvorno kodo tega dokumenta neposredno uporabijo kot vzorec za pisanje svoje diplomske naloge.
+%\noindent\textbf{Povzetek:} 
+\noindent V vzorcu je predstavljen postopek priprave diplomskega dela z uporabo okolja \LaTeX. Vaš povzetek mora sicer vsebovati približno 100 besed, ta tukaj je odločno prekratek.
+Dober povzetek vključuje: (1) kratek opis obravnavanega problema, (2) kratek opis vašega pristopa za reševanje tega problema in (3) (najbolj uspešen) rezultat ali prispevek diplomske naloge.
 
-\vspace{1.3cm}
-\noindent
-{\large \bf Ključne besede:}
+\bigskip
 
-\vspace{0.5cm}
-\noindent
-diploma, mentor, zagovor, podaljšanje, pisanje, struktura
+\noindent\textbf{Ključne besede:} \tkeywords.
+% prazna stran
+\clearemptydoublepage
 
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% abstract
+\phantomsection
+\selectlanguage{english}
+\addcontentsline{toc}{chapter}{Abstract}
 \chapter*{Abstract}
 
-\addcontentsline{toc}{chapter}{Abstract}
+\noindent\textbf{Title:} \ttitleEn
+\bigskip
 
-Povzetek naj bo napisan v angleškem jeziku.
+\noindent\textbf{Author:} \tauthor
+\bigskip
 
-\vspace{1.3cm}
-\noindent
-{\large \bf Key words:}
+%\noindent\textbf{Abstract:} 
+\noindent This sample document presents an approach to typesetting your BSc thesis using \LaTeX. 
+A proper abstract should contain around 100 words which makes this one way too short.
+\bigskip
 
-\vspace{0.5cm}
-\noindent
-Ključne besede v angleškem jeziku.
-
+\noindent\textbf{Keywords:} \tkeywordsEn.
+\selectlanguage{slovene}
+% prazna stran
+\clearemptydoublepage
 
 %********************************************
 
@@ -764,8 +840,7 @@ Iz rezultatov lahko sklepamo, da programiranje z asistenco umetne inteligence iz
 *todo
 Eksperiment bi lahko bil izboljšan z večjim številom nalog in učencev v eksperimentu. Dodatno bi lahko demografski podatki bili bolj raznoliki, z večjim številom oseb ženskega spola ter z večjo raznolikostjo starosti in predznanja. Eksperiment je bil omejen na demografsko skupino otrok, ki se učijo programirati v eni izmed šol programiranja.
 
-\printbibliography
-
+\printbibliography[heading=bibintoc,title={Literatura}]
 
 
 

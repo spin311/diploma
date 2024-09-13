@@ -1,17 +1,3 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% datoteka diploma-FRI-vzorec.tex
-%
-% vzorčna datoteka za pisanje diplomskega dela v formatu LaTeX
-% na UL Fakulteti za računalništvo in informatiko
-%
-% na osnovi starejših verzij vkup spravil Franc Solina, maj 2021
-% prvo verzijo je leta 2010 pripravil Gašper Fijavž
-%
-% za upravljanje z literaturo ta vezija uporablja BibLaTeX
-%
-% svetujemo uporabo Overleaf.com - na tej spletni implementaciji LaTeXa ta vzorec zagotovo pravilno deluje
-%
-
 \documentclass[a4paper,12pt,openright]{book}
 %\documentclass[a4paper, 12pt, openright, draft]{book}  Nalogo preverite tudi z opcijo draft, ki pokaže, katere vrstice so predolge! Pozor, v draft opciji, se slike ne pokažejo!
  
@@ -24,6 +10,9 @@
 \usepackage{hyperxmp}
 \usepackage[hyphens]{url}
 \usepackage{csquotes}
+\usepackage{float}
+\usepackage{array}
+\usepackage{longtable}
 \usepackage[pdftex, colorlinks=true,
 						citecolor=black, filecolor=black, 
 						linkcolor=black, urlcolor=black,
@@ -46,12 +35,12 @@ sorting=nty,
 %	DIPLOMA INFO
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newcommand{\ttitle}{Hiter inženiring pri razvoju programske opreme}
-\newcommand{\ttitleEn}{Diploma thesis template}
+\newcommand{\ttitleEn}{Prompt engineering in software development}
 \newcommand{\tsubject}{\ttitle}
 \newcommand{\tsubjectEn}{\ttitleEn}
 \newcommand{\tauthor}{Svit Spindler}
-\newcommand{\tkeywords}{računalnik, računalnik, računalnik}
-\newcommand{\tkeywordsEn}{computer, computer, computer}
+\newcommand{\tkeywords}{umetna inteligenca, inženiring pozivov, programski inženiring}
+\newcommand{\tkeywordsEn}{artificial intelligence, prompt engineering, software engineering}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %	HYPERREF SETUP
@@ -312,8 +301,10 @@ Svoji dragi Alenčici.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % kazalo
 \pagestyle{empty}
+
 \def\thepage{}% preprečimo težave s številkami strani v kazalu
 \tableofcontents{}
+\mainmatter 
 
 
 % prazna stran
@@ -325,11 +316,13 @@ Svoji dragi Alenčici.
 \chapter*{Seznam uporabljenih kratic}
 
 \noindent\begin{tabular}{p{0.11\textwidth}|p{.39\textwidth}|p{.39\textwidth}}    % po potrebi razširi prvo kolono tabele na račun drugih dveh!
-  {\bf kratica} & {\bf angleško}                              & {\bf slovensko} \\ \hline
+  {\bf kratica} & {\bf slovensko}                              & {\bf angleško} \\ \hline
   {\bf UI}      & umetna inteligenca               & artificial intelligence \\
+    {\bf LLM}      & velik jezikovni model            & large language model \\
   {\bf PNJ} & procesiranje naravnih jezikov & natural language processing \\
   {\bf GCC}   & GitHub Copilot Chat              & GitHub Copilot Chat \\
     {\bf IDE}   & integrirano razvojno okolje              & integrated development environment \\
+      {\bf SDLC}   & Življenjski cikel razvoja programske opreme              & Software Development Life Cycle \\
 %  \dots & \dots & \dots \\
 \end{tabular}
 
@@ -350,8 +343,11 @@ Svoji dragi Alenčici.
 \bigskip
 
 %\noindent\textbf{Povzetek:} 
-\noindent V vzorcu je predstavljen postopek priprave diplomskega dela z uporabo okolja \LaTeX. Vaš povzetek mora sicer vsebovati približno 100 besed, ta tukaj je odločno prekratek.
-Dober povzetek vključuje: (1) kratek opis obravnavanega problema, (2) kratek opis vašega pristopa za reševanje tega problema in (3) (najbolj uspešen) rezultat ali prispevek diplomske naloge.
+Hiter razvoj umetne inteligence, zlasti velikih jezikovnih modelov, kot sta GPT-3 in GPT-4, je spremenil razvoj programske opreme. Ti modeli omogočajo avtomatizirano generiranje in dopolnjevanje kode s pomočjo hitrega inženiringa, kjer dobro zasnovani vhodi vodijo do učinkovitih in natančnih rezultatov. V tej diplomski nalogi je raziskan potencial hitrega inženiringa, ki ga poganja umetna inteligenca, kot ključnega orodja pri sodobnem razvoju programske opreme.
+
+Z analizo vloge umetne inteligence pri izboljšanju učinkovitosti kodiranja, zmanjšanju števila napak in pospešitvi procesa učenja programerjev začetnikov raziskava izpostavlja vpliv razvojnih orodij, ki temeljijo na inženiringu pozivov. Študija preučuje, kako inženiring pozivov izboljšuje prakse kodiranja z vključevanjem umetne inteligence v razvojni proces. Prav tako diplomsko delo ocenjuje učinke orodij umetne inteligence pri reševanju problemov in kakovosti kode, ustvarjene v različnih scenarijih.
+
+Ugotovitve kažejo, da lahko hiter inženiring ob ustrezni uporabi zapolni razkorak med človeško intuicijo in strojno natančnostjo ter tako ponudi učinkovit pristop za reševanje zapletenih izzivov kodiranja in spodbujanje inovacij v inženirstvu programske opreme.
 
 \bigskip
 
@@ -386,19 +382,22 @@ A proper abstract should contain around 100 words which makes this one way too s
 
 \chapter{Uvod}
 
-Orodja za dopolnjevanje in generiranje kode so pri programiranju postala zelo popularna, saj omogočajo hitrejše in učinkovitejše reševanje problemov. Orodja za generiranje kode s pomočjo umetne inteligence, kot so GitHub Copilot, Amazon CodeWhisperer in ChatGPT podjetja OpenAI se uporabljajo tako med začetniki kot tudi med izkušenimi programerji. Ta orodja omogočajo generiranje kode na podlagi pozivov v naravnem jeziku ali delnih vnosov kode, kar bistveno poenostavi proces programiranja.
+Hiter razvoj umetne inteligence, zlasti LLM-jev, kot sta GPT-3 in GPT-4, je pomembno vplival na razvoj programske opreme. Ti modeli razvijalcem omogočajo ustvarjanje kode s pomočjo pozivov v naravnem jeziku, kar bistveno spreminja pristop k programiranju. Ta premik k avtomatizaciji odpira pomembna vprašanja o vplivu orodij umetne inteligence tako na začetnike kot tudi na izkušene razvijalce.
 
-Namen te študije je preučiti prednosti in slabosti najpopularnejših orodij za umetno inteligenco (UI) ter raziskati, kako omenjena orodja vplivajo na proces učenja in programiranja pri začetnih programerjih s preučevanjem hitrosti in kvalitete kode na različnih programerskih problemih v jeziku Python. V dobi, ko postaja UI vedno bolj dostopna in popularna, je ključnega pomena raziskati, ali lahko UI pospeši proces učenja in izboljša razumevanje programerskih konceptov.  
+Inženiring pozivov, praksa oblikovanja natančnih vnosov za doseganje želenih rezultatov orodij umetne inteligence, se je izkazal za ključno spretnost za povečanje produktivnosti pri razvoju programske opreme. Z natančnim prilagajanjem pozivov lahko razvijalci uporabijo UI za avtomatizacijo rutinskih nalog kodiranja, odpravljanje napak in celo generiranje celotnih programskih modulov. Ta postopek pospešuje razvoj in demokratizira programiranje, saj zapletene naloge postanejo dostopnejše tistim z manj tehničnega znanja.
 
-V naslednjih poglavjih bomo pregledali razvoj programske kode in vlogo strojnega učenja ter naprednih jezikovnih modelov pri avtomatizaciji tega procesa. Najprej bomo raziskali zgodovinski razvoj orodij za podporo razvijalcem in zgodnje uporabe strojnega učenja pri pridobivanju specifikacij in napovedovanju uporabniškega vnosa. Nato bomo obravnavali sodobne arhitekture globokega učenja, kot sta GPT-3 in GPT-4, ki omogočajo napredne funkcionalnosti avtomatskega dopolnjevanja in generiranja kode.
+Orodja za generiranje kode, kot so GitHub Copilot, Amazon CodeWhisperer in ChatGPT podjetja OpenAI, so med razvijalci postala priljubljena zaradi svoje sposobnosti poenostavitve reševanja problemov. Ta orodja, ki jih poganja umetna inteligenca, generirajo kodo na podlagi pozivov v naravnem jeziku ali delnih vnosov kode, kar znatno poenostavi postopek kodiranja.
+
+Namen tega diplomskega dela je raziskati prednosti in omejitve orodij umetne inteligence, zlasti njihov vpliv na procese učenja in razumevanja programiranja  pri začetniških razvijalcih. S študijo pravilnosti in kakovosti kodiranja pri reševanju različnih programskih problemov raziskuje, ali lahko umetna inteligenca izboljša razumevanje programskih konceptov ter pospeši razvoj programske opreme. Glede na vse večjo dostopnost in priljubljenost umetne inteligence je razumevanje njenega potenciala za pospešitev učenja in izboljšanje postopkov programiranja ključnega pomena.
+
+V naslednjih poglavjih bomo preučili razvoj orodij za kodiranje ter vlogo strojnega učenja in naprednih jezikovnih modelov pri avtomatizaciji tega procesa. Raziskali bomo tudi razvoj orodij UI za razvijalce, zgodnjo uporabo strojnega učenja in sodobne arhitekture globokega učenja, kot sta GPT-3 in GPT-4, ki omogočajo napredne funkcije za generiranje kode.
 
 
 
 \chapter{Pregled področja}
-Narava in kompleksnost programske opreme sta se v zadnjih 30 letih močno spremenili. V sedemdesetih letih 20. stoletja so aplikacije delovale na enem samem procesorju, proizvajale alfanumerične izhode in prejemale svoj vhod iz linearnega vira. Današnje aplikacije so veliko bolj zapletene; običajno imajo grafični uporabniški vmesnik in uporabljajo arhitekturo odjemalec-strežnik. Pogosto delujejo na dveh ali več procesorjih, pod različnimi operacijskimi sistemi in na geografsko porazdeljenih strojih. Redko katero področje v zgodovini se je  razvilo tako hitro kot razvoj programske opreme. Zato je nujno potrebno izboljševati koncepte, strategije in prakse programskega inženiringa, da bi se izognili konfliktom in izboljšali proces razvoja programske opreme, da lahko pravočasno in v okviru proračuna zagotovimo kakovostno programsko opremo, ki jo je mogoče vzdrževati.
+Narava in kompleksnost programske opreme sta se v zadnjih 30 letih močno spremenili. V sedemdesetih letih 20. stoletja so aplikacije delovale na enem samem procesorju, proizvajale alfanumerične izhode in prejemale svoj vhod iz linearnega vira. \cite{aggarwal2005software} Današnje aplikacije so veliko bolj zapletene; običajno imajo grafični uporabniški vmesnik in uporabljajo arhitekturo odjemalec-strežnik. Pogosto delujejo na dveh ali več procesorjih, pod različnimi operacijskimi sistemi in na geografsko porazdeljenih strojih.\cite{Wasserman_Engineering} Redko katero področje v zgodovini se je  razvilo tako hitro kot razvoj programske opreme. 
+Zato je nujno potrebno izboljševati koncepte, strategije in prakse programskega inženiringa, da bi se izognili konfliktom in izboljšali proces razvoja programske opreme, da lahko pravočasno in v okviru proračuna zagotovimo kakovostno programsko opremo, ki jo je mogoče vzdrževati.
 V naslednjih poglavjih se bomo posvetili pregledu programskega inženirstva in njegove zgodovine ter sodobnega inženirstva pozivov, ki poskuša ta proces izboljšati in pospešiti.
-
-\cite{aggarwal2005software}
 \section{Programsko inženirstvo}
 V dobi digitalizacije je programska oprema postala ključna za napredek na skoraj vseh področjih človeškega delovanja. Programiranje samo ne zadostuje več za izdelavo velikih programov. Obstajajo resne težave pri kakovosti,stroških, pravočasnosti in vzdrževanju številnih izdelkov programske opreme.
 Cilj programskega inženiringa je reševanje teh težav z izdelavo kakovostne programske opreme, ki je narejena pravočasno in v okviru proračuna. Da bi dosegli ta cilj, se moramo osredotočiti tako na kakovost izdelka kot tudi na procese, uporabljene za razvoj izdelka.
@@ -422,20 +421,18 @@ Model življenjskega cikla programske opreme je posebna abstrakcija, ki predstav
 \subsection{MODELI SDLC}
 
 Predlagani so bili različni modeli življenjskega cikla, ki temeljijo na nalogah, vključenih v razvoj in vzdrževanje programske opreme. V tem poglavju je obravnavanih nekaj znanih modelov življenjskih ciklov.
-2.1.1 Model gradnje in popravljanja
+\subsubsection{Model gradnje in popravljanja}
 Včasih je izdelek izdelan brez specifikacij ali kakršnega koli poskusa načrtovanja. Namesto tega razvijalec preprosto zgradi izdelek, ki ga predela tolikokrat, kolikor je potrebno, da zadovolji naročnika.
 To je ad hoc pristop in ni dobro opredeljen. V osnovi gre za preprost dvofazni model. Prva faza je pisanje kode, naslednja faza pa njeno popravljanje. Popravljanje v tem kontekstu je lahko popravljanje napak ali dodajanje dodatnih funkcionalnosti.
 Čeprav se ta pristop lahko dobro obnese pri majhnih programskih nalogah, dolgih 100 ali 200 vrstic, je ta model popolnoma nezadovoljiv za programsko opremo kakršne koli večje obsežnosti. Koda kmalu postane nepopravljiva in neizboljšljiva. Ni prostora za strukturirano ali podrobno načrtovanje ali kateri koli vidik razvojnega procesa. Stroški razvoja s tem pristopom so dejansko zelo visoki v primerjavi s stroški pravilno določenega in skrbno zasnovanega izdelka. Poleg tega je lahko vzdrževanje izdelka brez specifikacije ali projektne dokumentacije zelo težavno.
-
-2.1.2 Slapovni model
-
+\subsubsection{Slapovni model}
 Najbolj znan model je slapovni model, ki je sestavljen iz petih faz: analiza in specifikacija zahtev, načrtovanje, izvedba in testiranje enot, integracija in sistemsko testiranje ter delovanje in vzdrževanje. 
 Faze si vedno sledijo v tem vrstnem redu in se ne prekrivajo. Razvijalec mora zaključiti vsako fazo, preden začne z naslednjo fazo. Model se imenuje "Slapovni model", ker njegov diagramski prikaz spominja na kaskado slapov.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1\linewidth]{images/slapovni-model.jpg}
-    \caption{Faze slapovnega modela}
+    \includegraphics[width=1\linewidth]{images/slapovni-model.png}
+    \caption{Faze slapovnega modela, slika povzeta iz \cite{mercun2012}}
     \label{fig:enter-label}
 \end{figure}
 
@@ -573,9 +570,7 @@ Prednost transformatorjev je, da nimajo rekurentnih enot, kar jim omogoča, da o
 \cite{NIPS2017_3f5ee243}
 
 Mehanizem pozornosti za razliko od tradicionalnih metod, ki besede obravnavajo ločeno, vsaki besedi dodeli uteži glede na njeno pomembnost za trenutno nalogo. To modelu omogoča, da zajame odvisnosti dolgega dosega, hkrati analizira lokalne in globalne kontekste ter razrešuje dvoumnosti s pozornostjo do informativnih delov stavka. Razvoj tega mehanizma je doprinesel k razvoju velikih jezikovnih modelov.
-\cite{datacamp_attention_2024}
-\cite{KASNECI2023102274}
-
+\cite{datacamp_attention_2024, KASNECI2023102274}
 Druga pomembna novost je uporaba učenja vnaprej, pri katerem se jezikovni model najprej uči na velikem naboru podatkov, nato pa se prilagodi določeni nalogi. To se je izkazalo za učinkovito tehniko za izboljšanje učinkovitosti pri številnih jezikovnih nalogah.
 Nedavni napredek vključuje tudi razvoj najpopularnejšega modela ChatGPT, ki je bil učen na veliko večji zbirki podatkov, tj. besedilih iz zelo velikega spletnega korpusa, in je pokazal vrhunsko uspešnost pri številnih nalogah v naravnem jeziku, od prevajanja do odgovarjanja na vprašanja, pisanja koherentnih esejev in računalniških programov.
 \cite{KASNECI2023102274}
@@ -586,8 +581,7 @@ Jezikovni modeli dodeljujejo verjetnosti zaporedjem žetonov in se pogosto upora
 
 
 Trenutni najsodobnejši veliki jezikovni modeli za generiranje kode so pokazali pomemben napredek pri pomoči pri programiranju z asistenco umetne inteligence. V nadaljevanju si bomo pogledali ter medsebojno primerjali modele ChatGPT ter GitHub Copilot podjetja OpenAI ter Amazon CodeWhisperer podjetja Amazon.
-\cite{KASNECI2023102274}
-\cite{vaswani2023attention}
+\cite{KASNECI2023102274, vaswani2023attention}
 Izbira omenjenih orodij temelji na njihovi popularnosti. Model ChatGPT je svetovno najpopularnejši klepetalni robot, ki ima poleg pogovora zmožnosti generiranja programske kode. Klepetalnega robota bomo primerjali z najbolj uporabljenima asistentoma za kodiranje, ki se uporabljata znotraj integriranih razvojnih okolij, GitHub Copilot in Amazon CodeWhisperer. Modele bomo primerjali glede na več kriterijev za asistenco kodiranja, s katerimi jeziki deluje najboljše in dostopnost.
 
 \section{ChatGPT}
@@ -610,8 +604,7 @@ Pomembna razširitev Copilota je GitHub Copilot Chat (GCC) , ki je bil objavljen
 GCC znotraj IDE urejevalnika doda pogovorno okno, kjer lahko razvijalec v poljubnem naravnem jeziku postavlja vprašanja, zahteva razlago ali popravke kode, ter celo generiranje dokumentacije ali testov, brez da bi zapustil IDE. Poleg poziva, ki ga podamo v pogovorno okno GCC upošteva tudi kontekst trenutno odprte datoteke urejevalnika, dodatno pa lahko v kontekst pogovora v urejevalniku odprtega projekta referenciramo poljubne datoteke, ki se nanašajo na naše vprašanje, da dobimo bolj natančen odgovor.
 \cite{github_copilot_chat}
 \newline
-Copilot temelji na družini modelov OpenAI Codex. Modeli Codex kot osnovo vzamejo model GPT-3, ki ga nato prilagodijo na podlagi kode iz GitHuba. Njegov način tokenizacije je skoraj identičen z GPT-3, uporablja kodiranje parov bajtov za pretvorbo izvornega besedila v zaporedje žetonov, vendar je bil besedni zaklad GPT-3 razširjen z dodajanem namenskih žetonov za bele prostore (tj. žeton za dva presledka, žeton za tri presledke, vse do 25 presledkov). To tokenizerju omogoča učinkoviteje kodiranje izvorne kode. (ki ima veliko belih presledkov) Pomembna lastnost, ki sta jo Codex in Copilot podedovala od GPT-3, je, da ob pozivu ustvarita najverjetnejši odgovor za poziv na podlagi tega, kar je bilo pridobljeno iz izkušenj, pridobljenih pri usposabljanju. V kontekstu generiranja kode to pomeni, da model ne bo nujno ustvaril najboljše kode (po kateri koli izbrani metriki - zmogljivost, varnost itd.), temveč tisto, ki se najbolje ujema s predhodno in naučeno kodo. Posledično na kakovost generirane kode močno vlivajo semantično nepomembne lastnosti poziva. \cite{9833571}
-\cite{10.1145/3520312.3534862}
+Copilot temelji na družini modelov OpenAI Codex. Modeli Codex kot osnovo vzamejo model GPT-3, ki ga nato prilagodijo na podlagi kode iz GitHuba. Njegov način tokenizacije je skoraj identičen z GPT-3, uporablja kodiranje parov bajtov za pretvorbo izvornega besedila v zaporedje žetonov, vendar je bil besedni zaklad GPT-3 razširjen z dodajanem namenskih žetonov za bele prostore (tj. žeton za dva presledka, žeton za tri presledke, vse do 25 presledkov). To tokenizerju omogoča učinkoviteje kodiranje izvorne kode. (ki ima veliko belih presledkov) Pomembna lastnost, ki sta jo Codex in Copilot podedovala od GPT-3, je, da ob pozivu ustvarita najverjetnejši odgovor za poziv na podlagi tega, kar je bilo pridobljeno iz izkušenj, pridobljenih pri usposabljanju. V kontekstu generiranja kode to pomeni, da model ne bo nujno ustvaril najboljše kode (po kateri koli izbrani metriki - zmogljivost, varnost itd.), temveč tisto, ki se najbolje ujema s predhodno in naučeno kodo. Posledično na kakovost generirane kode močno vlivajo semantično nepomembne lastnosti poziva. \cite{9833571, 10.1145/3520312.3534862}
 
 
 
@@ -620,13 +613,11 @@ Amazon CodeWhisperer izboljša produktivnost razvijalcev z generiranjem priporo�
 
 \section{Ugotovitve in primerjava}
 
-\begin{table}[H]
-\centering
-\caption{Primerjava orodij ChatGPT, GitHub Copilot in Amazon CodeWhisperer}
-\begin{tabular}{|>{\raggedright\arraybackslash}p{3cm}|>{\raggedright\arraybackslash}p{4cm}|>{\raggedright\arraybackslash}p{4cm}|>{\raggedright\arraybackslash}p{4cm}|}
+
+
+\begin{longtable}{|>{\raggedright\arraybackslash}p{2.5cm}|>{\raggedright\arraybackslash}p{3cm}|>{\raggedright\arraybackslash}p{3.5cm}|>{\raggedright\arraybackslash}p{3cm}|}
+\caption{Primerjava orodij ChatGPT, GitHub Copilot in Amazon CodeWhisperer} \\
 \hline
-\textbf{Lastnost}               & \textbf{ChatGPT}           & \textbf{GitHub Copilot}           & \textbf{Amazon CodeWhisperer}          
-\\ \hline
 Razvijalec              & OpenAI      & OpenAI-Microsoft                  & AWS            \\ \hline
 Datum izdaje               & 30. 11. 2022        & 29. 10. 2021           & 23. 06. 2022       \\ \hline
 Podpora integriranega razvojnega okolja           & Ni podpore          & Večina razvojnih okolij        & Pomembnejša razvojna okolja          \\ \hline
@@ -636,14 +627,11 @@ Več predlogov za poziv                & Ne (možno z eksplicitnimi navodili za 
 Vir podatkov za usposabljanje             & GitHub repozitoriji, zbirka podatkov OpenAI Codex, online repozitoriji GitLab, Bitbucket in SourceForge                   & "Velike količine javno objavljene kode"                  & "...treniran na vseh jezikih iz javnih repozitorijev"                    \\ \hline
 S katerimi jeziki deluje najboljše                        & Ni zapisano                  & C, C++, C\#, Go, Java, JavaScript, PHP, Python, Ruby, Scala in TypeScript              & C\#, Java, JavaScript, Python in TypeScript  \\ \hline
 Cena               & osnovni model zastonj, plus 20\$ / mesec          & Zastonj za študente in učitelje, 10\$ / mesec za posameznike, 19\$ / mesec za profesionalne uporabnike                    &   Zastonj za posameznike, 19\$ / mesec za profesionalne uporabnike            \\ \hline
-\end{tabular}
+\end{longtable}
 \label{tab:comparison}
-\end{table}
 
 Iz javno dostopnih podatkov ter testiranja zgoraj najpopularnejših predhodno omenjenih orodij smo naredili zgornjo tabelo, ki primerja modele ChatGPT, GitHub Copilot ter Amazon CodeWhisperer. Integracijo v razvojno okolje podpirata tako GitHub Copilot kot tudi Amazon CodeWhisperer, kjer GitHub Copilot ponuja bolj obširno izbiro razvojnih orodij. Razlago predlagane kode podpirata ChatGPT in GitHub Copilot Chat, sklice na predlagane rešitve pa ponuja le Amazon CodeWhisperer. Največje število predlogov za podan poziv ponuja Github Copilot, pri uporabi ChatGPT pa lahko to dosežemo z eksplicitnimi navodili. ChatGPT nima podanih informacij o najbolje podprtih programskih jezikih, GitHub Copilot in Amazon CodeWhisperer navajata podprte programske jezike, pri čemer lahko vidimo, da GitHub Copilot podpira več programskih jezikov kot Amazon CodeWhisperer. Pomembna razlika v modelih je tudi v ceni, saj nižja cena pripomore k različni dostopnosti širši množici uporabnikom, kar je eden izmed razlogov za popularnost ChatGPT-ja tudi v programiranju, kljub temu, da to ni njegov prvotni namen. Kljub temu, da je osnovni model zastonj, pa lahko plačamo 20\$ na mesec za napredni model, ki uporablja GPT-4. Amazon CodeWhisperer ima tudi ugoden cenovni načrt z možnostjo brezplačne uporabe za posameznike in ceno 19\$ mesec za profesionalne uporabnike. GitHub Copilot ponuja brezplačno uporabo le za učitelje in študente, ostali uporabniki plačujejo 10\$ / mesec ali pa 19\$ / mesec, če gre za profesionalne uporabnike.
-\cite{github_copilot_chat}
-\cite{openai_chatgpt}
-\cite{saasworthy_codewhisperer}
+\cite{github_copilot_chat, openai_chatgpt, saasworthy_codewhisperer}
 
 Za izvedbo eksperimenta vpliva hitrega inženiringa pri razvoju programske opreme smo si glede na zgoraj opisane podatke izbrali ChatGPT, predvsem zaradi splošne poznanosti in popularnosti orodja, saj je velika večina začetnih programerjev že imela interakcijo z orodjem pred samim eksperimentom.
 
@@ -690,6 +678,29 @@ Poleg tečajev jih v svojem prostem času dodatno programira 17 oziroma 55 \%.
     \caption{Starostna razporeditev}
     \label{fig:ages}
 \end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{images/izkusnje.png}
+    \caption{Lastna ocena izkušenj pri programiranju}
+    \label{fig:ages}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{images/ocena_prog.png}
+    \caption{Lastna ocena programiranja}
+    \label{fig:ocena_prog}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{images/solo_prog.png}
+    \caption{Razporeditev pogostosti programiranja izven tečajev}
+    \label{fig:solo_prog}
+\end{figure}
+
+
 
 Za izvedbo eksperimenta je bil razvit uporabniški vmesnik v jeziku JavaScript. Spletna stran je sestavljena iz treh delov. Prostor za pisanje Python kode z navodili in primeri vhodov in izhodov, prostor za izpis in testiranje programa ter prostor za pogovor z uporabo ChatGPT-3.5. Stran tudi vsebuje indikator trenutne naloge ter unikatni identifikator za anonimno identifikacijo. Stran je bila postavljena s pomočjo orodja GitHub Pages in je dostopna na \href{https://spin311.github.io/diploma/}{povezavi}.
 Za namene beleženja in shranjevanja podatkov je bilo narejeno zaledje v jeziku Java z ogrodjem Spring Boot, ki je uporabljajo relacijsko bazo HSQLDB za shranjevanje podatkov. Na splet je bilo postavljeno s storitvijo Microsoft Azure za namene oddaljenega in neprekinjenega dostopa. Namen zaledja je bil vsakemu obiskovalcu strani dodeliti unikatni naključni identifikator, ter beležiti kodo ter pogovor za posamično nalogo v ustrezno relacijsko bazo. Baza je vsebovala pet tabel. Vnos (angl. log), pogovor (chat), ter oddaja so vsebovale podatke o trenutnem stanju naloge, časa in kode in so vsebovale referenco na tabeli študent, ki je hranila osnovne podatke o učencih ter na tabelo naloge, ki je vsebovala podatke o trenutni nalogi. Shranjevalo se je tudi ali se je trenutna koda prevedla z napako, število poskusov za trenutno nalogo in metapodatke, kot je trenuten čas ter čas reševanja trenutne naloge. Kodo in pogovor se je beležilo ob oddaji naloge, vsakem prevajanju programa ter na določen časovni interval.
@@ -739,17 +750,6 @@ Naloge so bile ocenjene na lestvici 1-5 (stolpec correct v tabeli oddaja). Ocena
 Po končanem eksperimentu se je naredila analiza zbranih podatkov s pomočjo podatkov shranjenih v relacijskih bazah ter z narejenimi sql poizvedbami z uporabo knjižnice SQLite.
 Spodaj je zapisana sql poizvedba, uporabljena za analizo pridobljenih podatkov. Poizvedba podatke grupira po stopnji težavnosti in možnosti uporabe GPT-ja ter prikaže povprečno vrednost točk za vsako skupino nalog, zaokroženo na eno decimalno mesto. V nadaljevanju je poizvedbi dodan še stavek za filtriranje glede na podano demografsko lastnost.
 
-\begin{lstlisting}
-SELECT T.TASK_DIFFICULTY,
-       T.GPT_ENABLED,
-       ROUND(AVG(SU.correct), 1) as avg_score
- FROM STUDENT ST
- JOIN SUBMIT SU ON ST.student_id = SU.student_id
- JOIN TASKS T ON SU.taskNumber = T.task_id
-WHERE SU.correct IS NOT NULL
-GROUP BY T.TASK_DIFFICULTY, T.GPT_ENABLED;
-\end{lstlisting}
-
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\linewidth]{images/bar_all.png}
@@ -771,14 +771,6 @@ Graf \ref{fig:grade_all} prikazuje povprečno oceno pri posamezni nalogi. Naloge
 Graf \ref{fig:bar_all} prikazuje povprečno oceno za različne težavnostne stopnje nalog nad vso populacijo. Y os prikazuje povprečje točk, X os prikazuje težavnostno stopnjo skupine nalog.
 Pri nalogah prve stopnje težavnosti je bilo z uporabo GPT povprečje 3.5, brez možnosti uporabe pa 3.2. Pri nalogah druge stopnje težavnosti je z uporabo GPT povprečje 4.5 ter brez 2.8. Pri nalogah tretje stopnje je povprečje z uporabo GPT 4.2 ter brez 2.7. V vseh primerih so bile naloge, kjer je bila omogočena uporaba GPT, rešene boljše. 
 Odklone v razlikah pri različnih kategorijah lahko pojasnimo s preprosto sql poizvedbo po številu pogovorov za določeno kategorijo.
-
-\begin{lstlisting}
-SELECT T.TASK_DIFFICULTY,
- COUNT(*) / COUNT(DISTINCT C.codeNumber) as chat_count
-  FROM CHAT C
-  JOIN TASKS T ON C.codeNumber = T.task_id
-GROUP BY T.TASK_DIFFICULTY;
-\end{lstlisting}
 
 \begin{tabular}{|l|r|}
 \hline

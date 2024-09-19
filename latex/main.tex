@@ -19,6 +19,23 @@
 						pdfproducer={LaTeX}, pdfcreator={LaTeX}]{hyperref}
 
 \usepackage{color}
+\usepackage{listings}
+\usepackage{xcolor}
+
+% Define Python code styling
+\lstdefinestyle{python}{
+    language=Python,
+    backgroundcolor=\color{lightgray!20},
+    basicstyle=\ttfamily\small,
+    keywordstyle=\bfseries\color{blue},
+    commentstyle=\itshape\color{gray},
+    stringstyle=\color{orange},
+    showstringspaces=false,
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    breaklines=true,
+    frame=single
+}
 \usepackage{soul}
 
 \usepackage[
@@ -249,26 +266,45 @@ Besedilo je oblikovano z urejevalnikom besedil \LaTeX.}
 \vfill
 
 \bigskip
-\noindent\textbf{Kandidat:} Ime Priimek\\
-\noindent\textbf{Naslov:} Naslov diplomskega dela\\
+\noindent\textbf{Kandidat:} Svit Spindler\\
+\noindent\textbf{Naslov:} Hiter inženiring pri razvoju
+programske opreme\\
 % vstavite ustrezen naziv študijskega programa!
-\noindent\textbf{Vrsta naloge:} npr. Diplomska naloga na univerzitetnem programu prve stopnje Računalništvo in informatika \\
+\noindent\textbf{Vrsta naloge:} Diplomska naloga na univerzitetnem programu prve stopnje Računalništvo in informatika \\
 % izberite pravi habilitacijski naziv mentorja!
-\noindent\textbf{Mentor:} viš. pred. / doc. / izr. prof. / prof. dr. Ime Priimek\\
-\noindent\textbf{Somentor:} isto kot za mentorja
+\noindent\textbf{Mentor:} izr. prof. / prof. dr. Dejan Lavbič\\
 
 \bigskip
 \noindent\textbf{Opis:}\\
-Besedilo teme diplomskega dela študent prepiše iz študijskega informacijskega sistema, kamor ga je vnesel mentor. 
-V nekaj stavkih bo opisal, kaj pričakuje od kandidatovega diplomskega dela. 
-Kaj so cilji, kakšne metode naj uporabi, morda bo zapisal tudi ključno literaturo.
+Hiter razvoj umetne inteligence, zlasti velikih jezikovnih modelov, kot sta GPT-3 in GPT-4, je spremenil razvoj programske opreme. Ti modeli omogočajo avtomatizirano generiranje in dopolnjevanje kode s pomočjo hitrega inženiringa, kjer dobro zasnovani vhodi vodijo do učinkovitih in natančnih rezultatov. V tej diplomski nalogi je raziskan potencial hitrega inženiringa, ki ga poganja umetna inteligenca, kot ključnega orodja pri sodobnem razvoju programske opreme.
+
+Z analizo vloge umetne inteligence pri izboljšanju učinkovitosti kodiranja, zmanjšanju števila napak in pospešitvi procesa učenja programerjev začetnikov raziskava izpostavlja vpliv razvojnih orodij, ki temeljijo na inženiringu pozivov. Študija preučuje, kako inženiring pozivov izboljšuje prakse kodiranja z vključevanjem umetne inteligence v razvojni proces. Prav tako diplomsko delo ocenjuje učinke orodij umetne inteligence pri reševanju problemov in kakovosti kode, ustvarjene v različnih scenarijih.
+
+Ugotovitve kažejo, da lahko hiter inženiring ob ustrezni uporabi zapolni razkorak med človeško intuicijo in strojno natančnostjo ter tako ponudi učinkovit pristop za reševanje zapletenih izzivov kodiranja in spodbujanje inovacij v inženirstvu programske opreme.
 
 \bigskip
-\noindent\textbf{Title:} Naslov diplomskega dela v angleščini
+\noindent\textbf{Title:} \ttitleEn
 
 \bigskip
 \noindent\textbf{Description:}\\
-opis diplome v angleščini
+The rapid development of artificial intelligence, in particular large-scale language models such as
+GPT-3 and GPT-4, has revolutionised software development. These models
+allow automated code generation and completion using hi-
+ing, where well-designed inputs lead to efficient and
+efficient results. This thesis explores the potential of fast
+AI-driven prompt engineering as a key tool in
+co-development of software.
+By analysing the role of artificial intelligence in improving code efficiency, it
+the reduction of errors and the speeding up of the learning process of programmers.
+The research highlights the impact of development tools based on
+engineering prompts. The study examines how prompt engineering improves
+coding practices by integrating artificial intelligence into the development process. Right
+The thesis also evaluates the performance of AI tools in solving
+problems and the quality of code generated in different scenarios.
+The findings show that, if used appropriately, prompt engineering can fill the
+the gap between human intuition and machine precision and thus offer an effective
+approach to solving complex coding challenges and fostering innovation in
+software engineering.
 
 \vfill
 
@@ -278,27 +314,6 @@ opis diplome v angleščini
 
 % prazna stran
 \clearemptydoublepage
-
-% zahvala
-\thispagestyle{empty}\mbox{}\vfill\null\it%
-\noindent
-Na tem mestu zapišite, komu se zahvaljujete za pomoč pri izdelavi diplomske naloge oziroma pri vašem študiju nasploh. Pazite, da ne boste koga pozabili. Utegnil vam bo zameriti. Temu se da izogniti tako, da celotno zahvalo izpustite.
-\rm\normalfont
-
-% prazna stran
-\clearemptydoublepage
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% posvetilo, če sama zahvala ne zadošča :-)
-\thispagestyle{empty}\mbox{}{\vskip0.20\textheight}\mbox{}\hfill\begin{minipage}{0.55\textwidth}%
-Svoji dragi Alenčici.
-\normalfont\end{minipage}
-
-% prazna stran
-\clearemptydoublepage
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % kazalo
 \pagestyle{empty}
 
@@ -318,11 +333,12 @@ Svoji dragi Alenčici.
 \noindent\begin{tabular}{p{0.11\textwidth}|p{.39\textwidth}|p{.39\textwidth}}    % po potrebi razširi prvo kolono tabele na račun drugih dveh!
   {\bf kratica} & {\bf slovensko}                              & {\bf angleško} \\ \hline
   {\bf UI}      & umetna inteligenca               & artificial intelligence \\
-    {\bf LLM}      & velik jezikovni model            & large language model \\
+    {\bf LLM}      & veliki jezikovni model            & large language model \\
   {\bf PNJ} & procesiranje naravnih jezikov & natural language processing \\
   {\bf GCC}   & GitHub Copilot Chat              & GitHub Copilot Chat \\
     {\bf IDE}   & integrirano razvojno okolje              & integrated development environment \\
       {\bf SDLC}   & Življenjski cikel razvoja programske opreme              & Software Development Life Cycle \\
+            {\bf SDD}   & opis zasnove programske opreme           & Software Design Description \\
 %  \dots & \dots & \dots \\
 \end{tabular}
 
@@ -345,7 +361,7 @@ Svoji dragi Alenčici.
 %\noindent\textbf{Povzetek:} 
 Hiter razvoj umetne inteligence, zlasti velikih jezikovnih modelov, kot sta GPT-3 in GPT-4, je spremenil razvoj programske opreme. Ti modeli omogočajo avtomatizirano generiranje in dopolnjevanje kode s pomočjo hitrega inženiringa, kjer dobro zasnovani vhodi vodijo do učinkovitih in natančnih rezultatov. V tej diplomski nalogi je raziskan potencial hitrega inženiringa, ki ga poganja umetna inteligenca, kot ključnega orodja pri sodobnem razvoju programske opreme.
 
-Z analizo vloge umetne inteligence pri izboljšanju učinkovitosti kodiranja, zmanjšanju števila napak in pospešitvi procesa učenja programerjev začetnikov raziskava izpostavlja vpliv razvojnih orodij, ki temeljijo na inženiringu pozivov. Študija preučuje, kako inženiring pozivov izboljšuje prakse kodiranja z vključevanjem umetne inteligence v razvojni proces. Prav tako diplomsko delo ocenjuje učinke orodij umetne inteligence pri reševanju problemov in kakovosti kode, ustvarjene v različnih scenarijih.
+Z analizo vloge umetne inteligence pri izboljšanju učinkovitosti kodiranja, zmanjšanju števila napak in pospešitvi procesa programiranja delo izpostavlja vpliv orodij, ki temeljijo na inženiringu pozivov. Študija preučuje, kako inženiring pozivov izboljšuje prakse kodiranja z vključevanjem umetne inteligence v proces razvoja programske opreme. Prav tako diplomsko delo ocenjuje učinke orodij umetne inteligence pri reševanju problemov in kakovosti kode, ustvarjene v različnih scenarijih.
 
 Ugotovitve kažejo, da lahko hiter inženiring ob ustrezni uporabi zapolni razkorak med človeško intuicijo in strojno natančnostjo ter tako ponudi učinkovit pristop za reševanje zapletenih izzivov kodiranja in spodbujanje inovacij v inženirstvu programske opreme.
 
@@ -369,8 +385,24 @@ Ugotovitve kažejo, da lahko hiter inženiring ob ustrezni uporabi zapolni razko
 \bigskip
 
 %\noindent\textbf{Abstract:} 
-\noindent This sample document presents an approach to typesetting your BSc thesis using \LaTeX. 
-A proper abstract should contain around 100 words which makes this one way too short.
+\noindent The rapid development of artificial intelligence, in particular large-scale language models such as
+GPT-3 and GPT-4, has revolutionised software development. These models
+allow automated code generation and completion using hi-
+ing, where well-designed inputs lead to efficient and
+efficient results. This thesis explores the potential of fast
+AI-driven engineering as a key tool in co-
+co-development of software.
+By analysing the role of artificial intelligence in improving code efficiency, it
+the reduction of errors and the speeding up of the learning process of programmers.
+The research highlights the impact of development tools based on
+engineering prompts. The study examines how prompt engineering improves
+coding practices by integrating artificial intelligence into the development process. Right
+The thesis also evaluates the performance of AI tools in solving
+problems and the quality of code generated in different scenarios.
+The findings show that, if used appropriately, prompt engineering can fill the
+the gap between human intuition and machine precision and thus offer an effective
+approach to solving complex coding challenges and fostering innovation in
+software engineering.
 \bigskip
 
 \noindent\textbf{Keywords:} \tkeywordsEn.
@@ -382,52 +414,65 @@ A proper abstract should contain around 100 words which makes this one way too s
 
 \chapter{Uvod}
 
-Hiter razvoj umetne inteligence, zlasti LLM-jev, kot sta GPT-3 in GPT-4, je pomembno vplival na razvoj programske opreme. Ti modeli razvijalcem omogočajo ustvarjanje kode s pomočjo pozivov v naravnem jeziku, kar bistveno spreminja pristop k programiranju. Ta premik k avtomatizaciji odpira pomembna vprašanja o vplivu orodij umetne inteligence tako na začetnike kot tudi na izkušene razvijalce.
+Hiter razvoj umetne inteligence, zlasti LLM-jev, kot sta GPT-3 in GPT-4, je pomembno vplival na razvoj programske opreme. Ti modeli razvijalcem omogočajo ustvarjanje kode s pomočjo pozivov v naravnem jeziku, kar bistveno pospešuje proces pisanja kode. Ta premik k avtomatizaciji odpira pomembna vprašanja o vplivu orodij umetne inteligence pri razvoju programske opreme tako pri začetnikih kot tudi pri izkušenih razvijalcih.
 
-Inženiring pozivov, praksa oblikovanja natančnih vnosov za doseganje želenih rezultatov orodij umetne inteligence, se je izkazal za ključno spretnost za povečanje produktivnosti pri razvoju programske opreme. Z natančnim prilagajanjem pozivov lahko razvijalci uporabijo UI za avtomatizacijo rutinskih nalog kodiranja, odpravljanje napak in celo generiranje celotnih programskih modulov. Ta postopek pospešuje razvoj in demokratizira programiranje, saj zapletene naloge postanejo dostopnejše tistim z manj tehničnega znanja.
 
-Orodja za generiranje kode, kot so GitHub Copilot, Amazon CodeWhisperer in ChatGPT podjetja OpenAI, so med razvijalci postala priljubljena zaradi svoje sposobnosti poenostavitve reševanja problemov. Ta orodja, ki jih poganja umetna inteligenca, generirajo kodo na podlagi pozivov v naravnem jeziku ali delnih vnosov kode, kar znatno poenostavi postopek kodiranja.
+Inženiring pozivov, praksa oblikovanja natančnih vnosov za doseganje želenih rezultatov orodij umetne inteligence, se je izkazal za ključno spretnost za povečanje produktivnosti pri razvoju programske opreme. Z natančnim prilagajanjem pozivov lahko razvijalci uporabijo UI za avtomatizacijo rutinskih nalog kodiranja, odpravljanje napak in celo generiranje celotnih programskih modulov. Ta postopek pospešuje razvoj in demokratizira programiranje, saj zapletene naloge postanejo dostopnejše tudi razvijalcem z manj tehničnega znanja.
 
-Namen tega diplomskega dela je raziskati prednosti in omejitve orodij umetne inteligence, zlasti njihov vpliv na procese učenja in razumevanja programiranja  pri začetniških razvijalcih. S študijo pravilnosti in kakovosti kodiranja pri reševanju različnih programskih problemov raziskuje, ali lahko umetna inteligenca izboljša razumevanje programskih konceptov ter pospeši razvoj programske opreme. Glede na vse večjo dostopnost in priljubljenost umetne inteligence je razumevanje njenega potenciala za pospešitev učenja in izboljšanje postopkov programiranja ključnega pomena.
+Pri razvoju programske opreme je pomembno poznati in uporabljati najsodobnejše prakse in tehnologije, da lahko proces pohitrimo ter izboljšamo in s tem zmanjšamo čas in stroške, ki so potrebni za razvoj.
+Namen tega diplomskega dela je raziskati prednosti in omejitve orodij umetne inteligence, predvsem njihov vpliv na procese programiranja  pri začetniških razvijalcih. S študijo pravilnosti in kakovosti kodiranja pri reševanju različnih programskih problemov raziskuje, ali lahko umetna inteligenca izboljša razumevanje programskih konceptov ter pospeši razvoj programske opreme. Glede na vse večjo dostopnost in priljubljenost umetne inteligence je razumevanje njenega potenciala za pospešitev in izboljšavo postopkov programiranja ključnega pomena.
 
-V naslednjih poglavjih bomo preučili razvoj orodij za kodiranje ter vlogo strojnega učenja in naprednih jezikovnih modelov pri avtomatizaciji tega procesa. Raziskali bomo tudi razvoj orodij UI za razvijalce, zgodnjo uporabo strojnega učenja in sodobne arhitekture globokega učenja, kot sta GPT-3 in GPT-4, ki omogočajo napredne funkcije za generiranje kode.
+V naslednjih poglavjih bomo preučili razvoj orodij umetne inteligence za kodiranje ter vlogo strojnega učenja in naprednih jezikovnih modelov pri avtomatizaciji tega procesa. Raziskali bomo tudi razvoj orodij UI za razvijalce, zgodnjo uporabo strojnega učenja in sodobne arhitekture globokega učenja, kot sta GPT-3 in GPT-4, ki omogočajo napredne funkcije za generiranje kode.
 
 
 
 \chapter{Pregled področja}
-Narava in kompleksnost programske opreme sta se v zadnjih 30 letih močno spremenili. V sedemdesetih letih 20. stoletja so aplikacije delovale na enem samem procesorju, proizvajale alfanumerične izhode in prejemale svoj vhod iz linearnega vira. \cite{aggarwal2005software} Današnje aplikacije so veliko bolj zapletene; običajno imajo grafični uporabniški vmesnik in uporabljajo arhitekturo odjemalec-strežnik. Pogosto delujejo na dveh ali več procesorjih, pod različnimi operacijskimi sistemi in na geografsko porazdeljenih strojih.\cite{Wasserman_Engineering} Redko katero področje v zgodovini se je  razvilo tako hitro kot razvoj programske opreme. 
-Zato je nujno potrebno izboljševati koncepte, strategije in prakse programskega inženiringa, da bi se izognili konfliktom in izboljšali proces razvoja programske opreme, da lahko pravočasno in v okviru proračuna zagotovimo kakovostno programsko opremo, ki jo je mogoče vzdrževati.
-V naslednjih poglavjih se bomo posvetili pregledu programskega inženirstva in njegove zgodovine ter sodobnega inženirstva pozivov, ki poskuša ta proces izboljšati in pospešiti.
+Narava in kompleksnost programske opreme sta se v zadnjih 30 letih močno spremenili. V sedemdesetih letih 20. stoletja so aplikacije delovale na enem samem procesorju, proizvajale alfanumerične izhode in prejemale svoj vhod iz linearnega vira. Današnje aplikacije so veliko bolj zapletene; običajno imajo grafični uporabniški vmesnik in uporabljajo arhitekturo odjemalec-strežnik. Pogosto delujejo na dveh ali več procesorjih, pod različnimi operacijskimi sistemi in na geografsko porazdeljenih strojih. Redko katero področje v zgodovini se je  razvilo tako hitro kot razvoj programske opreme. \cite{aggarwal2005software}
+\\
+Zaradi omenjenih dejstev je nujno potrebno izboljševati koncepte, strategije in prakse programskega inženiringa, da bi se izognili konfliktom in izboljšali proces razvoja programske opreme, da lahko pravočasno in v okviru proračuna zagotovimo kakovostno programsko opremo, ki jo je mogoče vzdrževati.
+
+V naslednjih poglavjih se bomo posvetili pregledu programskega inženirstva in njegove zgodovine ter sodobnega inženirstva pozivov, ki poskuša ta proces izboljšati in pospešiti. 
+\pagebreak
 \section{Programsko inženirstvo}
-V dobi digitalizacije je programska oprema postala ključna za napredek na skoraj vseh področjih človeškega delovanja. Programiranje samo ne zadostuje več za izdelavo velikih programov. Obstajajo resne težave pri kakovosti,stroških, pravočasnosti in vzdrževanju številnih izdelkov programske opreme.
-Cilj programskega inženiringa je reševanje teh težav z izdelavo kakovostne programske opreme, ki je narejena pravočasno in v okviru proračuna. Da bi dosegli ta cilj, se moramo osredotočiti tako na kakovost izdelka kot tudi na procese, uporabljene za razvoj izdelka.
-Na prvi konferenci o programskem inženiringu leta 1968 je Fritz Bauer definiral programski inženiring kot "Vzpostavitev in uporaba dobrih inženirskih principov za pridobitev ekonomično razvite programske opreme, ki je zanesljiva in učinkovito deluje na resničnih strojih". Stephen Schach je enak pojem opredelil kot "Področje, katerega cilj je izdelava kakovostne programske opreme, ki je izdelana pravočasno, v okviru predvidenega proračuna in izpolnjuje zastavljene zahteve.". Obe definiciji sta priljubljeni in sprejemljivi za večino. Vendar pa se zaradi povečanja stroškov vzdrževanja programske opreme cilj zdaj premika k izdelavi kakovostne programske opreme, ki jo je mogoče vzdrževati, je dostavljena pravočasno, v okviru proračuna in prav tako izpolnjuje njene zahteve.
+V dobi digitalizacije je programska oprema postala ključna za napredek na skoraj vseh področjih človeškega delovanja. Programiranje samo ne zadostuje več za izdelavo velikih programov. Obstajajo resne težave pri kakovosti,stroških, pravočasnosti in vzdrževanju številnih izdelkov programske opreme.\\
+Cilj programskega inženiringa je reševanje teh težav z izdelavo kakovostne programske opreme, ki je narejena pravočasno in v okviru proračuna. Da bi dosegli ta cilj, se moramo osredotočiti tako na kakovost izdelka, kot tudi na procese, uporabljene za razvoj izdelka.\\
+Na prvi konferenci o programskem inženiringu leta 1968 je Fritz Bauer definiral programski inženiring kot "Vzpostavitev in uporaba dobrih inženirskih principov za pridobitev ekonomično razvite programske opreme, ki je zanesljiva in učinkovito deluje na resničnih strojih". \\
+Stephen Schach je enak pojem opredelil kot "Področje, katerega cilj je izdelava kakovostne programske opreme, ki je izdelana pravočasno, v okviru predvidenega proračuna in izpolnjuje zastavljene zahteve.".\cite{randell19961968} \\ Obe definiciji sta priljubljeni in sprejemljivi za večino. Vendar pa se zaradi povečanja stroškov vzdrževanja programske opreme cilj zdaj premika k izdelavi kakovostne programske opreme, ki jo je mogoče vzdrževati, je dostavljena pravočasno, v okviru proračuna in prav tako izpolnjuje njene zahteve.
 Kriza programske opreme nas spremlja že od leta 1970. Od takrat se je računalniška industrija z računalniško revolucijo in nedavno z revolucijo omrežja, ki jo je sprožila in/ali pospešila eksplozivna širitev interneta in v zadnjem času spleta, razvijala z bliskovito hitrostjo.
-Računalniška industrija je zagotavljala eksponentno izboljšanje razmerja med ceno in zmogljivostjo, vendar se težave s programsko opremo niso zmanjšale. Programska oprema še vedno zamuja, presega proračun in je polna napak. Po zadnjem IBM-ovem poročilu je "31 \% projektov preklicanih, še preden so končani, 53 \% projektov presega oceno stroškov za povprečno 189 \%, na vsakih 100 projektov pa je 94 ponovnih zagonov".
+Računalniška industrija je zagotavljala eksponentno izboljšanje razmerja med ceno in zmogljivostjo, vendar se težave s programsko opremo niso zmanjšale. Programska oprema še vedno zamuja, presega proračun in je polna napak. Po IBM-ovem poročilu je "31 \% projektov preklicanih, še preden so končani, 53 \% projektov presega oceno stroškov za povprečno 189 \%, na vsakih 100 projektov pa je 94 ponovnih zagonov". \cite{boehm2006view}
 
 Proces razvoja programske opreme je postopek, s katerim ustvarjamo programsko opremo. Ta se razlikuje od organizacije do organizacije. Za preživetje v vse bolj konkurenčni dobi je za razvoj programske opreme potrebno več kot le zaposliti pametne in vešče razvijalce ter kupiti najnovejša razvojna orodja. Uporabljati moramo tudi učinkovite procese razvoja programske opreme, da lahko razvijalci sistematično uporabljajo najboljše tehnične in vodstvene prakse za uspešno dokončanje svojih projektov. Številne organizacije, ki se ukvarjajo s programsko opremo, si prizadevajo za izboljšanje procesov razvoja programske opreme kot načina za izboljšanje kakovosti, produktivnosti in predvidljivosti razvoja programske opreme ter vzdrževanja.
 Zdi se preprosto in v literaturi je mogoče najti številne zgodbe o uspehu podjetij, ki so bistveno izboljšala svoje zmogljivosti za razvoj programske opreme in vodenje projektov. Vendar mnogim organizacijam ne uspe doseči občutnih in trajnih izboljšav v načinu vodenja svojih projektov. V nadaljevanju obravnavamo nekaj razlogov, zakaj je težko izboljšati proces programske opreme.
+\cite{aggarwal2005software, humphrey1989managing}
 
 1. Premalo časa. Zaradi nerealnih časovnih rokov ni dovolj časa za opravljanje bistvenega projektnega dela. Nobena programerska skupina nima prostega časa na pretek, ki bi ga lahko namenila raziskovanju, kaj je narobe z njihovimi trenutnimi razvojnimi procesi in kaj bi morali delati drugače. Stranke in nadrejeni zahtevajo čim več programske opreme višje kakovosti v čim krajšem času. Zato vedno primanjkuje časa. Ena od posledic tega je, da programske organizacije morda pravočasno dostavijo izdajo 1.0, vendar morajo skoraj takoj zatem dostaviti različico 1.01, da odpravijo nedavno odkrite napake.
 
 2. Pomanjkanje znanja. Druga ovira za izboljšanje procesov je, da se zdi, da mnogi razvijalci programske opreme ne poznajo najboljših industrijskih praks. Običajno razvijalci programske opreme ne porabijo veliko časa za branje literature, da bi se seznanili z najboljšimi znanimi načini razvoja programske opreme. Razvijalci lahko kupijo knjige o Javi, Visual Basicu ali ORACLE, vendar na svojih knjižnih policah ne iščejo ničesar o procesih, testiranju ali kakovosti.
 Zavedanje industrije o okvirih za izboljšanje procesov, kot sta model zrelosti zmogljivosti in ISO 9001 standard za programsko opremo, se je v zadnjih letih povečalo, vendar učinkovita in smiselna uporaba še vedno ni tako pogosta. Številne priznane najboljše prakse, ki so na voljo v literaturi, se v svetu razvoja programske opreme preprosto ne uporabljajo pogosto.
+\cite{aggarwal2005software}
 
 Cilj inženirstva programske opreme je zagotoviti modele in postopke, ki vodijo k izdelavi dobro dokumentirane programske opreme, ki jo je mogoče vzdrževati na predvidljiv način. Pri zrelem procesu bi moralo biti mogoče vnaprej določiti, koliko časa in truda bo potrebnega za izdelavo končnega izdelka. To lahko storimo le s pomočjo podatkov iz preteklih izkušenj, kar zahteva, da moramo proces programske opreme ustrezno poznati in oceniti.
 Organizacije, ki se ukvarjajo z razvojem programske opreme, pri razvoju programskega izdelka sledijo določenemu procesu. V nezrelih organizacijah proces običajno ni zapisan. V zrelih organizacijah je proces zapisan in se aktivno nadzoruje. Ključna enota vsakega procesa razvoja programske opreme je model življenjskega cikla, na katerem proces temelji. Izbran model življenjskega cikla lahko bistveno vpliva na skupne stroške življenjskega cikla, povezane s programskim izdelkom. Življenjski cikel programske opreme se začne z raziskovanjem zamisli in konča z umikom programske opreme iz uporabe.
 V standardu IEEE terminologije programskega inženirstva je življenjski cikel programske opreme naslednji:
 "Časovno obdobje, ki se začne, ko je programski izdelek zasnovan, in konča, ko izdelek ni več na voljo za uporabo. Življenjski cikel programske opreme običajno vključuje fazo zahtev, fazo načrtovanja, fazo izvajanja, fazo preizkušanja, fazo namestitve in preverjanja, fazo delovanja in vzdrževanja ter včasih fazo umika".
-Model življenjskega cikla programske opreme je posebna abstrakcija, ki predstavlja življenjski cikel programske opreme. Model življenjskega cikla programske opreme se pogosto imenuje življenjski cikel razvoja programske opreme (SDLC).
+Model življenjskega cikla programske opreme je posebna abstrakcija, ki predstavlja življenjski cikel programske opreme. Model življenjskega cikla programske opreme se pogosto imenuje življenjski cikel razvoja programske opreme (angl. SDLC). \cite{aggarwal2005software}
 \subsection{MODELI SDLC}
 
 Predlagani so bili različni modeli življenjskega cikla, ki temeljijo na nalogah, vključenih v razvoj in vzdrževanje programske opreme. V tem poglavju je obravnavanih nekaj znanih modelov življenjskih ciklov.
 \subsubsection{Model gradnje in popravljanja}
+\begin{figure}[H]
+    \centering
+    \includegraphics{images/gradnja-popravljanje.png}
+    \caption{Model gradnje in popravljanja}
+    \label{fig:gradnja}
+\end{figure}
+
 Včasih je izdelek izdelan brez specifikacij ali kakršnega koli poskusa načrtovanja. Namesto tega razvijalec preprosto zgradi izdelek, ki ga predela tolikokrat, kolikor je potrebno, da zadovolji naročnika.
 To je ad hoc pristop in ni dobro opredeljen. V osnovi gre za preprost dvofazni model. Prva faza je pisanje kode, naslednja faza pa njeno popravljanje. Popravljanje v tem kontekstu je lahko popravljanje napak ali dodajanje dodatnih funkcionalnosti.
-Čeprav se ta pristop lahko dobro obnese pri majhnih programskih nalogah, dolgih 100 ali 200 vrstic, je ta model popolnoma nezadovoljiv za programsko opremo kakršne koli večje obsežnosti. Koda kmalu postane nepopravljiva in neizboljšljiva. Ni prostora za strukturirano ali podrobno načrtovanje ali kateri koli vidik razvojnega procesa. Stroški razvoja s tem pristopom so dejansko zelo visoki v primerjavi s stroški pravilno določenega in skrbno zasnovanega izdelka. Poleg tega je lahko vzdrževanje izdelka brez specifikacije ali projektne dokumentacije zelo težavno.
+Čeprav se ta pristop lahko dobro obnese pri majhnih programskih nalogah, dolgih 100 ali 200 vrstic, je ta model popolnoma nezadovoljiv za programsko opremo kakršne koli večje obsežnosti. Koda kmalu postane nepopravljiva in neizboljšljiva. Ni prostora za strukturirano ali podrobno načrtovanje ali kateri koli vidik razvojnega procesa. Stroški razvoja s tem pristopom so dejansko zelo visoki v primerjavi s stroški pravilno določenega in skrbno zasnovanega izdelka. Poleg tega je lahko vzdrževanje izdelka brez specifikacije ali projektne dokumentacije zelo težavno. \cite{schach1996classical}
 \subsubsection{Slapovni model}
 Najbolj znan model je slapovni model, ki je sestavljen iz petih faz: analiza in specifikacija zahtev, načrtovanje, izvedba in testiranje enot, integracija in sistemsko testiranje ter delovanje in vzdrževanje. 
-Faze si vedno sledijo v tem vrstnem redu in se ne prekrivajo. Razvijalec mora zaključiti vsako fazo, preden začne z naslednjo fazo. Model se imenuje "Slapovni model", ker njegov diagramski prikaz spominja na kaskado slapov.
+Faze si vedno sledijo v tem vrstnem redu in se ne prekrivajo. Razvijalec mora zaključiti vsako fazo, preden začne z naslednjo fazo. Model se imenuje "\texttt{Slapovni model}", ker njegov diagramski prikaz spominja na zaporedje slapov.
 
 \begin{figure}[H]
     \centering
@@ -435,6 +480,8 @@ Faze si vedno sledijo v tem vrstnem redu in se ne prekrivajo. Razvijalec mora za
     \caption{Faze slapovnega modela, slika povzeta iz \cite{mercun2012}}
     \label{fig:enter-label}
 \end{figure}
+
+\subsubsection{Faze slapovnega modela}
 
 1. Faza analize in specifikacije zahtev.
 
@@ -459,42 +506,31 @@ Kot vemo, je namen testiranja enot ugotoviti, ali je vsak neodvisni modul pravil
 Poraba časa in prizadevanja, potrebna za vzdrževanje delovanja programske opreme po izdaji, sta zelo pomembna. Kljub temu, da gre za zelo pomembno in zahtevno nalogo, je to običajno slabo obvladan preglavica, s katero se nihče ne želi soočiti.
 Vzdrževanje programske opreme je zelo obsežna dejavnost, ki vključuje odpravljanje napak, izboljšanje zmogljivosti, odstranjevanje zastarelih zmogljivosti in optimizacijo. Namen te faze je ohraniti kakovost programske opreme v daljšem časovnem obdobju. Ta faza lahko traja od 5 do 50 let, medtem ko razvoj lahko traja od 1 do 3 let.
 Ta model je enostaven za razumevanje in krepi koncept „definiraj pred načrtovanjem“ in „načrtuj pred kodo“. Ta model pričakuje popolne in natančne zahteve že na začetku procesa, kar je nerealno. Delujoča programska oprema je na voljo šele razmeroma pozno v procesu, kar odloži odkrivanje resnih napak. Prav tako ne vključuje nobene vrste ocene tveganja.
+\cite{alshamrani2015comparison, aggarwal2005software}
 
-Težave slapovnega modela
-\begin{enumerate}
-    \item Na začetku projekta je težko opredeliti vse zahteve.
-    \item Model ni primeren za prilagajanje kakršnim koli spremembam.
-    \item Delujoča različica sistema je na voljo šele v poznih fazah projekta.
-    \item Model ni primeren za velike projekte.
-    \item Resnični projekti so redko zaporedni.
-\end{enumerate}
-Zaradi teh slabosti je treba uporabo modela slapu omejiti na primere, ko so zahteve in njihovo izvajanje dobro poznani. Na primer, če ima organizacija izkušnje z razvojem računovodskih sistemov, potem bi lahko izgradnjo novega računovodskega sistema na podlagi obstoječih zasnov zlahka upravljala z modelom slapu.
+\subsubsection{Model izdelave prototipov}
 
-
-2.1.3 Model izdelave prototipov
-
-Pomanjkljivost modela slapu, kot je bilo obravnavano v zadnjem poglavju, je, da je delujoča programska oprema na voljo šele v poznih fazah procesa, kar upočasni odkrivanje pomembnih napak. Alternativa temu je, da se namesto razvoja dejanske programske opreme najprej razvije delujoči prototip programske opreme. Delovni prototip se razvije v skladu s trenutno razpoložljivimi zahtevami. V osnovi ima omejene funkcionalne zmogljivosti, nizko zanesljivost in nepreverjeno zmogljivost (običajno nizko).
+Pomanjkljivost modela slapu je, da je delujoča programska oprema na voljo šele v poznih fazah procesa, kar upočasni odkrivanje pomembnih napak. Alternativa temu je, da se namesto razvoja dejanske programske opreme najprej razvije delujoči prototip programske opreme. Delovni prototip se razvije v skladu s trenutno razpoložljivimi zahtevami. V osnovi ima omejene funkcionalne zmogljivosti, nizko zanesljivost in nepreverjeno zmogljivost (običajno nizko).
 Razvijalci ta prototip uporabijo za izpopolnitev zahtev in pripravo končnega specifikacijskega dokumenta. Ker je delovni prototip ocenila stranka, je upravičeno pričakovati, da bo nastali specifikacijski dokument pravilen. Ko je prototip izdelan, ga pregleda stranka. Običajno ta pregled daje povratne informacije razvijalcem, ki pomagajo odpraviti negotovosti v zahtevah programske opreme, in začne iteracijo izpopolnjevanja, da bi še bolj razjasnili zahteve.
 Prototip je lahko uporaben program, vendar ni primeren kot končni izdelek programske opreme. Razlog za to je lahko slabo delovanje, vzdrževanje ali splošna kakovost. Koda prototipa se zavrže, vendar izkušnje, pridobljene pri razvoju prototipa, pomagajo pri razvoju dejanskega sistema. Zato lahko razvoj prototipa povzroči dodatne stroške, vendar se lahko izkaže, da so skupni stroški nižji od stroškov enakovrednega sistema, razvitega po modelu slapu.
 
 \cite{aggarwal2005software}
 
-Obstaja veliko tradicionalnih metod in pristopov k razvoju programske opreme, kot je predhodno omenjeni slapovni pristop, ter iterativni in inkrementalni pristop, spiralni pristop, evolucijski pristop itd. Ti pristopi se včasih imenujejo načrtovani pristopi za razvoj programske opreme ali težki pristopi.  Ti pristopi so zelo uporabni, kadar je treba razviti obsežno kompleksno programsko opremo, saj lahko pomagajo odpraviti staromoden neformalen razvoj programske opreme in zagotoviti visokokakovostno programsko opremo na sistematičen način, ki izpolnjuje zahteve uporabnikov v vnaprej določenem omejenem času. težava tradicionalnih metod razvoja programske opreme je, da potrebujejo zelo zahtevne postopke, kot so: 
-\begin{enumerate}
-    \item Načrt projekta mora biti narejen vnaprej. 
-    \item Potrebujemo zapisane zahteve za programsko opremo.
-    \item Popolno načrtovanje, ki izpolnjuje zapisane zahteve.
-    \item Izdelava programske kode, ki izpolnjuje vse zapisane zahteve in načrte.
-    \item Popolno testiranje programske opreme in preverjanje, ali izpolnjuje zahteve in načrt.
-\end{enumerate}
-Številni projekti, ki sledijo tradicionalnim metodam razvoja programske opreme, se soočajo z velikimi težavami, zlasti pri vzdrževanju in spremembah na podlagi novih zahtev uporabnikov. Nekatere od teh zahtev lahko privedejo do velikih sprememb, ki se štejejo za velik problem pri razvoju programske opreme.  Zaradi vsega tega je potrebna lahka metoda razvoja programske opreme, katere glavni cilj je pospešiti razvoj in se učinkovito odzvati na spremembe, ki jih zahtevajo uporabniki.  Ta lahka metoda razvoja programske opreme se imenuje agilne metode razvoja programske opreme. 
+Obstaja veliko tradicionalnih metod in pristopov k razvoju programske opreme, kot je predhodno omenjeni slapovni pristop, ter iterativni in inkrementalni pristop, spiralni pristop, evolucijski pristop itd. Ti pristopi se včasih imenujejo načrtovani pristopi za razvoj programske opreme ali težki pristopi.  Ti pristopi so zelo uporabni, kadar je treba razviti obsežno kompleksno programsko opremo, saj lahko pomagajo odpraviti staromoden neformalen razvoj programske opreme in zagotoviti visokokakovostno programsko opremo na sistematičen način, ki izpolnjuje zahteve uporabnikov v vnaprej določenem omejenem času. težava tradicionalnih metod razvoja programske opreme je, da potrebujejo zelo zahtevne postopke.
+
+
+\subsubsection{Agilne metode}
+Številni projekti, ki sledijo tradicionalnim metodam razvoja programske opreme, se soočajo z velikimi težavami, zlasti pri vzdrževanju in spremembah na podlagi novih zahtev uporabnikov. Nekatere od teh zahtev lahko privedejo do velikih sprememb, ki se štejejo za velik problem pri razvoju programske opreme.  Zaradi vsega tega je potrebna lahka metoda razvoja programske opreme, katere glavni cilj je pospešiti razvoj in se učinkovito odzvati na spremembe, ki jih zahtevajo uporabniki. Ta lahka metoda razvoja programske opreme se imenuje agilne metode razvoja programske opreme. 
 \cite{AlSaqqa2020AgileSD}
 
-„Agilno gibanje“ v industriji programske opreme je ugledalo luč sveta s projektom Agile Manifest razvoja programske opreme, ki ga je objavila skupina razvijalcev programske opreme praktikov in svetovalcev leta 2001 (Beck et al. 2001; Cockburn 2002a). Osrednje vrednote, ki so jih spoštovali agilisti, so predstavljene v nadaljevanju:
-- posamezniki in interakcije pred procesi in orodji
-- Delujoča programska oprema namesto izčrpne dokumentacije
-- sodelovanje s strankami namesto pogajanj o pogodbah
-- Odzivanje na spremembe namesto sledenja načrtu
+„Agilno gibanje“ v industriji programske opreme je ugledalo luč sveta s projektom Agile Manifest razvoja programske opreme, ki ga je objavila skupina razvijalcev programske opreme praktikov in svetovalcev leta 2001. Osrednje vrednote, ki so jih spoštovali zastopniki agilnega gibanja, so predstavljene v nadaljevanju:
+\begin{itemize}
+    \item posamezniki in interakcije pred procesi in orodji
+    \item Delujoča programska oprema namesto izčrpne dokumentacije
+    \item sodelovanje s strankami namesto pogajanj o pogodbah
+    \item Odzivanje na spremembe namesto sledenja načrtu
+\end{itemize}
+\cite{highsmith2009agile}
 Te osrednje vrednote, ki jih upošteva agilna skupnost, so:
 Prvič, agilno gibanje poudarja odnos in skupnost
 razvijalcev programske opreme in človeško vlogo, ki se odraža v pogodbah, v nasprotju z institucionaliziranim procesom in razvojnim orodjem. V obstoječih agilnih praksah, se to kaže v tesnih odnosih v skupini, tesnem delovnem okolju
@@ -506,13 +542,14 @@ Tretjič, odnos in sodelovanje med razvijalci in strankami daje prednost pred st
 Sam proces pogajanj je treba obravnavati kot sredstvo za doseganje in
 ohranjanje uspešnega odnosa. S poslovnega vidika je agilni razvoj osredotočen na zagotavljanje poslovne vrednosti takoj na začetku projekta, s čimer se zmanjšajo tveganja neizpolnitve pogodbe.
 Četrtič, razvojna skupina, ki jo sestavljajo tako razvijalci programske opreme kot predstavniki strank, mora biti dobro obveščena, usposobljena in pooblaščena za upoštevanje morebitnih potreb po prilagoditvah, ki se pojavijo med življenskim ciklom razvojnega procesa. To pomeni, da so udeleženci pripravljeni na spremembe in da so tudi obstoječe pogodbe oblikovane z orodji, ki podpirajo in omogočajo te
-izboljšave.
-Highsmith in Cockburn pravita, da „novost pri agilnih metodah niso prakse, ki jih uporabljajo, temveč njihovo priznavanje ljudi kot glavnih dejavnikov uspeha projekta, skupaj z intenzivnim osredotočanjem na učinkovitost in okretnost. 
+izboljšave. \\
+Highsmith in Cockburn sta mnenja, da „novost pri agilnih metodah niso prakse, ki jih uporabljajo, temveč njihovo priznavanje ljudi kot glavnih dejavnikov uspeha projekta, skupaj z intenzivnim osredotočanjem na učinkovitost in okretnost. 
 \cite{DBLP:journals/corr/abs-1709-08439}
 
 \section{Inženiring pozivov}
 
-Umetna inteligenca (UI) je pokazala velik potencial pri prispevanju k avtomatizaciji izvajanja številnih zahtevnih nalog programskega inženirstva, kot so generiranje kode , popravljanje programov in povzemanje ter razlaga kode. Najsodobnejši pristopi pri generiranju kode uporabljajo modele umetne inteligence za samodejno izdelavo delnih ali celotnih programov na podlagi opisov v naravnem jeziku ali nekaterih vhodnih podatkov kode. Na področju popravljanja programov postajajo modeli, ki temeljijo na nevronskih mrežah, de facto standard za učenje generiranja popravkov kode, s čimer se zmanjša ročno odpravljanje napak ter poveča zanesljivost in varnost programske opreme. Generativni modeli umetne inteligence so ob vhodni kodi zmožni izdelati opise le te v naravnem jeziku in tako prispevajo k lažjemu razumevanju kode, vzdrževanju kode in njeni ponovni uporabi. Nedavni pojav obsežnih jezikovnih modelov (LLM) je bil v družbi na splošno deležen velikega zanimanja. Na področju inženirstva programske opreme je prinesel avtomatizacijo, ki jo poganja umetna inteligenca, na novo raven. Modeli LLM, ki so predhodno usposobljeni na velikih količinah izvorne kode in podatkov o naravnem jeziku, so pokazali izjemne sposobnosti pri razumevanju struktur kode in ustvarjanju kode ali besedil. Napredek, ki ga vodijo LLM, je še povečal učinkovitost samodejnih tehnik za različne izzive programskega inženirstva, kot so generiranje kode, popravljanje programov in povzemanje kode. Pomemben primer LLM je OpenAI-jev Codex. Codex je bil uspešno uporabljen za vrsto nalog inženiringa programske opreme, pri čemer je dokazal, da je sposoben generirati natančne in učinkovite odlomke kode, prepoznati in odpraviti napake in ranljivosti programske opreme ter zagotoviti povzetke za segmente kode. Eksperimentalni rezultati v literaturi kažejo na velik potencial LLM v skupnosti za razvoj programske opreme, čeprav skupna dosežena učinkovitost ostaja razmeroma omejena. ChatGPT, nedavno predstavljen LLM, je v skupnosti inženirjev programske opreme vzbudil veliko zanimanja zaradi njegovih zmogljivosti pri dolgoletnih sanjah inženirjev programske opreme: samodejnem popravljanju programske opreme z minimalnim človeškim posredovanjem. Rezultati kažejo, da bo ChatGPT spremenil to področje in da ima programsko inženirstvo, ki temelji na LLM, svetlo prihodnost. 
+Umetna inteligenca (UI) je pokazala velik potencial pri prispevanju k avtomatizaciji izvajanja številnih zahtevnih nalog programskega inženirstva, kot so generiranje kode, popravljanje programov in povzemanje ter razlaga kode. \cite{bavishi2019autopandas} Najsodobnejši pristopi pri generiranju kode uporabljajo modele umetne inteligence za samodejno izdelavo delnih ali celotnih programov na podlagi opisov v naravnem jeziku ali nekaterih vhodnih podatkov kode. \cite{Chen2021EvaluatingLL}\\
+Na področju popravljanja programov postajajo modeli, ki temeljijo na nevronskih mrežah, de facto standard za učenje generiranja popravkov kode, s čimer se zmanjša ročno odpravljanje napak ter poveča zanesljivost in varnost programske opreme. Generativni modeli umetne inteligence so ob vhodni kodi zmožni izdelati opise le te v naravnem jeziku in tako prispevajo k lažjemu razumevanju kode, vzdrževanju kode in njeni ponovni uporabi. Nedavni pojav obsežnih jezikovnih modelov (LLM) je bil v družbi na splošno deležen velikega zanimanja. Na področju inženirstva programske opreme je prinesel avtomatizacijo, ki jo poganja umetna inteligenca, na novo raven. Modeli LLM, ki so predhodno usposobljeni na velikih količinah izvorne kode in podatkov o naravnem jeziku, so pokazali izjemne sposobnosti pri razumevanju struktur kode in ustvarjanju kode ali besedil. Napredek, ki ga vodijo LLM, je še povečal učinkovitost samodejnih tehnik za različne izzive programskega inženirstva, kot so generiranje kode, popravljanje programov in povzemanje kode. \cite{wan2018improving}Pomemben primer LLM je OpenAI-jev Codex. Codex je bil uspešno uporabljen za vrsto nalog inženiringa programske opreme, pri čemer je dokazal, da je sposoben generirati natančne in učinkovite odlomke kode, prepoznati in odpraviti napake in ranljivosti programske opreme ter zagotoviti povzetke za segmente kode. \cite{vaithilingam2022expectation} Eksperimentalni rezultati v literaturi kažejo na velik potencial LLM v skupnosti za razvoj programske opreme, čeprav skupna dosežena učinkovitost ostaja razmeroma omejena. ChatGPT, nedavno predstavljen LLM, je v skupnosti inženirjev programske opreme vzbudil veliko zanimanja zaradi njegovih zmogljivosti pri dolgoletnih sanjah inženirjev programske opreme: samodejnem popravljanju programske opreme z minimalnim človeškim posredovanjem. Rezultati kažejo, da bo ChatGPT spremenil to področje in da ima programsko inženirstvo, ki temelji na LLM, svetlo prihodnost. 
  \cite{tian2023chatgptultimateprogrammingassistant}
 
 Hiter inženiring je razmeroma novo področje raziskav, ki se nanaša na prakso oblikovanja, izpopolnjevanja in izvajanja pozivov ali navodil, ki usmerjajo izhodne podatke LLM za pomoč pri različnih nalogah. Gre za prakso učinkovitega sodelovanja s sistemi umetne inteligence za optimizacijo njihovih koristi.
@@ -522,7 +559,7 @@ Razvoj programske kode je proces, ki vključuje pretvorbo specifikacije problema
 Med zgodnjo opremo sodijo orodja za dopolnjevanje kode, ki so na voljo v večini urejevalnikov kode in ki izpišejo kontekstualno relevantne spremenljivke, metode, razrede in druge dele kode v obliki plavajočega menija. Razvijalci se lahko z raziskovanjem in izbiranjem v tem meniju izognejo pogostim slovničnim in logičnim napakam, zmanjšajo število pritiskov na tipke in raziskujejo nove API-je namesto da porabljajo čas in napor za iskanje dokumentacije. Nekatera znana orodja za dopolnjevanje kode vključujejo IntelliSense v Visual Studio Code in vgrajeno dopolnjevanje kode v orodjih JetBrains IDE2. 
 Čeprav lahko ta orodja izpisujejo odlomke kode, se bistveno razlikujejo od generatorjev kode.
 Z današnjimi napredki na področjih globokega učenja in procesiranja naravnega jezika so se razvili napredni modeli za pomoč pri kodiranju, ki omogočajo avtomatsko dopolnjevanje in reševanje problemov v kodi v realnem času.
-Obstaja veliko poskusov samodejnega prevajanja specifikacij v računalniško kodo s pomočjo formalnih modelov za avtomatsko generiranje kode ali pa s pomočjo strojno naučenega procesiranja naravnega jezika. Arhitekture globokega učenja, ki se dobro prilegajo procesiranju naravnega jezika, so omogočile razvoj modelom ko sta GPT-2 in GPT-3. Ti modeli lahko izvajajo jezikovne naloge, kot sta prevajanje in odgovarjanje na vprašanja iz nabora podatkov pogovornega naziva za odgovarjanje na vprašanja (angl. CoQA). Po prilagajanju glede na specializiran nabor podatkov lahko modeli opravljajo naloge, kot so dopolnjevanje kode in načrtovanje strojne opreme.  Najsodobnejši modeli imajo na milijarde parametrov, ki jih je mogoče natrenirati, in so učeni na več milijonih programskih repozitorijev. V tem delu se bomo osredotočili na modele ChatGPT, GitHub Copilot in Amazon Codewhisperer ter jih medsebojno primerjali.
+Obstaja veliko poskusov samodejnega prevajanja specifikacij v računalniško kodo s pomočjo formalnih modelov za avtomatsko generiranje kode ali pa s pomočjo strojno naučenega procesiranja naravnega jezika. Arhitekture globokega učenja, ki se dobro prilegajo procesiranju naravnega jezika, so omogočile razvoj modelom ko sta GPT-2 in GPT-3. Ti modeli lahko izvajajo jezikovne naloge, kot sta prevajanje in odgovarjanje na vprašanja iz nabora podatkov pogovornega naziva za odgovarjanje na vprašanja. \cite{hu2019re} Po prilagajanju glede na specializiran nabor podatkov lahko modeli opravljajo naloge, kot so dopolnjevanje kode in načrtovanje strojne opreme.  Najsodobnejši modeli imajo na milijarde parametrov, ki jih je mogoče natrenirati, in so učeni na več milijonih programskih repozitorijev. V tem delu se bomo osredotočili na modele ChatGPT, GitHub Copilot in Amazon Codewhisperer ter jih medsebojno primerjali. \\
 V naslednjem poglavju bomo najprej pregledali obstoječo literaturo povezano z uporabo UI s poudarkom na hitrem inženiringu in razvoju programske opreme s pomočjo UI. 
 \cite{zhang2003machine}
 \section{Sorodna literatura}
@@ -657,6 +694,7 @@ V nadaljevanju bomo s pomočjo nadzorovanega eksperimenta preučili, do kakšne 
 
 
 \chapter{Metodologija}
+
 Namen diplomskega dela je bil raziskati, kako hiter inženiring vpliva na proces razvoja programske opreme, s preučevanjem hitrosti in kvalitete kode pri uporabi orodij umetne inteligence. Najprimernejša metoda za pridobivanje teh podatkov je bil nadzorovan eksperiment na skupini mlajših otrok, ker omogoča natančen nadzor nad spremenljivkami ter izolirano vrednotenje reševanja programskih problemov. Ta metodologija minimizira vplive zunanjih spremenljivk, kar omogoča osredotočeno preučevanje zmožnosti in omejitev hitrega inženiringa pri razvoju programske opreme.
 
 \section{Načrt}
@@ -668,14 +706,14 @@ Namen diplomskega dela je bil raziskati, kako hiter inženiring vpliva na proces
     \label{fig:enter-label}
 \end{figure}
 
-Eksperiment je bil izveden s štirimi skupinami v velikosti 5–12 otrok, ki se učijo programiranja v jeziku Python. Skupno število otrok je znašalo 31. Ena skupina je eksperiment opravljala fizično v učilnici, ostale tri skupine so ga izvajale na daljavo, s pomočjo delitve zaslona. V skupinah so bila štiri dekleta in 27 fantov. Stari so bili med 11 in 16 let, s povprečno starostjo 13.6 let in standardnim odklonom 1.44 leta. Starostna razporeditev je prikazana na sliki \ref{fig:ages}  Programiranja so se predhodno učili med enim in sedmimi leti, kjer so med leta programiranja šteli tudi učenje blokovnega programiranja v Scratchu in pisanje spletnih strani. Povprečno predhodno učenje programiranja je znašalo 2.5 leti s standardnim odklonom 1.48 leta.
-Poleg demografskih vprašanj so podali tudi oceno na skali z vrednostimi 1-5 o njihovem predznanju ter o poznavanju umetne inteligence. Svojo samozavest za pisanje osnovnih programov so v povprečju ocenili z 4.0, znanje razhroščevanja kode pa s 3.4. Poznavanje uporabe orodij generativne umetne inteligence so v povprečju ocenili z 4.3, kot pomoč pri programiranju jo uporablja 16 vprašanih.
+Eksperiment je bil izveden s štirimi skupinami v velikosti 5–12 otrok, ki se učijo programiranja v jeziku Python. Skupno število otrok je znašalo 31. Ena skupina je eksperiment opravljala fizično v učilnici, ostale tri skupine so ga izvajale na daljavo, s pomočjo delitve zaslona. V skupinah so bila štiri dekleta in 27 fantov. Stari so bili med 11 in 16 let, s povprečno starostjo 13,6 let in standardnim odklonom 1,44 leta. Starostna porazdelitev je prikazana na sliki \ref{fig:ages}.  Programiranja so se predhodno učili med enim in sedmimi leti, kjer so med leta programiranja šteli tudi učenje blokovnega programiranja v Scratchu in pisanje spletnih strani. Povprečno predhodno učenje programiranja je znašalo 2.5 leti s standardnim odklonom 1.48 leta.
+Poleg demografskih vprašanj so podali tudi oceno na skali z vrednostimi 1-5 o njihovem predznanju ter o poznavanju umetne inteligence. Svojo samozavest za pisanje osnovnih programov so v povprečju ocenili z 4,0, znanje razhroščevanja kode pa s 3,4. Poznavanje uporabe orodij generativne umetne inteligence so v povprečju ocenili z 4,3, kot pomoč pri programiranju jo uporablja 16 vprašanih.
 Poleg tečajev jih v svojem prostem času dodatno programira 17 oziroma 55 \%.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\linewidth]{images/starost.png}
-    \caption{Starostna razporeditev}
+    \caption{Starostna porazdelitev}
     \label{fig:ages}
 \end{figure}
 
@@ -696,18 +734,20 @@ Poleg tečajev jih v svojem prostem času dodatno programira 17 oziroma 55 \%.
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\linewidth]{images/solo_prog.png}
-    \caption{Razporeditev pogostosti programiranja izven tečajev}
+    \caption{Porazdelitev pogostosti programiranja izven tečajev}
     \label{fig:solo_prog}
 \end{figure}
 
 
 
-Za izvedbo eksperimenta je bil razvit uporabniški vmesnik v jeziku JavaScript. Spletna stran je sestavljena iz treh delov. Prostor za pisanje Python kode z navodili in primeri vhodov in izhodov, prostor za izpis in testiranje programa ter prostor za pogovor z uporabo ChatGPT-3.5. Stran tudi vsebuje indikator trenutne naloge ter unikatni identifikator za anonimno identifikacijo. Stran je bila postavljena s pomočjo orodja GitHub Pages in je dostopna na \href{https://spin311.github.io/diploma/}{povezavi}.
-Za namene beleženja in shranjevanja podatkov je bilo narejeno zaledje v jeziku Java z ogrodjem Spring Boot, ki je uporabljajo relacijsko bazo HSQLDB za shranjevanje podatkov. Na splet je bilo postavljeno s storitvijo Microsoft Azure za namene oddaljenega in neprekinjenega dostopa. Namen zaledja je bil vsakemu obiskovalcu strani dodeliti unikatni naključni identifikator, ter beležiti kodo ter pogovor za posamično nalogo v ustrezno relacijsko bazo. Baza je vsebovala pet tabel. Vnos (angl. log), pogovor (chat), ter oddaja so vsebovale podatke o trenutnem stanju naloge, časa in kode in so vsebovale referenco na tabeli študent, ki je hranila osnovne podatke o učencih ter na tabelo naloge, ki je vsebovala podatke o trenutni nalogi. Shranjevalo se je tudi ali se je trenutna koda prevedla z napako, število poskusov za trenutno nalogo in metapodatke, kot je trenuten čas ter čas reševanja trenutne naloge. Kodo in pogovor se je beležilo ob oddaji naloge, vsakem prevajanju programa ter na določen časovni interval.
+Za izvedbo eksperimenta je bil razvit uporabniški vmesnik v jeziku JavaScript. Spletna stran je sestavljena iz treh delov. Prostor za pisanje Python kode z navodili in primeri vhodov in izhodov, prostor za izpis in testiranje programa ter prostor za pogovor z uporabo ChatGPT-3.5. Stran tudi vsebuje indikator trenutne naloge ter unikatni identifikator za anonimno identifikacijo. Stran je bila postavljena s pomočjo orodja GitHub Pages in je dostopna na povezavi \href{https://spin311.github.io/diploma/}{ https://spin311.github.io/diploma/} .
+Za namene beleženja in shranjevanja podatkov je bilo narejeno zaledje v jeziku Java z ogrodjem Spring Boot, ki je uporabljajo relacijsko bazo HSQLDB za shranjevanje podatkov. Na splet je bilo postavljeno s storitvijo Microsoft Azure za namene oddaljenega in neprekinjenega dostopa. Namen zaledja je bil vsakemu obiskovalcu strani dodeliti unikatni naključni identifikator, ter beležiti kodo ter pogovor za posamično nalogo v ustrezno relacijsko bazo. Baza je vsebovala pet tabel. Vnos (angl. log), pogovor (angl. chat), ter oddaja (angl. submit) so vsebovale podatke o trenutnem stanju naloge, časa in kode in so vsebovale referenco na tabeli študent, ki je hranila osnovne podatke o učencih ter na tabelo naloge, ki je vsebovala podatke o trenutni nalogi. Shranjevalo se je tudi, ali se je trenutna koda prevedla z napako, število poskusov za trenutno nalogo in metapodatke, kot je trenuten čas ter čas reševanja trenutne naloge. Kodo in pogovor se je beležilo ob oddaji naloge, vsakem prevajanju programa ter na določen časovni interval.
+
+\footnote{\href{https://spin311.github.io/diploma/}{Uporabniški vmesnik https://spin311.github.io/diploma/}}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1\linewidth]{images/tabele.png}
+    \includegraphics[width=1\linewidth]{images/tabele2.png}
     \caption{Arhitektura baznih tabel}
     \label{fig:enter-label}
 \end{figure}
@@ -725,16 +765,50 @@ Repozitorij s kodo in navodili za lokalno postavitev je na voljo na \href{https:
 \subsection{Naloge}
 Za ocenjevanje vpliva programiranja s pomočjo umetne inteligence je bilo izbranih osem algoritmičnih nalog.
 Na začetku je bil narejen večji nabor nalog iz treh različnih virov. Nekatere naloge so bile napisane s pomočjo ostalih učiteljev programiranja, nekaj nalog je bilo generiranih s pomočjo orodja ChatGPT, ter nekaj jih je bilo vzetih iz zbirke Dodatne naloge pri predmetu Programiranje I. \cite{dodatneNaloge}
-Zaradi omejenega predznanja učencev ter časovne omejitve eksperimenta je bil narejen ožji izbor na osem nalog, ki so se razlikovale po težavnosti. Po dodatnem pogovoru z ostalimi učitelji programiranja so bile naloge dodeljene v tri težavnostne kategorije, glede na časovno zahtevnost ter potrebno znanje za reševanje posamezne naloge. Prva kategorija je vsebovala lažje algoritmične naloge, za katere je bilo potrebno le osnovno znanje. Večina učencev bi morala biti zmožna rešiti te naloge brez dodatne pomoči. V prvi kategoriji so bile štiri naloge, ostale dve kategoriji sta vsebovali po dve nalogi. Druga kategorija je vsebovala srednje težke naloge, ki so zahtevale več časa  in nekaj več znanja kot naloge prve kategorije. Naloge zadnje kategorije so vsebovale težke naloge, ki so bile časovno najbolj zahtevne ter so zahtevale dobro poznavanje programerskih konceptov.  
+Zaradi omejenega predznanja učencev ter časovne omejitve eksperimenta je bil narejen ožji izbor na osem nalog, ki so se razlikovale po težavnosti. Po dodatnem pogovoru z ostalimi učitelji programiranja so bile naloge dodeljene v tri težavnostne kategorije, glede na časovno zahtevnost ter potrebno znanje za reševanje posamezne naloge. Prva kategorija je vsebovala lažje algoritmične naloge, za katere je bilo potrebno le osnovno znanje. Večina učencev bi morala biti zmožna rešiti te naloge brez dodatne pomoči.
+\\
+\textbf{Primer naloge prve kategorije}:
+Napiši Python program, ki sprejme seznam števil, in izpiše povprečje vseh števil iz seznama.
+\begin{lstlisting}[style=python]
+seznam = [1, 2, 3, 4, 5]
+vsota = 0
+for element in seznam:
+    vsota += element
+print(vsota / len(seznam))
+\end{lstlisting}
+    
 
-
+V prvi kategoriji so bile štiri naloge, ostale dve kategoriji sta vsebovali po dve nalogi. Druga kategorija je vsebovala srednje težke naloge, ki so zahtevale več časa  in nekaj več znanja kot naloge prve kategorije. 
+\\
+\textbf{Primer naloge druge kategorije}:
+Napiši funkcijo, ki prešteje število samoglasnikov (a e i o u) v podani besedi.
+\begin{lstlisting}[style=python]
+def prestej(beseda):
+    stevec = 0
+    samoglasniki="aeiou"
+    for crka in str(beseda):
+        if crka.lower() in samoglasniki:
+            stevec+= 1
+    return stevec
+\end{lstlisting}
+Naloge zadnje kategorije so vsebovale težke naloge, ki so bile časovno najbolj zahtevne ter so zahtevale dobro poznavanje programerskih konceptov.
+\\
+\textbf{Primer naloge tretje kategorije}:
+Napišite funkcijo, ki sprejme dva niza in vrne True, če je sta niza anagrama, in vrne False, če nista anagrama.
+\begin{lstlisting}[style=python]
+def anagram(niz1, niz2):
+    return sorted(niz1) == sorted(niz2)
+    
+\end{lstlisting}
 Naloge so na voljo v  \href{https://github.com/spin311/hiter-inzeniring-diploma/tree/main/naloge}{GitHub repozitoriju.}
+\footnote{\href{https://github.com/spin311/hiter-inzeniring-diploma/}{GitHub repozitorij https://github.com/spin311/hiter-inzeniring-diploma/}}
+
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1\linewidth]{images/naloga_primer.png}
-    \caption{Primer naloge}
-    \label{fig:enter-label}
+    \includegraphics[width=1\linewidth]{images/stran.png}
+    \caption{Primer reševanja naloge}
+    \label{fig:stran}
 \end{figure}
 
 \section{Izvedba}
@@ -746,20 +820,19 @@ Eksperiment je bil izpeljan v štirih skupinah. Potek eksperimenta je bil tak, d
 Eksperiment je trajal dve uri z vmesnih petnajst minutnim odmorom in je bil sestavljen iz osmih nalog. Vrstni red reševanja nalog je bil naključen brez možnosti vračanja na predhodne naloge, da bi zmanjšali možnost prepisovanja. Uporaba pogovornega okna z asistentom ChatGPT je bila na voljo pri polovici nalog vsake kategorije, pri drugi polovici pa je bila uporaba onemogočena za primerjavo reševanja nalog znotraj enake kategorije ter analizo vpliva orodja umetne inteligence pri programiranju. Za pogovor je bil uporabljen API GPT-3.5 Turbo zaradi popularnosti in cenovne ugodnosti modela.
 
 \section{Ocena}
-Naloge so bile ocenjene na lestvici 1-5 (stolpec correct v tabeli oddaja). Ocena ena in dva so dobile naloge, ki niso bile pravilno rešene ter za noben primer vhoda ne vrnejo pravilnega izhoda. Naloge so dobile oceno tri, če so bile delno pravilno rešene, torej delujejo v nekaterih primerih oziroma navodila niso bila v celoti implementirana. Ocena štiri je pripadala nalogam, ki so pravilno rešene, ampak ne upoštevajo robnih primerov ali kakšne malenkosti iz navodil. Ocena pet je bila za naloge, ki ob pričakovanih vhodih vrnejo tudi pričakovan izhod. Dovoljena je bila uporaba funkcij iz vgrajenih Pythonovih knjižnic. Kvaliteta in berljivost kode se ni ocenjevala. Skupno je bilo oddanih 196 veljavnih nalog s kodo, v povprečju so učenci zaradi časovne omejitve rešili med šest in sedem nalog. 
+Naloge so bile ocenjene na lestvici 1-5 (stolpec correct v tabeli oddaja). Ocena ena in dva so dobile naloge, ki niso bile pravilno rešene ter za noben primer vhoda ne vrnejo pravilnega izhoda. Naloge so dobile oceno tri, če so bile delno pravilno rešene, torej delujejo v nekaterih primerih oziroma navodila niso bila v celoti implementirana. Ocena štiri je pripadala nalogam, ki za osnovno podan vhod delujejo pravilno, ne delujejo pa za vse možne vhode. Ocena pet je bila za naloge, ki ob pričakovanih vhodih vrnejo tudi pričakovan izhod. Dovoljena je bila uporaba funkcij iz vgrajenih Pythonovih knjižnic. Kvaliteta in berljivost kode se v oceni ni upoštevala. Skupno je bilo oddanih 196 veljavnih nalog s kodo, v povprečju so učenci zaradi časovne omejitve rešili med šest in sedem nalog. 
 Po končanem eksperimentu se je naredila analiza zbranih podatkov s pomočjo podatkov shranjenih v relacijskih bazah ter z narejenimi sql poizvedbami z uporabo knjižnice SQLite.
-Spodaj je zapisana sql poizvedba, uporabljena za analizo pridobljenih podatkov. Poizvedba podatke grupira po stopnji težavnosti in možnosti uporabe GPT-ja ter prikaže povprečno vrednost točk za vsako skupino nalog, zaokroženo na eno decimalno mesto. V nadaljevanju je poizvedbi dodan še stavek za filtriranje glede na podano demografsko lastnost.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1\linewidth]{images/bar_all.png}
+    \includegraphics[width=1\linewidth]{images/tockeGPT.png}
     \caption{Ocene nalog glede na kategorije}
     \label{fig:bar_all}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1\linewidth]{images/naloge_posamezne.png}
+    \includegraphics[width=1\linewidth]{images/tockeNaloge.png}
     \caption{Ocene posameznih nalog}
     \label{fig:grade_all}
 \end{figure}
@@ -769,39 +842,40 @@ Graf \ref{fig:grade_all} prikazuje povprečno oceno pri posamezni nalogi. Naloge
 
 
 Graf \ref{fig:bar_all} prikazuje povprečno oceno za različne težavnostne stopnje nalog nad vso populacijo. Y os prikazuje povprečje točk, X os prikazuje težavnostno stopnjo skupine nalog.
-Pri nalogah prve stopnje težavnosti je bilo z uporabo GPT povprečje 3.5, brez možnosti uporabe pa 3.2. Pri nalogah druge stopnje težavnosti je z uporabo GPT povprečje 4.5 ter brez 2.8. Pri nalogah tretje stopnje je povprečje z uporabo GPT 4.2 ter brez 2.7. V vseh primerih so bile naloge, kjer je bila omogočena uporaba GPT, rešene boljše. 
-Odklone v razlikah pri različnih kategorijah lahko pojasnimo s preprosto sql poizvedbo po številu pogovorov za določeno kategorijo.
+Pri nalogah prve stopnje težavnosti je bilo z uporabo GPT povprečje 3.5, brez možnosti uporabe pa 3.2. Pri nalogah druge stopnje težavnosti je z uporabo GPT povprečje 4.5 ter brez 2.8. Pri nalogah tretje stopnje je povprečje z uporabo GPT 4.2 ter brez 2.7. V vseh primerih so bile naloge, kjer je bila omogočena uporaba GPT, rešene boljše.
+Velikost vpliva uporabe ChatGPT-ja lahko določimo z uporabo statistične analize.
+Skupno število oddanih nalog znaša 196, z manjšimi razlikami znotraj kategorij, kjer imajo naloge prve kategorije največ oddaj, saj jih je glede na druge dve kategorije dvakrat več. Za test so bile naloge razvrščene v tri težavnostne kategorije, kjer je za vsako bilo izračunano povprečje točk ter standardni odklon pri nalogah, ki so bile rešene z uporabo ChatGPT v primerjavi nalogam, ki so bile rešene brez uporabe. Za vsako kategorijo smo izvedli dvovzorčni t-test, da bi ocenili, ali je prisotnost chatGPT-ja bistveno vplivala na rezultate nalog.
+
+Rezultati so pokazali, da je pomoč z GPT pomembno izboljšala rezultate pri nalogah s težavnostjo 2 (p = 0,00038) in 3 (p = 0,00062), pri nalogah s težavnostjo 1 pa ni bilo ugotovljene pomembne razlike (p = 0,366). Te ugotovitve kažejo, da je pomoč z GPT najbolj koristna pri zahtevnejših nalogah, pri katerih učenci morda potrebujejo kompleksnejšo pomoč, da dosežejo višje rezultate, medtem ko pri enostavnejših nalogah vključitev GPT ne prinaša enake koristi. To potrjuje hipotezo, da lahko dobro oblikovane spodbude, ki izkoriščajo GPT, izboljšajo uspešnost, zlasti pri zahtevnejših scenarijih.
+
+
+
+Odklone v razlikah pri različnih kategorijah lahko delno pojasnimo v razlikah pri številu pogovorov z ChatGPT pri različnih kategorijah.
 
 \begin{tabular}{|l|r|}
 \hline
-\textbf{TASK\_DIFFICULTY} & \textbf{chat\_count} \\
+\textbf{stopnja težavnosti} & \textbf{število pogovorov} \\
 \hline
 1 & 34 \\
 \hline
-2 & 118 \\
+2 & 59 \\
 \hline
 3 & 65 \\
 \hline
 \end{tabular}
 \newline
 \newline
-S poizvedbo dobimo rezultat, da je pri nalogah prve kategorije kjer je bil na voljo chatGPT bil skupno uporabljen le 34 krat, pri nalogah druge kategorije je bil uporabljen 118 krat ter pri nalogah tretje kategorije 65 krat. Majhno število uporabe pri nalogah prve kategorije nakazuje na dejstvo, da so naloge bile lažje in so zato v večji meri bile reševane samostojno, kljub možnosti uporabe chatGPT-ja. Pri težjih nalogah je pogosteje prišlo do neznanja in je na tem mestu bil uporabljen chatGPT. Iz analize postavljenih vprašanj lahko dodatno ugotovimo, da je večino vprašanj prve kategorije bilo glede pravilnosti in kvalitete kode, pri drugi in tretji težavnostni kategoriji pa se je večina vprašanj nanašalo na rešitev same naloge ter popravljanje nedelujoče kode.
+Dobimo rezultat, da je pri nalogah prve kategorije kjer je bil na voljo chatGPT bil skupno uporabljen le 34 krat, pri nalogah druge kategorije je bil uporabljen 59 krat ter pri nalogah tretje kategorije 65 krat. Majhno število uporabe pri nalogah prve kategorije nakazuje na dejstvo, da so naloge bile lažje in so zato v večji meri bile reševane samostojno, kljub možnosti uporabe chatGPT-ja. Pri težjih nalogah je pogosteje prišlo do neznanja in je na tem mestu bil uporabljen chatGPT. Iz analize postavljenih vprašanj lahko dodatno ugotovimo, da je večino vprašanj prve kategorije bilo glede pravilnosti in kvalitete kode, pri drugi in tretji težavnostni kategoriji pa se je večina vprašanj nanašalo na rešitev same naloge ter popravljanje nedelujoče kode.
 Iz grafa \ref{fig:bar_all} je razvidno, da je število doseženih točk pri nalogi sorazmerno s številom vprašanj, namenjenim chatGPT-ju. Pri večjem številu vprašanj pri kategoriji je bilo posledično doseženih tudi več točk. 
 
 \pagebreak
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1\linewidth]{images/ageLT14.png}
-    \caption{Naloge starost < 14}
+    \includegraphics[width=1\linewidth]{images/starostGPT.png}
+    \caption{Točke po nalogah glede na starost}
     \label{fig:ageLT14}
 \end{figure}
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=1\linewidth]{images/ageGTE14.png}
-    \caption{Naloge starost >= 14}
-    \label{fig:ageGTE14}
-\end{figure}
 
 Če učence razdelimo glede na njihovo starost, dobimo dve enako veliki skupini starosti 11-13, kar prikazuje graf \ref{fig:ageLT14} in starostno skupino 14-16 z grafom \ref{fig:ageGTE14}. Pri nalogah prve kategorije ni velike razlike v reševanju med skupinama, razliko pa opazimo pri nalogah druge in tretje kategorije, kjer vidimo, da je starejša skupina boljše reševala naloge, ki jih je bilo potrebno reševati samostojno, kar lahko pripišemo več izkušnjam, ki so pridobljena s starostjo. Pri primerjavi nalog, rešenih z asistenco GPT opazimo, da so povprečne ocene zelo podobne, pri nekaterih nalogah pri mlajši skupini celo višje.
 
@@ -809,16 +883,9 @@ Iz grafa \ref{fig:bar_all} je razvidno, da je število doseženih točk pri nalo
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1\linewidth]{images/solo_progLEQ3.png}
-    \caption{Naloge lastna ocena programiranja 1-3}
+    \includegraphics[width=1\linewidth]{images/ocenaGPT.png}
+    \caption{Točke po nalogah glede na lastno oceno programiranja}
     \label{fig:ocenaLTE13}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=1\linewidth]{images/solo_progGT3.png}
-    \caption{Naloge lastna ocena programiranja 4-5}
-    \label{fig:ocenaGT3}
 \end{figure}
 
 Za preučevanje vpliva glede na različno predznanje lahko učence razdelimo glede na njihovo podano oceno predznanja, ki so jo podali v anketi pred začetkom eksperimenta na lestvici z ocenami 1-5. Tako dobimo dve skupini s 15-16 učenci. Prvo skupino predstavljajo učenci z oceno 1-3, torej učenci z manj izkušnjami. Skupino prikazuje graf \ref{fig:ocenaLTE13} Drugo skupino predstavljajo tisti, ki so podali oceno 4-5, torej učenci z več izkušnjami in znanja. Skupino prikazuje graf \ref{fig:ocenaGT3}.

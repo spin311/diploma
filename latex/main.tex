@@ -9,6 +9,7 @@
 \usepackage{amsmath}           % eqref, npr.
 \usepackage{hyperxmp}
 \usepackage[hyphens]{url}
+\usepackage{hyperref}
 \usepackage{csquotes}
 \usepackage{float}
 \usepackage{array}
@@ -46,7 +47,6 @@ sorting=nty,
 
 
 \addbibresource{literatura.bib} %Imports bibliography file
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %	DIPLOMA INFO
@@ -497,7 +497,7 @@ V nadaljevanju si bomo podrobneje pogledali različne faze slapovnega modela.
      V prejšnji fazi se izdela dokument SRS, ki vsebuje natančne zahteve naročnika. Cilj faze načrtovanja je pretvoriti specifikacijo zahtev v strukturo, ki je primerna za implementacijo v nekem programskem jeziku. Tu se opredeli splošna arhitektura programske opreme ter izvede delo na visoki ravni in podrobno deﬁniranje. To delo se dokumentira in je znano kot dokument opisa zasnove programske opreme (angl. SDD). Informacije v dokumentu SDD morajo zadostovati za začetek faze pisanja kode.
     \item Faza izvajanja in testiranja enote \\
     V tej fazi se izvede načrtovanje. Če je SDD celovit, faza izvajanja ali kodiranja poteka nemoteno, saj so vse informacije, ki jih potrebujejo razvijalci programske opreme, vsebovane v dokumentu SDD.
-Med testiranjem so glavne dejavnosti osredotočene na pregledovanje in spreminjanje kode. Sprva se majhni moduli preizkušajo ločeno od preostalega programskega izdelka. S testiranjem modula v izolaciji so povezane določene težave. Kako zagnati modul, ne da bi ga karkoli poklicalo, ter kako ga poklicati ali morda izpisati vmesne vrednosti, pridobljene med izvajanjem? Takšne težave se rešijo v tej fazi, moduli pa se testirajo po tem, ko je nekaj splošne kode že napisane.
+Med testiranjem so glavne dejavnosti osredotočene na pregledovanje in spreminjanje kode. Sprva se majhni moduli preizkušajo ločeno od preostalega programskega izdelka. S testiranjem modula v izolaciji so povezane določene težave. Kako zagnati modul, ne da bi ga karkoli poklicalo, ter kako ga poklicati ali morda izpisati vmesne vrednosti, pridobljene med izvajanjem? Takšne težave se rešijo v tej fazi, moduli pa se testirajo potem, ko je nekaj splošne kode že napisane.
     \item Faza integracije in testiranja sistema \\
      To je zelo pomembna faza. Učinkovito testiranje prispeva k zagotavljanju kakovostnih programskih izdelkov, bolj zadovoljnih uporabnikov, nižjih stroškov vzdrževanja ter natančnejših in zanesljivejših rezultatov. Je zelo draga dejavnost in lahko porabi od tretjine do polovice stroškov tipičnega razvojnega projekta.
 Namen testiranja enot je ugotoviti, ali je vsak neodvisni modul pravilno implementiran. To daje malo možnosti za ugotavljanje, ali so pravilni tudi vmesniki med moduli, zato se izvaja integracijsko testiranje. Sistemsko testiranje vključuje testiranje celotnega sistema, medtem ko je programska oprema del sistema. To je bistvenega pomena za vzpostavitev zaupanja v razvijalce, preden je programska oprema dostavljena stranki ali ponovno dana v najem na trgu.
@@ -718,6 +718,35 @@ V nadaljevanju bomo s pomočjo nadzorovanega eksperimenta preučili, do kakšne 
 Namen diplomskega dela je bil raziskati, kako hiter inženiring vpliva na proces razvoja programske opreme, s preučevanjem kvalitete in pravilnosti kode pri uporabi orodij umetne inteligence. Najprimernejša metoda za pridobivanje teh podatkov je bil nadzorovan eksperiment na skupini mlajših otrok, ker omogoča natančen nadzor nad spremenljivkami ter izolirano vrednotenje reševanja programskih problemov. Ta metodologija minimizira vplive zunanjih spremenljivk, kar omogoča osredotočeno preučevanje zmožnosti in omejitev hitrega inženiringa pri razvoju programske opreme.
 
 \section{Načrt}
+Eksperiment je bil izveden s štirimi skupinami v velikosti 5–12 otrok, ki se učijo programiranja v jeziku Python. Skupno število otrok z veljavnimi podatki v eksperimentu je znašalo 31. Ena skupina je eksperiment opravljala fizično v učilnici, ostale tri skupine so ga izvajale na daljavo, s pomočjo delitve zaslona. V skupinah so bila štiri dekleta in 27 fantov. Stari so bili med 11 in 16 let, s povprečno starostjo 13,6 let in standardnim odklonom 1,44 leta. Starostna porazdelitev je prikazana na sliki \ref{fig:ages}. \\
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{images/starost.png}
+    \caption{Starostna porazdelitev}
+    \label{fig:ages}
+\end{figure}
+Programiranja so se predhodno učili med enim in petimi leti, kjer so med leta programiranja šteli tudi učenje blokovnega programiranja v Scratchu in pisanje spletnih strani v jezikih HTML in JavaScript. Povprečno predhodno učenje programiranja je znašalo 2.5 leti s standardnim odklonom 1.48 leta. Število let učenja programiranja prikazuje slika \ref{fig:izkusnje} \\
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{images/izkusnje.png}
+    \caption{Lastna ocena izkušenj pri programiranju}
+    \label{fig:izkusnje}
+\end{figure}
+Poleg demografskih vprašanj so podali tudi oceno na likertovi lestvici z vrednostimi 1-5 o njihovem strinjanju o trditvah glede njihovega znanja in umetne inteligence. Lastno oceno programerskega znanja so v povprečju ocenili z oceno 3,5, kar prikazuje slika \ref{fig:solo_prog} \\
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{images/ocena_prog.png}
+    \caption{Lastna ocena programiranja}
+    \label{fig:ocena_prog}
+\end{figure}
+Pogostost programiranja v povprečnem mesecu v svojem prostem času so na lestvici povprečno ocenili z oceno 3,6, kar prikazuje slika \ref{fig:solo_prog} \\
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{images/solo_prog.png}
+    \caption{Porazdelitev pogostosti programiranja izven tečajev}
+    \label{fig:solo_prog}
+\end{figure}
+Znanje razhroščevanja kode so v povprečju ocenili z 3,4 od 5. Poznavanje uporabe orodij generativne umetne inteligence so v povprečju na lestvici ocenili z 4,3, kot pomoč pri programiranju jo uporablja 16 oziroma 52\% vprašanih.
 
 \begin{figure}[H]
     \centering
@@ -726,70 +755,38 @@ Namen diplomskega dela je bil raziskati, kako hiter inženiring vpliva na proces
     \label{fig:enter-label}
 \end{figure}
 
-Eksperiment je bil izveden s štirimi skupinami v velikosti 5–12 otrok, ki se učijo programiranja v jeziku Python. Skupno število otrok z veljavnimi podatki v eksperimentu je znašalo 31. Ena skupina je eksperiment opravljala fizično v učilnici, ostale tri skupine so ga izvajale na daljavo, s pomočjo delitve zaslona. V skupinah so bila štiri dekleta in 27 fantov. Stari so bili med 11 in 16 let, s povprečno starostjo 13,6 let in standardnim odklonom 1,44 leta. Starostna porazdelitev je prikazana na sliki \ref{fig:ages}. \\
+Za izvedbo eksperimenta je bil razvit uporabniški vmesnik v jeziku JavaScript. Spletna stran je sestavljena iz treh delov. Prostor za pisanje Python kode z navodili in primeri vhodov in izhodov, prostor za izpis in testiranje programa ter prostor za pogovor z uporabo ChatGPT-3.5. Stran tudi vsebuje indikator trenutne naloge ter unikatni identifikator za anonimno identifikacijo. Stran je bila postavljena s pomočjo orodja GitHub Pages in je dostopna na povezavi \href{https://spin311.github.io/diploma/}{ https://spin311.github.io/diploma/} . \\
+Za namene beleženja in shranjevanja podatkov je bilo narejeno zaledje v jeziku Java z ogrodjem Spring Boot, ki je uporabljajo relacijsko bazo HSQLDB za shranjevanje podatkov. Na splet je bilo postavljeno s storitvijo Microsoft Azure za namene oddaljenega in neprekinjenega dostopa. Namen zaledja je bil vsakemu obiskovalcu strani dodeliti unikatni naključni identifikator, ter beležiti kodo ter pogovor za posamično nalogo v ustrezno relacijsko bazo. Diagram arhitekture prikazuje slika \ref{fig:arhitektura}. \\
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1\linewidth]{images/starost.png}
-    \caption{Starostna porazdelitev}
-    \label{fig:ages}
-\end{figure}
-Programiranja so se predhodno učili med enim in sedmimi leti, kjer so med leta programiranja šteli tudi učenje blokovnega programiranja v Scratchu in pisanje spletnih strani. Povprečno predhodno učenje programiranja je znašalo 2.5 leti s standardnim odklonom 1.48 leta. \\
-Poleg demografskih vprašanj so podali tudi oceno na skali z vrednostimi 1-5 o njihovem predznanju ter o poznavanju umetne inteligence. Svojo samozavest in dosedanje izkušnje za pisanje osnovnih programov so v povprečju ocenili z 4,0, kar prikazuje slika \ref{fig:izkusnje} \\
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=1\linewidth]{images/izkusnje.png}
-    \caption{Lastna ocena izkušenj pri programiranju}
-    \label{fig:izkusnje}
-\end{figure}
-Znanje razhroščevanja kode so v povprečju ocenili z 3,4 od 5. Poznavanje uporabe orodij generativne umetne inteligence so v povprečju ocenili z 4,3, kot pomoč pri programiranju jo uporablja 16 vprašanih.
-Poleg tečajev jih v svojem prostem času dodatno programira 17 oziroma 55 \%. Kako pogosto programirajo v svojem prostem času so ocenili tudi na lestvici 1-5, kar prikazuje slika \ref{fig:solo_prog}.
-
-
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=1\linewidth]{images/ocena_prog.png}
-    \caption{Lastna ocena programiranja}
-    \label{fig:ocena_prog}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=1\linewidth]{images/solo_prog.png}
-    \caption{Porazdelitev pogostosti programiranja izven tečajev}
-    \label{fig:solo_prog}
+    \includegraphics[width=0.7\linewidth]{images/diagram_arhitektura.png}
+    \caption{Diagram arhitekture}
+    \label{fig:arhitektura}
 \end{figure}
 
 
-
-Za izvedbo eksperimenta je bil razvit uporabniški vmesnik v jeziku JavaScript. Spletna stran je sestavljena iz treh delov. Prostor za pisanje Python kode z navodili in primeri vhodov in izhodov, prostor za izpis in testiranje programa ter prostor za pogovor z uporabo ChatGPT-3.5. Stran tudi vsebuje indikator trenutne naloge ter unikatni identifikator za anonimno identifikacijo. Stran je bila postavljena s pomočjo orodja GitHub Pages in je dostopna na povezavi \href{https://spin311.github.io/diploma/}{ https://spin311.github.io/diploma/} .
-Za namene beleženja in shranjevanja podatkov je bilo narejeno zaledje v jeziku Java z ogrodjem Spring Boot, ki je uporabljajo relacijsko bazo HSQLDB za shranjevanje podatkov. Na splet je bilo postavljeno s storitvijo Microsoft Azure za namene oddaljenega in neprekinjenega dostopa. Namen zaledja je bil vsakemu obiskovalcu strani dodeliti unikatni naključni identifikator, ter beležiti kodo ter pogovor za posamično nalogo v ustrezno relacijsko bazo. Baza je vsebovala pet tabel. Vnos (angl. log), pogovor (angl. chat), ter oddaja (angl. submit) so vsebovale podatke o trenutnem stanju naloge, časa in kode in so vsebovale referenco na tabeli študent, ki je hranila osnovne podatke o učencih ter na tabelo naloge, ki je vsebovala podatke o trenutni nalogi. Shranjevalo se je tudi, ali se je trenutna koda prevedla z napako, število poskusov za trenutno nalogo in metapodatke, kot je trenuten čas ter čas reševanja trenutne naloge. Kodo in pogovor se je beležilo ob oddaji naloge, vsakem prevajanju programa ter na določen časovni interval.
-
-\footnote{\href{https://spin311.github.io/diploma/}{Uporabniški vmesnik https://spin311.github.io/diploma/}}
+Baza je vsebovala pet tabel. Vnos (angl. log), pogovor (angl. chat), ter oddaja (angl. submit) so vsebovale podatke o trenutnem stanju naloge, časa in kode in so vsebovale referenco na tabeli študent (angl. student), ki je hranila osnovne podatke o učencih ter na tabelo naloge (angl. tasks), ki je vsebovala podatke o trenutni nalogi. Arhitektura tabel ter podatki, ki so se beležili so prikazani na sliki \ref{fig:baze}. \\ Shranjevalo se je tudi, ali se je trenutna koda prevedla z napako, število poskusov za trenutno nalogo in metapodatke, kot je trenuten čas ter čas reševanja trenutne naloge. Kodo in pogovor se je beležilo ob oddaji naloge, vsakem prevajanju programa ter na določen časovni interval.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\linewidth]{images/tabele2.png}
     \caption{Arhitektura baznih tabel}
-    \label{fig:enter-label}
+    \label{fig:baze}
 \end{figure}
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.7\linewidth]{images/diagram_arhitektura.png}
-    \caption{Diagram arhitekture}
-    \label{fig:enter-label}
-\end{figure}
+\footnote{\href{https://spin311.github.io/diploma/}{Uporabniški vmesnik https://spin311.github.io/diploma/}}
+
+
 \section{Izvedba}
 
-Eksperiment je bil izpeljan v štirih skupinah. Potek eksperimenta je bil tak, da je bilo najprej predstavljena umetna inteligenca in hiter inženiring, ter najboljše prakse za uporabo ChatGPT za pomoč pri programiranju. Nato je bila rešena krajša anketa o demografskih vprašanjih ter o predznanju programiranja in poznavanju orodij umetne inteligence. Po tem je bila na voljo dobra ura za samo reševanje nalog. Med samim eksperimentom se učencem ni pomagalo, razen z interpretacijo navodil.
-Eksperiment je trajal dve uri z vmesnih petnajst minutnim odmorom in je bil sestavljen iz osmih nalog. Vrstni red reševanja nalog je bil naključen brez možnosti vračanja na predhodne naloge, da bi zmanjšali možnost prepisovanja. Uporaba pogovornega okna z asistentom ChatGPT je bila na voljo pri polovici nalog vsake kategorije, pri drugi polovici pa je bila uporaba onemogočena za primerjavo reševanja nalog znotraj enake kategorije ter analizo vpliva orodja umetne inteligence pri programiranju. Za pogovor je bil uporabljen API GPT-3.5 Turbo zaradi popularnosti in cenovne ugodnosti modela.
+Eksperiment je bil izpeljan v štirih skupinah. Potek eksperimenta je bil tak, da je bilo najprej predstavljena umetna inteligenca in hiter inženiring, ter najboljše prakse za uporabo ChatGPT za pomoč pri programiranju. Nato je bila rešena krajša anketa o demografskih vprašanjih ter o predznanju programiranja in poznavanju orodij umetne inteligence. Po anketi je bila na voljo dobra ura za samo reševanje nalog. Med samim eksperimentom se učencem ni pomagalo, razen z interpretacijo navodil. \\
+Eksperiment je vse skupaj trajal dve uri z vmesnih petnajst minutnim odmorom in je bil sestavljen iz osmih nalog. Vrstni red reševanja nalog je bil za vsakega učenca programersko naključno določen brez možnosti vračanja na predhodne naloge, da bi zmanjšali možnost prepisovanja ter goljufanja. Uporaba pogovornega okna z asistentom ChatGPT je bila na voljo pri polovici nalog vsake kategorije, pri drugi polovici pa je bila uporaba onemogočena za primerjavo reševanja nalog znotraj enake kategorije ter analizo vpliva orodja umetne inteligence pri programiranju. Za pogovor je bil uporabljen API GPT-3.5 Turbo zaradi popularnosti in cenovne ugodnosti modela.
 
-Repozitorij s kodo in navodili za lokalno postavitev je na voljo na \href{https://github.com/spin311/hiter-inzeniring-diploma}{GitHubu}. 
+Repozitorij s kodo in navodili za lokalno postavitev je na voljo na  \href{https://github.com/spin311/hiter-inzeniring-diploma}{GitHub repozitoriju}. 
 
 \subsection{Naloge}
 Za ocenjevanje vpliva programiranja s pomočjo umetne inteligence je bilo izbranih osem algoritmičnih nalog.
-Na začetku je bil narejen večji nabor nalog iz treh različnih virov. Nekatere naloge so bile napisane s pomočjo ostalih učiteljev programiranja, nekaj nalog je bilo generiranih s pomočjo orodja ChatGPT, ter nekaj jih je bilo vzetih iz zbirke Dodatne naloge pri predmetu Programiranje I. \cite{dodatneNaloge}
+Na začetku je bil narejen večji nabor nalog iz treh različnih virov. Nekatere naloge so bile napisane s pomočjo ostalih učiteljev programiranja, nekaj nalog je bilo generiranih s pomočjo orodja ChatGPT, ter nekaj jih je bilo vzetih iz zbirke "Dodatne naloge pri predmetu Programiranje I". \cite{dodatneNaloge} \\
 Zaradi omejenega predznanja učencev ter časovne omejitve eksperimenta je bil narejen ožji izbor na osem nalog, ki so se razlikovale po težavnosti. Po dodatnem pogovoru z ostalimi učitelji programiranja so bile naloge dodeljene v tri težavnostne kategorije, glede na časovno zahtevnost ter potrebno znanje za reševanje posamezne naloge. Prva kategorija je vsebovala lažje algoritmične naloge, za katere je bilo potrebno le osnovno znanje. Večina učencev bi morala biti zmožna rešiti te naloge brez dodatne pomoči.
 \\
 \textbf{Primer naloge prve kategorije}:
@@ -820,6 +817,7 @@ Naloge zadnje kategorije so vsebovale težke naloge, ki so bile časovno najbolj
 \\
 \textbf{Primer naloge tretje kategorije}:
 Napišite funkcijo, ki sprejme dva niza in vrne True, če je sta niza anagrama, in vrne False, če nista anagrama.
+\pagebreak
 \begin{lstlisting}[style=python]
 def anagram(niz1, niz2):
     return sorted(niz1) == sorted(niz2)
@@ -838,15 +836,11 @@ Naloge so na voljo v  \href{https://github.com/spin311/hiter-inzeniring-diploma/
 
 
 \section{Ocena}
-Naloge so bile ocenjene na lestvici 1-5 (stolpec correct v tabeli oddaja). Ocena ena in dva so dobile naloge, ki niso bile pravilno rešene ter za noben primer vhoda ne vrnejo pravilnega izhoda. Naloge so dobile oceno tri, če so bile delno pravilno rešene, torej delujejo v nekaterih primerih oziroma navodila niso bila v celoti implementirana. Ocena štiri je pripadala nalogam, ki za osnovno podan vhod delujejo pravilno, ne delujejo pa za vse možne vhode. Ocena pet je bila za naloge, ki ob pričakovanih vhodih vrnejo tudi pričakovan izhod. Dovoljena je bila uporaba funkcij iz vgrajenih Pythonovih knjižnic. Kvaliteta in berljivost kode se v oceni ni upoštevala. Skupno je bilo oddanih 196 veljavnih nalog s kodo, v povprečju so učenci zaradi časovne omejitve rešili med šest in sedem nalog. 
+Naloge so bile ocenjene na lestvici 1-5 (stolpec correct v tabeli oddaja). Ocena ena in dva so dobile naloge, ki niso bile pravilno rešene ter za noben primer vhoda ne vrnejo pravilnega izhoda. Naloge so dobile oceno tri, če so bile delno pravilno rešene, torej delujejo v nekaterih primerih oziroma navodila niso bila v celoti implementirana. Ocena štiri je pripadala nalogam, ki za osnovno podan vhod delujejo pravilno, ne delujejo pa za vse možne vhode. Ocena pet je bila za naloge, ki ob pričakovanih vhodih vrnejo tudi pričakovan izhod. Dovoljena je bila uporaba funkcij iz vgrajenih Pythonovih knjižnic. Kvaliteta in berljivost kode se zaradi lažjega in bolj objektivnega ocenjevanja za oceno ni upoštevala. Skupno je bilo oddanih 196 veljavnih nalog s kodo, v povprečju so učenci zaradi časovne omejitve rešili med šest in sedem nalog. \\
 Po končanem eksperimentu se je naredila analiza zbranih podatkov s pomočjo podatkov shranjenih v relacijskih bazah ter z narejenimi sql poizvedbami z uporabo knjižnice SQLite.
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=1\linewidth]{images/tockeGPT.png}
-    \caption{Ocene nalog glede na kategorije}
-    \label{fig:bar_all}
-\end{figure}
+
+Graf \ref{fig:grade_all} prikazuje povprečno oceno pri posamezni nalogi. Naloge 2, 4, 6 in 8 so imele omogočeno uporabo ChatGPT-ja, ostale naloge pa so bile rešene brez asistence in so imele vlogo kontrole. \\ Naloge 1-4 sodijo v najlažjo kategorijo 1 in so bile v povprečju rešene z oceno 3,3. Nalogi 5 in 6 sodita v kategorijo 2 in sta bili v povprečju rešeni z oceno 3,6. Nalogi 7 in 8 sodita v najtežjo kategorijo 3, kjer je povprečje točk znašalo 3,4. Najslabše je bila rešena naloga 7 s povprečno oceno 2.7, najboljše pa je bila rešena naloga 6 s povprečno oceno 4.5.
 
 \begin{figure}[H]
     \centering
@@ -854,25 +848,31 @@ Po končanem eksperimentu se je naredila analiza zbranih podatkov s pomočjo pod
     \caption{Ocene posameznih nalog}
     \label{fig:grade_all}
 \end{figure}
- V nadaljevanju rdeči stolpci prikazujejo naloge, kjer je bila možnost reševanja s pomočjo uporabe umetne inteligence chatGPT-3.5 Turbo, v nadaljevanju GPT, modri stolpci pa naloge, kjer je bila dodatna pomoč onemogočena.
 
-Graf \ref{fig:grade_all} prikazuje povprečno oceno pri posamezni nalogi. Naloge 1-4 sodijo v najlažjo kategorijo 1, nalogi 5 in 6 v kategorijo 2, nalogi 7 in 8 pa v najtežjo kategorijo 3. Najslabše je bila rešena naloga 7 s povprečno oceno 2.7, najboljše pa je bila rešena naloga 6 s povprečno oceno 4.5.
-
-
-Graf \ref{fig:bar_all} prikazuje povprečno oceno za različne težavnostne stopnje nalog nad vso populacijo. Y os prikazuje povprečje točk, X os prikazuje težavnostno stopnjo skupine nalog.
-Pri nalogah prve stopnje težavnosti je bilo z uporabo GPT povprečje 3.5, brez možnosti uporabe pa 3.2. Pri nalogah druge stopnje težavnosti je z uporabo GPT povprečje 4.5 ter brez 2.8. Pri nalogah tretje stopnje je povprečje z uporabo GPT 4.2 ter brez 2.7. V vseh primerih so bile naloge, kjer je bila omogočena uporaba GPT, rešene boljše.
+Graf \ref{fig:bar_all} prikazuje povprečno oceno za različne težavnostne stopnje nalog glede na možnost uporabe ChatGPT-ja. \\
+Pri nalogah prve stopnje težavnosti je bilo z uporabo GPT povprečno število doseženih točk 3.5, brez možnosti uporabe pa 3.2 z razliko 0,3 ocene. Pri nalogah druge stopnje težavnosti je z uporabo GPT povprečje točk 4.5 ter brez 2.8. Razlika znaša 1,7 ocene. Pri nalogah tretje stopnje je povprečje z uporabo GPT 4.2 ter brez 2.7 z razliko 1,5.  V vseh primerih so bile naloge, kjer je bila omogočena uporaba GPT, rešene boljše. \\
 Velikost vpliva uporabe ChatGPT-ja lahko določimo z uporabo statistične analize.
-Skupno število oddanih nalog znaša 196, z manjšimi razlikami znotraj kategorij, kjer imajo naloge prve kategorije največ oddaj, saj jih je glede na druge dve kategorije dvakrat več. Za test so bile naloge razvrščene v tri težavnostne kategorije, kjer je za vsako bilo izračunano povprečje točk ter standardni odklon pri nalogah, ki so bile rešene z uporabo ChatGPT v primerjavi nalogam, ki so bile rešene brez uporabe. Za vsako kategorijo smo izvedli dvovzorčni t-test, da bi ocenili, ali je prisotnost chatGPT-ja bistveno vplivala na rezultate nalog.
+Skupno število oddanih nalog znaša 196, z manjšimi razlikami znotraj kategorij, kjer imajo naloge prve kategorije največ oddaj, saj jih je glede na druge dve kategorije dvakrat več. Za test so bile naloge razvrščene v tri težavnostne kategorije, kjer je za vsako bilo izračunano povprečje točk ter standardni odklon pri nalogah, ki so bile rešene z uporabo ChatGPT v primerjavi nalogam, ki so bile rešene brez uporabe. Za vsako kategorijo smo izvedli dvovzorčni t-test, da bi preverili ničelno hipotezo ($H_0$), da ni razlike v povprečnih ocenah med nalogami z omogočenim GPT in nalogami brez GPT. Ta test smo izbrali zaradi neodvisne narave obeh skupin in majhnih razlik v velikosti vzorcev, zaradi česar je primeren za primerjavo povprečij med tema skupinama. 
 
-Rezultati so pokazali, da je pomoč z GPT pomembno izboljšala rezultate pri nalogah s težavnostjo 2 (p = 0,00038) in 3 (p = 0,00062), pri nalogah s težavnostjo 1 pa ni bilo ugotovljene pomembne razlike (p = 0,366). Te ugotovitve kažejo, da je pomoč z GPT najbolj koristna pri zahtevnejših nalogah, pri katerih učenci morda potrebujejo kompleksnejšo pomoč, da dosežejo višje rezultate, medtem ko pri enostavnejših nalogah vključitev GPT ne prinaša enake koristi. To potrjuje hipotezo, da lahko dobro oblikovane spodbude, ki izkoriščajo GPT, izboljšajo uspešnost, zlasti pri zahtevnejših scenarijih.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{images/tockeGPT.png}
+    \caption{Ocene nalog glede na kategorije}
+    \label{fig:bar_all}
+\end{figure}
+V tej raziskavi smo uporabili prag pomembnosti p < 0,05.
+ Rezultati za naloge s težavnostno stopnjo 1 (p = 0,366) niso pokazali pomembne razlike v rezultatih med nalogami z in brez pomoči GPT, zato ne moremo zavrniti ničelne hipoteze. \\
+ Rezultati za naloge s težavnostjo 2 (p = 0,00038) so pokazali pomembno izboljšanje rezultatov pri nalogah z GPT, zato zavrnemo ničelno hipotezo in potrdimo, da GPT pomembno vpliva na izboljšanje rezultatov. \\
+ Rezultati za naloge s težavnostjo 3 (p = 0,00062) so prav tako pokazali pomembno izboljšanje rezultatov pri nalogah z GPT, zato zavrnemo ničelno hipotezo in potrdimo, da GPT bistveno izboljšuje rezultate tudi pri bolj zahtevnih nalogah.\\
 
-
-
+Rezultati so pokazali, da je pomoč z GPT pomembno izboljšala rezultate pri nalogah s težavnostjo 2 in 3, pri nalogah s težavnostjo 1 pa ni bilo ugotovljene pomembne razlike. Te ugotovitve kažejo, da je pomoč z GPT najbolj koristna pri zahtevnejših nalogah, pri katerih učenci morda potrebujejo kompleksnejšo pomoč, da dosežejo višje rezultate, medtem ko pri enostavnejših nalogah vključitev GPT ne prinaša enake koristi. To potrjuje hipotezo, da lahko dobro oblikovane spodbude, ki izkoriščajo GPT, izboljšajo uspešnost, zlasti pri zahtevnejših scenarijih, lažje naloge pa so še vedno bile v veliki meri rešene samostojno.\\
 Odklone v razlikah pri različnih kategorijah lahko delno pojasnimo v razlikah pri številu pogovorov z ChatGPT pri različnih kategorijah.
 
+\begin{table}[h!]
+\centering
 \begin{tabular}{|l|r|}
 \hline
-\textbf{stopnja težavnosti} & \textbf{število pogovorov} \\
+\textbf{stopnja težavnosti} & \textbf{število pogovorov na nalogo} \\
 \hline
 1 & 34 \\
 \hline
@@ -881,9 +881,9 @@ Odklone v razlikah pri različnih kategorijah lahko delno pojasnimo v razlikah p
 3 & 65 \\
 \hline
 \end{tabular}
-\newline
-\newline
-Dobimo rezultat, da je pri nalogah prve kategorije kjer je bil na voljo chatGPT bil skupno uporabljen le 34 krat, pri nalogah druge kategorije je bil uporabljen 59 krat ter pri nalogah tretje kategorije 65 krat. Majhno število uporabe pri nalogah prve kategorije nakazuje na dejstvo, da so naloge bile lažje in so zato v večji meri bile reševane samostojno, kljub možnosti uporabe chatGPT-ja. Pri težjih nalogah je pogosteje prišlo do neznanja in je na tem mestu bil uporabljen chatGPT. Iz analize postavljenih vprašanj lahko dodatno ugotovimo, da je večino vprašanj prve kategorije bilo glede pravilnosti in kvalitete kode, pri drugi in tretji težavnostni kategoriji pa se je večina vprašanj nanašalo na rešitev same naloge ter popravljanje nedelujoče kode.
+\caption{Število uporab ChatGPT-ja za posamezne težavnosti}
+\end{table}
+Pri nalogah prve kategorije, kjer je bil na voljo chatGPT, je bil skupno uporabljen le 34 krat, pri nalogah druge kategorije je bil uporabljen 59 krat ter pri nalogah tretje kategorije 65 krat. Majhno število uporabe pri nalogah prve kategorije nakazuje na dejstvo, da so naloge bile lažje in so zato v večji meri bile reševane samostojno, kljub možnosti uporabe chatGPT-ja. Pri težjih nalogah je pogosteje prišlo do neznanja in je na tem mestu bil uporabljen chatGPT. Iz analize postavljenih vprašanj lahko dodatno ugotovimo, da je večino vprašanj prve kategorije bilo glede pravilnosti in kvalitete kode, pri drugi in tretji težavnostni kategoriji pa se je večina vprašanj nanašalo na rešitev same naloge ter popravljanje nedelujoče kode.\\
 Iz grafa \ref{fig:bar_all} je razvidno, da je število doseženih točk pri nalogi sorazmerno s številom vprašanj, namenjenim chatGPT-ju. Pri večjem številu vprašanj pri kategoriji je bilo posledično doseženih tudi več točk. 
 
 \pagebreak
@@ -891,11 +891,13 @@ Iz grafa \ref{fig:bar_all} je razvidno, da je število doseženih točk pri nalo
     \centering
     \includegraphics[width=1\linewidth]{images/starostGPT.png}
     \caption{Točke po nalogah glede na starost}
-    \label{fig:ageLT14}
+    \label{fig:starostGPT}
 \end{figure}
 
 
-Če učence razdelimo glede na njihovo starost, dobimo dve enako veliki skupini starosti 11-13, kar prikazuje graf \ref{fig:ageLT14} in starostno skupino 14-16 z grafom \ref{fig:ageGTE14}. Pri nalogah prve kategorije ni velike razlike v reševanju med skupinama, razliko pa opazimo pri nalogah druge in tretje kategorije, kjer vidimo, da je starejša skupina boljše reševala naloge, ki jih je bilo potrebno reševati samostojno, kar lahko pripišemo več izkušnjam, ki so pridobljena s starostjo. Pri primerjavi nalog, rešenih z asistenco GPT opazimo, da so povprečne ocene zelo podobne, pri nekaterih nalogah pri mlajši skupini celo višje.
+Če učence razdelimo glede na njihovo starost, dobimo dve enako veliki skupini starosti 11-13 in starostno skupino 14-16. Graf \ref{fig:starostGPT} prikazuje število točk po kategorijah glede na uporabo ChatGPT-ja za obe starostni skupini. Pri nalogah prve kategorije ni velike razlike v reševanju med skupinama, razliko pa opazimo pri nalogah druge in tretje kategorije, kjer vidimo, da je starejša skupina boljše reševala naloge, ki jih je bilo potrebno reševati samostojno, kar lahko pripišemo več izkušnjam, ki so pridobljena s starostjo. Pri primerjavi nalog, rešenih z asistenco GPT opazimo, da so povprečne ocene zelo podobne, pri nalogah druge in tretje kategorije dosega mlajša skupina celo višje rezultate, kar \\
+
+
 
 \pagebreak
 
@@ -903,22 +905,18 @@ Iz grafa \ref{fig:bar_all} je razvidno, da je število doseženih točk pri nalo
     \centering
     \includegraphics[width=1\linewidth]{images/ocenaGPT.png}
     \caption{Točke po nalogah glede na lastno oceno programiranja}
-    \label{fig:ocenaLTE13}
+    \label{fig:ocenaGPT}
 \end{figure}
 
-Za preučevanje vpliva glede na različno predznanje lahko učence razdelimo glede na njihovo podano oceno predznanja, ki so jo podali v anketi pred začetkom eksperimenta na lestvici z ocenami 1-5. Tako dobimo dve skupini s 15-16 učenci. Prvo skupino predstavljajo učenci z oceno 1-3, torej učenci z manj izkušnjami. Skupino prikazuje graf \ref{fig:ocenaLTE13} Drugo skupino predstavljajo tisti, ki so podali oceno 4-5, torej učenci z več izkušnjami in znanja. Skupino prikazuje graf \ref{fig:ocenaGT3}.
-Prva skupina je povprečno nalogo rešila z oceno 2.9. Pri nalogah, kjer je bila dovoljena pomoč z GPT je imela povprečno oceno 3.8, pri nalogah brez asistence pa 2.0. Razlika znaša 1.8 točk ocene. Opazimo lahko veliko razliko, predvsem pri nalogah druge in tretje težavnostne kategorije, kjer je povprečna naloga brez asistence bila rešena napačno, povprečna naloga z asistenco pa pravilno.
-Druga skupina je povprečno nalogo rešila z oceno 3.85. Naloge, kjer je bila dovoljena pomoč z GPT je imela povprečno oceno 4.0, pri nalogah brez asistence pa 3.7. Razlika znaša 0.3 točke ocene. Pri tej skupini je razlika v reševanju glede na asistenco GPT veliko manjša, pri nalogah prve kategorije so naloge brez asistence rešene celo malenkost boljše. To lahko razložimo z nizkim številom vprašanj za to kategorijo.
-Ob primerjavi obeh skupin opazimo, da so naloge brez asistence bile rešene v drugi skupini v povprečju za kar 1.7 ocene boljše, kar potrjuje boljše predznanje te skupine. Naloge, rešene z asistenco pa so bile v drugi skupini rešene le za 0.2 ocene boljše.
+Za preučevanje vpliva glede na različno predznanje lahko učence razdelimo glede na njihovo podano oceno predznanja, ki so jo podali v anketi pred začetkom eksperimenta na lestvici z ocenami 1-5, predhodno predstavljeno z grafom \ref{fig:ocena_prog}. \\
+Tako dobimo dve skupini s 15 in 16 učenci. Prvo skupino predstavljajo učenci s podanimi ocenami 1-3, torej učenci z manj izkušnjami. Drugo skupino predstavljajo tisti, ki so podali oceno 4-5, torej učenci z več izkušnjami in znanja. Graf \ref{fig:ocenaGPT} prikazuje dobljeno število točk po težavnosti nalog glede na uporabo ChatGPT-ja za glede na obe kategoriji predznanja. \\
+Prva skupina, ki je podala lastno oceno programiranje 1-3 je povprečno nalogo rešila z oceno 2.9. Pri nalogah, kjer je bila dovoljena pomoč z GPT je imela povprečno oceno 3.8, pri nalogah brez asistence pa 2.0. Razlika znaša 1.8 točk ocene. Opazimo lahko veliko razliko, predvsem pri nalogah druge in tretje težavnostne kategorije, kjer je povprečna naloga brez asistence bila rešena napačno, povprečna naloga z asistenco pa pravilno. \\
+Druga skupina, z lastno oceno programiranja nad 3, je povprečno nalogo rešila z oceno 3.85. Naloge, kjer je bila dovoljena pomoč z GPT je imela povprečno oceno 4.0, pri nalogah brez asistence pa 3.7. Razlika znaša 0.3 točke ocene. Pri tej skupini je razlika v reševanju glede na asistenco GPT veliko manjša, pri nalogah prve kategorije so naloge brez asistence rešene celo malenkost boljše. To lahko razložimo z nizkim številom vprašanj za to kategorijo. \\
+Ob primerjavi obeh skupin opazimo, da so naloge brez asistence bile rešene v drugi skupini v povprečju za kar 1.7 ocene boljše, kar potrjuje boljše predznanje te skupine. Naloge, rešene z asistenco pa so bile v drugi skupini rešene le za 0.2 ocene boljše, kar dokazuje izenačitev pogojev in predznanja ob asistenci UI pri programiranju.
+
+Pri rezultatih eksperimenta se moramo zavedati, da bi vzorec učencev v eksperimentu lahko bil bolj reprezentativen, saj je večina učencev pripadalo moški populaciji učencev enakega tečaja programiranja. Prav tako bi večji vzorec izboljšal rezultate.
 
 Iz rezultatov lahko sklepamo, da programiranje z asistenco umetne inteligence izboljša rezultate in pravilnost programov ter olajša in pohitri programiranje tako pri neizkušenih kot tudi pri bolj izkušenih programerjih. Lažje naloge ter naloge, ki so jih učenci razumeli in znali rešiti samostojno, so v večini primerov bile rešene brez asistence, kljub možnosti pridobivanja rešitve z umetno inteligenco. Pri nalogah prve kategorije je bil zato GPT najmanj potreben in uporabljen. V večjo pomoč je bila asistenca pri težjih nalogah, kjer se je pogovorno okno tudi bolj uporabljalo. Največjo razliko naredi hiter inženiring pri manj izkušenih programerjih, tem omogoča reševanje zahtevnejših nalog z razlago rešitve in izenači igralno polje z izkušenejšimi programerji.
 
-
-*todo
-Eksperiment bi lahko bil izboljšan z večjim številom nalog in učencev v eksperimentu. Dodatno bi lahko demografski podatki bili bolj raznoliki, z večjim številom oseb ženskega spola ter z večjo raznolikostjo starosti in predznanja. Eksperiment je bil omejen na demografsko skupino otrok, ki se učijo programirati v eni izmed šol programiranja.
-
 \printbibliography[heading=bibintoc,title={Literatura}]
-
-
-
 \end{document}

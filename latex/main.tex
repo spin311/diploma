@@ -671,13 +671,13 @@ Izmed predhodno izbranih in opisanih asistentov umetne inteligence je zaradi pre
 
 ChatGPT lahko kot izobraževalni vir programiranja uporabljamo kot interaktivni inštruktor, ki odgovarja na vprašanja o uporabi programskega jezika, sintaksi in semantiki kode, o najboljših praksah, razpoložljivih knjižnicah ali paketih, alternativnih pristopih, integriranih razvojnih okoljih in programskih okoljih. ChatGPT lahko ustvari preprost primer kode s komentarji za vsako vrstico in povzetkom v naravnem jeziku o tem, kaj koda počne (s poudarjeno osnovno funkcijo ključnih spremenljivk, metod ali vključenih paketov). \cite{openai_chatgpt} \\
 Za razliko od uporabe iskalnikov, kot je Google, ali spletnih mest, kot so StackOverflow in GeeksforGeeks, lahko ChatGPT neposredno ponudi preprosto, jasno in ustrezno rešitev za specifična programerska vprašanja. Učitelji lahko ChatGPT uporabijo tudi za pripravo učnih gradiv, domačih nalog in izpitnih vprašanj, povezanih s specifičnimi programerskimi temami. \cite{Meyer2023} \\
-Poleg pisanja nove kode lahko ChatGPT opravlja številne dodatne funkcije za izboljšanje obstoječe kode. Izmenjava kode na platformah, kot je GitHub, ponuja izjemne možnosti za pospešitev raziskav in razvoja na področju računalništva. Vendar je pogosto težko interpretirati kodo, ki so jo napisali drugi (npr. študenti ali celo naša lastna koda iz preteklih let), saj pogosto obstaja veliko ustreznih načinov za programiranje posamezne naloge. To še posebej velja, kadar je koda slabo dokumentirana z omejenimi, netočnimi ali dvoumnimi komentarji. Uporabnik lahko ChatGPT vpraša, kaj določena vrstica ali del kode počne, in ChatGPT jo bo poskušal razčleniti na posamezne dele, pojasniti spremenljivke, ukaze in korake ter vključiti splošen povzetek tega, kaj ta koda počne. ChatGPT lahko prosimo, da doda ali popravi komentarje v kodi, s čimer se avtomatizira dokumentiranje kode. ChatGPT lahko olajša tudi odpravljanje napak v kodi, čeprav bo, tako kot pri ročnem kodiranju, napake, ki vplivajo na pričakovano delovanje ali zmogljivost kode, verjetno veliko težje prepoznati kot tiste, ki preprosto preprečujejo uspešno delovanje kode. Poleg tega lahko uporabniki od programa zahtevajo, naj poskuša poenostaviti obstoječo kodo, da bi jo naredil bolj kompaktno, razumljivo ali računsko učinkovito, ali pa da kodo prevede iz enega programskega jezika v drugega. \cite{Meyer2023}
+Poleg pisanja nove kode lahko ChatGPT opravlja številne dodatne funkcije za izboljšanje obstoječe kode. Izmenjava kode na platformah, kot je GitHub, ponuja izjemne možnosti za pospešitev raziskav in razvoja na področju računalništva. Vendar je pogosto težko interpretirati kodo, ki so jo napisali drugi (npr. študenti) ali celo svojo lastno kodo iz preteklih let, saj pogosto obstaja veliko ustreznih načinov za programiranje posamezne naloge. To še posebej velja, kadar je koda slabo dokumentirana z omejenimi, netočnimi ali dvoumnimi komentarji. Uporabnik lahko ChatGPT vpraša o določeni vrstici ali delu kode, in ChatGPT jo bo poskušal razčleniti na posamezne dele, pojasniti spremenljivke, ukaze in korake ter vključiti splošen povzetek tega, kaj ta koda počne. ChatGPT lahko prosimo, da doda ali popravi komentarje v kodi, s čimer se avtomatizira dokumentiranje kode. ChatGPT lahko tudi olajša odpravljanje napak v kodi, čeprav bo, tako kot pri ročnem kodiranju, napake, ki vplivajo na pričakovano delovanje ali zmogljivost kode, verjetno veliko težje prepoznati kot tiste, ki preprosto preprečujejo uspešno delovanje kode. Poleg tega lahko uporabniki od programa zahtevajo, naj poskuša poenostaviti obstoječo kodo, da bi jo naredil bolj kompaktno, razumljivo ali računsko učinkovito, ali pa da kodo prevede iz enega programskega jezika v drugega. \cite{Meyer2023}
 
 V skladu z opozorili za splošno uporabo lahko ChatGPT nekoliko nepredvidljivo prikaže napačno kodo kot pravilno, kar imenujemo halucinacije. Halucinacije se pojavijo pri LLM-jih zaradi treniranja na veliki količini nenadzorovanih podatkov. \cite{alkaissi2023artificial} \\
 Poleg tega morda ne pozna ali ne more predvideti robnih primerov, ki bi lahko v posebnih okoliščinah porušili funkcionalnost kode, in morda privzeto ne predstavi najboljše ali najučinkovitejše rešitve kodiranja. Na koncu lahko koda, ki jo napiše ChatGPT, ponudi koristno izhodišče, vendar morajo programerji in uporabniki preveriti in potrditi kodo in komentarje, ki jih ustvari, da zagotovijo, da bo predvideni namen izpolnjen v celoti. Neposredno zanašanje na kodo, ki jo ustvari ChatGPT, bi bilo slabo premišljeno pri aplikacijah z visokim tveganjem, kjer so varnost, odgovornost, zasebnost in zaupanje najpomembnejši. Tako se vsaj za zdaj zdi, da ChatGPT ne more nadomestiti izkušenih programerjev, lahko pa olajša in pospeši nekatere procese pri razvoju programske opreme.
 \cite{Meyer2023}
 
-Ekipa OpenAI je napisala 164 nalog s testi, da bi ocenila, ali
+Ekipa OpenAI je sestavila 164 nalog s testi, da bi ocenila, ali
 zgodnji modeli Codexa ustvarjajo pravilno kodo Python iz angleščine. Skoraj 29 \% problemov je bilo rešenih s Codexovim prvim predlogom. 
 Natančno prilagojen model, usposobljen samo na pravilni kodi Pythona,
 je v prvem poskusu rešil 38 \% problemov. Če ta model
@@ -733,7 +733,7 @@ Odgovor na vprašanje, ali uporabljajo orodja umetne inteligence pri programiran
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\linewidth]{images/ai_ocena.png}
-    \caption{Spletna stran eksperimenta}
+    \caption{Pogostost uporabe umetne inteligence}
     \label{fig:ai_ocena}
 \end{figure}
 
@@ -756,7 +756,7 @@ Za namene beleženja in shranjevanja podatkov je bilo narejeno zaledje v jeziku 
 \end{figure}
 
 
-Baza je vsebovala pet tabel. Vnos (angl. log), Pogovor (angl. chat) ter Oddaja (angl. submit) so vsebovale podatke o trenutnem stanju naloge, časa in kode in so vsebovale referenco na tabeli Študent (angl. student), ki je hranila osnovne podatke o učencih, ter na tabelo Naloge (angl. tasks), ki je vsebovala podatke o trenutni nalogi. Na sliki je prikazana shema podatkov, ki so se beležili. \ref{fig:baze}. \\ 
+Baza je vsebovala pet tabel. Vnos (angl. log), Pogovor (angl. chat) ter Oddaja (angl. submit) so vsebovale podatke o trenutnem stanju naloge, časa in kode in so vsebovale referenco na tabeli Študent (angl. student), ki je hranila osnovne podatke o učencih, ter na tabelo Naloge (angl. tasks), ki je vsebovala podatke o trenutni nalogi. Na sliki \ref{fig:baze} je prikazana shema podatkov, ki so se beležili. \\ 
 Poleg tega se je shranjevalo tudi podatke, ali se je trenutna koda prevedla z napako, podatke o številu poskusov za trenutno nalogo in metapodatke, kot sta trenuten čas ter čas reševanja trenutne naloge. Kodo in pogovor se je beležilo ob oddaji naloge, ob vsakem prevajanju programa ter na določen časovni interval.
 
 \begin{figure}[H]
@@ -826,12 +826,12 @@ Naloge so na voljo v GitHub repozitoriju.
 
 
 \section{Ocenjevanje}
-Po končanem eksperimentu sem naloge ročno ocenil na lestvici 1-5 glede na izhodne podatke oddanih nalog. Kakovost in berljivost kode se zaradi lažjega in objektivnejšega ocenjevanja pri oceno ni upoštevala, ocenjevalo se je pravilnost izhoda za določeno nalogo ter upoštevanje navodil in robnih primerov. \\
-Oceno ena in dva so dobile naloge, ki niso bile pravilno rešene ter za noben primer vhoda ne vrnejo pravilnega izhoda. Naloge so dobile oceno tri, če so bile delno pravilno rešene, torej delujejo v nekaterih primerih oziroma navodila niso bila v celoti implementirana. Ocena štiri je bila določena nalogam, ki za osnovno podan vhod delujejo pravilno, ne delujejo pa za vse možne vhode. Ocena pet je bila izbrana za naloge, ki ob pričakovanih vhodih vrnejo tudi pričakovan izhod. Dovoljena je bila uporaba funkcij iz vgrajenih Pythonovih knjižnic.  Skupno je bilo oddanih 196 veljavnih nalog s kodo. V povprečju so učenci zaradi časovne omejitve rešili med šest in sedem nalog od skupno osmih nalog. 
+Po končanem eksperimentu sem naloge ročno ocenil na lestvici 1-5 glede na izhodne podatke oddanih nalog. Kakovost in berljivost kode se zaradi lažjega in objektivnejšega ocenjevanja pri oceni ni upoštevala, ocenjevalo se je pravilnost izhoda za določeno nalogo ter upoštevanje navodil in robnih primerov. \\
+Oceno ena in dva so dobile naloge, ki niso bile pravilno rešene ter za noben primer vhoda ne vrnejo pravilnega izhoda. Naloge so dobile oceno tri, če so bile delno pravilno rešene, torej delujejo v nekaterih primerih oziroma navodila niso bila v celoti implementirana. Ocena štiri je bila določena nalogam, ki za osnovno podan vhod delujejo pravilno, ne delujejo pa za vse možne vhode. Ocena pet je bila izbrana za rešitve, ki ob pričakovanih vhodih vrnejo tudi pričakovan izhod. Dovoljena je bila uporaba funkcij iz vgrajenih Pythonovih knjižnic.  Skupno je bilo oddanih 196 veljavnih nalog s kodo. V povprečju so učenci zaradi časovne omejitve rešili med šest in sedem nalog od skupno osmih nalog. 
 \subsection{Rezultati in diskusija}
 Po končanem eksperimentu smo rezultate analizirali s pomočjo podatkov, shranjenih v relacijskih bazah, ter z narejenimi sql poizvedbami z uporabo knjižnice SQLite. \\
 Graf \ref{fig:grade_all} prikazuje povprečno oceno pri posamezni nalogi. Pri nalogah 2, 4, 6 in 8 so učenci lahko uporabljali ChatGPT, ostale naloge pa so reševali brez asistence in so imele vlogo kontrolne naloge. Iz grafa je razvidno, da je uporaba ChatGPT-ja imela večji vpliv na doseženo število točk pri nalogi  kot stopnja težavnosti. Kljub višji težavnosti sta bili najboljše rešeni nalogi 6 in 8, kar je mogoče razložiti z največjim številom uporabe pogovornega okna za ti nalogi, kar prikazuje tabela \ref{tab:st-pogovorov}.
-Zaradi visokih rezultatov pri 6. in 8. nalogi sta povprečji druge in tretje kategorije višji od prve.
+Zaradi visokih rezultatov pri 6. in 8. nalogi, kjer je bila omogočena uporaba ChatGPT-ja, sta povprečji druge in tretje kategorije višji od prve.
 Slabše rezultate 2. in 4. naloge, kjer je bila omogočena uporaba ChatGPT, lahko razložimo z dejstvom, da je pri teh nalogah pogovorno okno bilo uporabljeno najmanjkrat, ker so bile naloge preprostejše in zato pogosto rešene brez pomoči, kar je posledično prineslo nižje rezultate, kar prikazuje tabela \ref{tab:st-pogovorov}. \\
 \\ Naloge 1-4 sodijo v najlažjo kategorijo 1 in so bile v povprečju rešene z oceno 3,3. Nalogi 5 in 6 sodita v kategorijo 2 in sta bili v povprečju rešeni z oceno 3,6. Nalogi 7 in 8 sodita v najtežjo kategorijo 3, kjer je povprečje točk znašalo 3,4. Najslabše je bila rešena naloga 7 s povprečno oceno 2.7, najboljše pa je bila rešena naloga 6, kjer je bilo omogočeno pogovorno okno s ChatGPT, s povprečno oceno 4.5.
 
@@ -843,8 +843,8 @@ Slabše rezultate 2. in 4. naloge, kjer je bila omogočena uporaba ChatGPT, lahk
 \end{figure}
 
 Graf \ref{fig:bar_all} prikazuje povprečno oceno za različne težavnostne stopnje nalog glede na možnost uporabe ChatGPT. \\
-Pri nalogah prve stopnje težavnosti je bilo z uporabo GPT povprečno število doseženih točk 3,5, brez možnosti uporabe pa 3,2, razlika je znašala 0,3 točke. Pri nalogah druge stopnje težavnosti je z uporabo GPT povprečje točk 4,5 ter brez 2,8. Razlika znaša 1,7 točke. Pri nalogah tretje stopnje je povprečje z uporabo GPT 4,2 ter brez 2,7, razlika je 1,5 točke. Če primerjamo rezultate nalog, pri katerih GPT ni bil omogočen, lahko opazimo, da so bile v vseh primerih naloge, kjer je bila omogočena uporaba GPT, rešene boljše. \\
-Velikost vpliva uporabe ChatGPT lahko določimo z uporabo statistične analize.
+Pri nalogah prve stopnje težavnosti je bilo z uporabo GPT povprečno število doseženih točk 3,5, brez možnosti uporabe pa 3,2, z razliko 0,3 točke. Pri nalogah druge stopnje težavnosti je z uporabo GPT povprečje točk 4,5 ter brez 2,8. Razlika znaša 1,7 točke. Pri nalogah tretje stopnje je povprečje z uporabo GPT 4,2 ter brez 2,7, razlika je 1,5 točke. Če primerjamo rezultate nalog, pri katerih GPT ni bil omogočen, lahko opazimo, da so bile v vseh primerih naloge, kjer je bila omogočena uporaba GPT, rešene boljše. \\
+Velikost vpliva uporabe ChatGPT lahko določimo z uporabo statistične analize. \\
 Skupno število oddanih nalog znaša 196, z manjšimi razlikami v številu oddaj znotraj kategorij, kjer imajo naloge prve kategorije največ oddaj, saj jih je glede na drugi dve kategoriji dvakrat več. Za test so bile naloge razvrščene v tri težavnostne kategorije, pri čemer je za vsako bilo izračunano povprečje točk ter standardni odklon pri nalogah, ki so bile rešene z uporabo ChatGPT v primerjavi z nalogami, ki so bile rešene brez uporabe. Za vsako kategorijo smo izvedli dvovzorčni t-test, da bi preverili ničelno hipotezo ($H_0$), da ni razlike v povprečnih ocenah med nalogami z omogočenim GPT in nalogami brez GPT. Ta test smo izbrali zaradi neodvisne narave obeh skupin in majhnih razlik v velikosti vzorcev, zaradi česar je primeren za primerjavo povprečij med tema skupinama. 
 
 \begin{figure}[H]
@@ -858,7 +858,7 @@ V tej raziskavi smo uporabili prag pomembnosti $\alpha < 0.05$.
  Rezultati za naloge s težavnostjo 2 (p = $3,8 * 10^{-4}$) so pokazali pomembno izboljšanje rezultatov pri nalogah z GPT, zato zavrnemo ničelno hipotezo in potrdimo, da GPT pomembno vpliva na izboljšanje rezultatov za naloge druge kategorije. \\
  Rezultati za naloge s težavnostjo 3 (p = $6,2 * 10^{-4}$) so prav tako pokazali pomembno izboljšanje rezultatov pri nalogah z GPT, zato zavrnemo ničelno hipotezo in potrdimo, da GPT bistveno izboljšuje rezultate tudi pri zahtevnejših nalogah.\\
 
-Rezultati so pokazali, da je pomoč z GPT pomembno izboljšala rezultate pri nalogah s težavnostjo 2 in 3, pri nalogah s težavnostjo 1 pa ni bilo ugotovljene pomembne razlike. Te ugotovitve kažejo, da je asistenca pri programiranju z GPT najbolj koristna pri zahtevnejših nalogah, pri katerih učenci morda potrebujejo kompleksnejšo pomoč, da dosežejo boljše rezultate, medtem ko pri enostavnejših nalogah vključitev GPT ne prinaša enake koristi. To potrjuje hipotezo, da lahko dobro oblikovane spodbude, ki izkoriščajo GPT, izboljšajo uspešnost, zlasti pri zahtevnejših scenarijih, lažje naloge pa so še vedno bile v veliki meri rešene samostojno.\\
+Rezultati so pokazali, da je pomoč z GPT pomembno izboljšala rezultate pri nalogah s težavnostjo 2 in 3, pri nalogah s težavnostjo 1 pa ni bilo ugotovljene pomembne razlike. Te ugotovitve kažejo, da je asistenca pri programiranju z GPT najbolj koristna pri zahtevnejših nalogah, pri katerih učenci morda potrebujejo kompleksnejšo pomoč, da dosežejo boljše rezultate, medtem ko pri enostavnejših nalogah vključitev GPT ne prinaša enake koristi. To potrjuje hipotezo, da lahko dobro oblikovani pozivi, ki izkoriščajo GPT, izboljšajo uspešnost, zlasti pri zahtevnejših scenarijih, lažje naloge pa so še vedno bile v veliki meri rešene samostojno.\\
 Odklone v razlikah pri različnih kategorijah lahko delno pojasnimo v razlikah pri številu pogovorov s ChatGPT pri različnih kategorijah.
 
 \begin{table}[h!]
@@ -867,17 +867,17 @@ Odklone v razlikah pri različnih kategorijah lahko delno pojasnimo v razlikah p
 \hline
 \textbf{stopnja težavnosti} & \textbf{Povprečno število pogovorov osebe na nalogo} \\
 \hline
-1 & 2,3 \\
+1 & 1,9 \\
 \hline
-2 & 6,2 \\
+2 & 4,2 \\
 \hline
-3 & 1,9 \\
+3 & 3,9 \\
 \hline
 \end{tabular}
 \caption{Število uporab ChatGPT-ja za posamezne stopnje težavnosti}
 \label{tab:st-pogovorov}
 \end{table}
-Pri nalogah prve kategorije, pri katerih je bil na voljo ChatGPT, je bil ChatGPT skupno uporabljen le 34-krat, pri nalogah druge kategorije je bil uporabljen 59-krat ter pri nalogah tretje kategorije 65-krat. Majhno število uporabe pri nalogah prve kategorije nakazuje na dejstvo, da so naloge bile lažje in se jih je zato v večji meri reševalo samostojno kljub možnosti uporabe ChatGPT-ja. Pri težjih nalogah je pogosteje prišlo do neznanja in takrat je bil uporabljen ChatGPT. Iz analize postavljenih vprašanj lahko dodatno ugotovimo, da se je večina vprašanj prve kategorije nanašala na pravilnost in kakovost kode, pri drugi in tretji težavnostni kategoriji pa se je večina vprašanj nanašala na rešitev same naloge ter popravljanje nedelujoče kode.\\
+Pri nalogah prve kategorije, pri katerih je bil na voljo ChatGPT, je bil ChatGPT uporabljen povprečno le 1,9 krat na nalogo za posamezno osebo, pri nalogah druge kategorije je bil uporabljen 4,2 krat ter pri nalogah tretje kategorije 3,9 krat. Majhno število uporabe pri nalogah prve kategorije nakazuje na dejstvo, da so naloge bile lažje in se jih je zato v večji meri reševalo samostojno oziroma z minimalno asistenco kljub možnosti uporabe ChatGPT-ja. Pri težjih nalogah je pogosteje prišlo do neznanja in takrat je bil uporabljen ChatGPT. Iz analize postavljenih vprašanj lahko dodatno ugotovimo, da se je večina vprašanj prve kategorije nanašala na pravilnost in kakovost kode, pri drugi in tretji težavnostni kategoriji pa se je večina vprašanj nanašala na rešitev same naloge ter popravljanje nedelujoče kode.\\
 Iz grafa \ref{fig:bar_all} je razvidno, da je število doseženih točk pri nalogi sorazmerno s številom vprašanj, namenjenih ChatGPT-ju. Pri večjem številu vprašanj znotraj kategorije je bilo posledično doseženih tudi več točk. 
 
 \pagebreak
@@ -889,7 +889,7 @@ Iz grafa \ref{fig:bar_all} je razvidno, da je število doseženih točk pri nalo
 \end{figure}
 
 
-Če učence razdelimo glede na njihovo starost, dobimo dve enako veliki skupini: učenci v starosti 11-13 let in tisti v starosti 14-16 let. Graf \ref{fig:starostGPT} prikazuje število točk po kategorijah glede na uporabo ChatGPT-ja za obe starostni skupini. Pri nalogah prve kategorije ni velike razlike v reševanju med skupinama, razliko pa opazimo pri nalogah druge in tretje kategorije, kjer vidimo, da je starejša skupina boljše reševala naloge, ki jih je bilo potrebno reševati samostojno, kar lahko pripišemo več izkušnjam, pridobljenih s starostjo. Pri primerjavi nalog, rešenih z asistenco GPT, opazimo, da so povprečne ocene zelo podobne. Pri nalogah druge in tretje kategorije dosega mlajša skupina celo višje rezultate, kar \\
+Če učence razdelimo glede na njihovo starost, dobimo dve skupini: 14 učencev v starosti 11-13 let in 17 učencev v starosti 14-16 let. Graf \ref{fig:starostGPT} prikazuje število točk po kategorijah glede na uporabo ChatGPT-ja za obe starostni skupini. Pri nalogah prve kategorije ni velike razlike v reševanju med skupinama, razliko pa opazimo pri nalogah druge in tretje kategorije, kjer vidimo, da je starejša skupina boljše reševala naloge, ki jih je bilo potrebno reševati samostojno, kar lahko pripišemo več izkušnjam, pridobljenih s starostjo. Pri primerjavi nalog, rešenih z asistenco GPT, opazimo, da so povprečne ocene zelo podobne. Pri nalogah druge in tretje kategorije dosega mlajša skupina celo višje rezultate, kar dokazuje, da uporaba ChatGPT-ja omogoča reševanje tudi zahtevnejših nalog, ne glede na stopnjo predhodnega znanja ali izkušenj, in omogoča izenačevanje razlik med starostnimi skupinami.  \\
 
 
 
@@ -908,13 +908,15 @@ Prva skupina, ki je podala lastno oceno programiranja 1-3, je povprečno nalogo 
 Druga skupina, z lastno oceno programiranja nad 3, je povprečno nalogo rešila z oceno 3.85. Naloge, pri katerih je bila dovoljena pomoč z GPT, so imele povprečno oceno 4.0, pri nalogah brez asistence pa je ta znašala 3.7. Razlika znaša 0.3 točke ocene. Pri tej skupini je razlika v reševanju glede na asistenco GPT veliko manjša, pri nalogah prve kategorije so naloge brez asistence rešene celo nekoliko boljše. To lahko razložimo z nizkim številom vprašanj za to kategorijo. \\
 Ob primerjavi obeh skupin opazimo, da so naloge brez asistence bile rešene v drugi skupini v povprečju za kar 1.7 ocene boljše, kar potrjuje boljše predznanje te skupine. Naloge, rešene z asistenco, pa so bile v drugi skupini rešene le za 0.2 ocene boljše, kar dokazuje izenačitev pogojev in predznanja ob asistenci UI pri programiranju.
 
+\subsection{Omejitve in implikacije}
+
 Pri rezultatih eksperimenta se moramo zavedati, da bi vzorec učencev v eksperimentu lahko bil bolj reprezentativen, saj je večina učencev pripadala moški populaciji učencev enakega tečaja programiranja. Prav tako bi večji vzorec izboljšal rezultate.
 
-Iz rezultatov lahko sklepamo, da programiranje z asistenco umetne inteligence izboljša rezultate in pravilnost programov ter olajša in pohitri programiranje tako pri neizkušenih kot tudi pri bolj izkušenih programerjih. Lažje naloge ter naloge, ki so jih učenci razumeli in znali rešiti samostojno, so v večini primerov bile rešene brez asistence kljub možnosti pridobivanja rešitve z umetno inteligenco. Pri nalogah prve kategorije je bil zato GPT najmanj potreben in uporabljen. V večjo pomoč je bila asistenca pri težjih nalogah, kjer se je pogovorno okno tudi bolj uporabljalo. Največjo razliko naredi hiter inženiring pri manj izkušenih programerjih. Tem omogoča reševanje zahtevnejših nalog z razlago rešitve in izenači igralno polje z izkušenejšimi programerji.
+Iz rezultatov lahko sklepamo, da programiranje z asistenco umetne inteligence izboljša rezultate in pravilnost programov ter olajša in pohitri programiranje tako pri neizkušenih kot tudi pri bolj izkušenih programerjih. Lažje naloge ter naloge, ki so jih učenci razumeli in znali rešiti samostojno, so v večini primerov bile rešene brez asistence kljub možnosti pridobivanja rešitve z umetno inteligenco. Pri nalogah prve kategorije je bil zato GPT najmanj potreben in uporabljen. V večjo pomoč je bila asistenca pri težjih nalogah, kjer se je pogovorno okno tudi bolj uporabljalo. Največjo razliko naredi hiter inženiring pri manj izkušenih programerjih. Tem omogoča reševanje zahtevnejših nalog z razlago rešitve in zmanjša razlike z izkušenejšimi programerji.
 
 \pagebreak
 
-\section{Zaključek}
+\chapter{Zaključek}
 Diplomsko delo je raziskovalo hiter inženiring, ki ga poganjajo LLM-ji, kot ključno orodje za pospešitev in izboljšanje razvoja programske opreme. Rezultati so pokazali, da lahko orodja, kot je ChatGPT, povečajo učinkovitost in kakovost reševanja programerskih nalog, zlasti pri težjih problemih. V povprečju so naloge, rešene s pomočjo umetne inteligence, dosegle za 38 \% boljše rezultate kot tiste, rešene brez nje. To potrjuje, da dobro strukturirani pozivi in učinkovita uporaba umetne inteligence prinašata boljše rezultate.
 
 Raziskava je tudi pokazala, da hiter inženiring ne le pospešuje proces kodiranja, temveč tudi zmanjšuje razlike med razvijalci z različnim predznanjem. Uporaba ChatGPT-ja je znižala razlike v uspešnosti med bolj in manj izkušenimi razvijalci, kar kaže na potencial umetne inteligence za enakopravnejše učenje in delo v programerskih okoljih. To pomeni korak naprej k ustvarjanju bolj dostopnega in uravnoteženega okolja za vse programerje.
